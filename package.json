@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run ./src",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@kitbag/router": "^0.20.6",
