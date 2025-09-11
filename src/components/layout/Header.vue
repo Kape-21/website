@@ -14,14 +14,16 @@ const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Rou
         <Image src="/freesm-launcher-logo.webp" alt="Freesm Launcher logo" class-names="h-12" />
       </RouterLink>
       <div class="flex flex-nowrap items-center gap-2 md:gap-4">
-        <RouterLink
-          v-for="route in routes"
-          :key="route.Key"
-          :to="route.Path"
-          class="relative font-semibold before:absolute before:h-[2px] before:w-0 before:bg-mauve before:transition-[width] before:duration-300 before:content-empty before:-bottom-2 hover:before:w-full"
-        >
-          {{ route.Key }}
-        </RouterLink>
+        <nav class="flex flex-nowrap gap-0">
+          <RouterLink
+            v-for="route in routes"
+            :key="route.Key"
+            :to="route.Path"
+            class="relative p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0 before:bg-mauve before:transition-[width] before:duration-300 before:content-empty hover:before:w-[calc(100%-16px)]"
+          >
+            {{ route.Key }}
+          </RouterLink>
+        </nav>
         <div className="w-[2px] h-8 bg-mauve" />
         <a
           v-for="link in ExternalLinks"

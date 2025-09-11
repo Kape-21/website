@@ -34,11 +34,13 @@ export const RoutesConfiguration = Object
 export const ExternalLinks = [
   {
     "Key" : "Github",
+    // Somehow this icon is not loaded by UnoCSS...
     "Icon": "i-mdi-github",
     "Link": "https://github.com/FreesmTeam/FreesmLauncher",
   },
   {
     "Key" : "Telegram",
+    // Somehow this icon is not loaded by UnoCSS...
     "Icon": "i-mdi-telegram",
     "Link": "https://t.me/freesmteam",
   },

@@ -22,7 +22,7 @@
    * Add an animation delay so that cached routes
    * will not trigger this animation
    */
-  animation-delay: 0ms;
+  animation-delay: 100ms;
 }
 
 /* Keyframes */
