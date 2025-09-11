@@ -2,6 +2,7 @@ import { createRoute } from "@kitbag/router";
 import { defineAsyncComponent } from "vue";
 import Compass from "@/components/icons/Compass.vue";
 import Book from "@/components/icons/Book.vue";
+import Downloading from "@/components/icons/Downloading.vue";
 
 export const Routes = {
   "Home": {
@@ -11,7 +12,7 @@ export const Routes = {
   },
   "Downloads": {
     "Key" : "Downloads",
-    "Icon": Compass,
+    "Icon": Downloading,
     "Path": "/downloads",
   },
   "FAQ": {

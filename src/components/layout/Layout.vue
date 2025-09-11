@@ -11,4 +11,7 @@ import BottomBar from "@/components/layout/BottomBar.vue";
   <div class="w-full flex justify-center">
     <slot />
   </div>
+  <!-- Bottom bar is rendered over other elements because it is 'fixed', -->
+  <!-- so we manually add an element with the same height to make page content not hide under it -->
+  <div class="h-20 w-full" />
 </template>
