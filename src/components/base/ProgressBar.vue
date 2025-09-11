@@ -1,0 +1,25 @@
+<script setup lang="ts">
+import { onBeforeRouteLeave, onAfterRouteLeave } from "@kitbag/router";
+import { onMounted, onUnmounted, ref } from "vue";
+
+const loading = ref<boolean>(false);
+
+onMounted(() => {
+  onBeforeRouteLeave(() => {
+    loading.value = true;
+  });
+});
+
+onUnmounted(() => {
+  onAfterRouteLeave(() => {
+    loading.value = false;
+  });
+});
+</script>
+
+<template>
+  <div class="fixed left-0 right-0 top-0 z-5000 h-1 overflow-x-clip">
+    <!-- Opacity will be overwritten by the animation -->
+    <div :class="['absolute h-1 w-full bg-rose-500 opacity-0']" />
+  </div>
+</template>

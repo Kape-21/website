@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Locales } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 
-const opened = ref(false);
+const opened = ref<boolean>(false);
 const selected: LocaleType = "en";
 
 function toggleMenu() {
