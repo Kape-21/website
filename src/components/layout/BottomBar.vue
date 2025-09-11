@@ -7,7 +7,7 @@ const currentRoute = useRoute();
 </script>
 
 <template>
-  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto bg-catppuccin-900 sm:hidden">
+  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto bg-catppuccin-900 sm:hidden border-t border-catppuccin-700">
     <RouterLink
       v-for="route in RoutesArray"
       :key="route.Key"
