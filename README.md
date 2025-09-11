@@ -38,7 +38,7 @@ If you want to add a new locale:
 Thank you to all the people who have contributed!
 
 <a href="https://github.com/freesmteam/website/graphs/contributors">
-  <img alt="Freesm Launcher website contributors" src="https://contrib.rocks/image?repo=freesmteam/website" width="250"/>
+  <img alt="Freesm Launcher website contributors" src="https://contrib.rocks/image?repo=freesmteam/website" width="64"/>
 </a>
 
 ## License
