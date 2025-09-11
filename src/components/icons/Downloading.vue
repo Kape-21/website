@@ -5,13 +5,23 @@ const { active } = defineProps<{
 </script>
 
 <style scoped>
+.downloading-icon__outer {
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(.25,.75,.25,.75);
+  transform-origin: 50% -50%;
+}
 .downloading-icon__circle {
   opacity: 0;
   transition-property: opacity;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(.25,.75,.25,.75);
+  transition-delay: 150ms;
 }
 
+.active .downloading-icon__outer {
+  transform: rotate(180deg);
+}
 .active .downloading-icon__circle {
   opacity: 1;
 }
@@ -27,7 +37,11 @@ const { active } = defineProps<{
     viewBox="0 -960 960 960"
   >
     <path
-      d="M439-82q-76-8-141.5-42.5t-113.5-88Q136-266 108.5-335T81-481q0-155 102.5-268.5T440-880v80q-121 17-200 107.5T161-481q0 121 79 211.5T439-162v80Zm40-198L278-482l57-57 104 104v-245h80v245l103-103 57 58-200 200Zm40 198v-80q43-6 82.5-23t73.5-43l58 58q-47 37-101 59.5T519-82Zm158-652q-35-26-74.5-43T520-800v-80q59 6 113 28.5T733-792l-56 58Zm112 506-56-57q26-34 42-73.5t22-82.5h82q-8 59-30 113.5T789-228Zm8-293q-6-43-22-82.5T733-677l56-57q38 45 61 99.5T879-521h-82Z"
+      d="M 439 -82 Z m 40 -198 L 278 -482 l 57 -57 l 104 104 v -245 h 80 v 245 l 103 -103 l 57 58 l -200 200 Z Z Z l -56 -57 Z Z"
+    />
+    <path
+      class="downloading-icon__outer"
+      d="M 439 -82 q -76 -8 -141.5 -42.5 t -113.5 -88 Q 136 -266 108.5 -335 T 81 -481 q 0 -155 102.5 -268.5 T 440 -880 v 80 q -121 17 -200 107.5 T 161 -481 q 0 121 79 211.5 T 439 -162 v 80 Z m 40 -198 Z m 40 198 v -80 q 43 -6 82.5 -23 t 73.5 -43 l 58 58 q -47 37 -101 59.5 T 519 -82 Z m 158 -652 q -35 -26 -74.5 -43 T 520 -800 v -80 q 59 6 113 28.5 T 733 -792 l -56 58 Z m 112 506 l -56 -57 q 26 -34 42 -73.5 t 22 -82.5 h 82 q -8 59 -30 113.5 T 789 -228 Z m 8 -293 q -6 -43 -22 -82.5 T 733 -677 l 56 -57 q 38 45 61 99.5 T 879 -521 h -82 Z"
     />
     <path
       class="downloading-icon__circle"
