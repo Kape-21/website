@@ -1,5 +1,20 @@
-import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import { createRouter } from "@kitbag/router";
+import { VueQueryPlugin as query } from "@tanstack/vue-query";
+import { RoutesConfiguration } from "@/constants/routes.ts";
+import App from "@/App.vue";
+// Import UnoCSS essentials
+import "virtual:uno.css";
+// Reset all CSS styles in a Tailwind style
+import "@unocss/reset/tailwind.css";
+import "@/globals.css";
 
-createApp(App).mount('#app')
+const app = createApp(App);
+const pinia = createPinia();
+const router = createRouter(RoutesConfiguration);
+
+app.use(pinia);
+app.use(router);
+app.use(query);
+app.mount("#app");
