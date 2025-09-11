@@ -7,7 +7,7 @@ const currentRoute = useRoute();
 </script>
 
 <template>
-  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto bg-catppuccin-900 sm:hidden border-t border-catppuccin-700">
+  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap select-none overflow-x-auto border-t border-catppuccin-700 bg-catppuccin-900 sm:hidden">
     <RouterLink
       v-for="route in RoutesArray"
       :key="route.Key"
@@ -31,7 +31,7 @@ const currentRoute = useRoute();
       >
         <Compass :active="currentRoute.href === route.Path" />
       </div>
-      <p class="select-none text-center text-sm leading-none transition-[color] duration-200">
+      <p class="text-center text-sm leading-none transition-[color] duration-200">
         {{ route.Key }}
       </p>
     </RouterLink>
