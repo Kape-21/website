@@ -1,0 +1,9 @@
+new.freesmlauncher.org {
+    root * /home/github/website/dist
+    encode gzip
+    file_server {
+        hide .git
+    }
+
+    header Cache-Control max-age=0
+}
