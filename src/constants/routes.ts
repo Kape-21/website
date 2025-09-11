@@ -18,9 +18,9 @@ export const Routes = {
     "Key" : "About",
     "Path": "/about",
   },
-  "Theme": {
-    "Key" : "Theme",
-    "Path": "/theme",
+  "Themes": {
+    "Key" : "Themes",
+    "Path": "/themes",
   },
 } as const;
 export const RoutesConfiguration = Object
