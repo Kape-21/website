@@ -21,7 +21,9 @@ const currentRoute = useRoute();
             :key="route.Key"
             :to="route.Path"
             :class="[
-              'relative p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0 before:bg-mauve before:transition-[width] before:duration-300 before:content-empty hover:before:w-[calc(100%-16px)]',
+              'relative p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0',
+              'before:bg-mauve before:transition-[width] before:duration-300 before:content-empty',
+              'hover:before:w-[calc(100%-16px)]',
               route.Path === currentRoute.href && 'before:!w-[calc(100%-16px)]',
             ]"
           >
