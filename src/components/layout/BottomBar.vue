@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "@kitbag/router";
 import { RoutesArray } from "@/constants/routes.ts";
-import Compass from "@/components/icons/Compass.vue";
 
 const currentRoute = useRoute();
 </script>
@@ -15,7 +14,7 @@ const currentRoute = useRoute();
       :class="[
         'group h-full min-w-20 shrink-0 flex flex-col gap-2 justify-center items-center flex-1',
         currentRoute.href === route.Path
-          ? 'text-white fill-white'
+          ? 'text-white fill-white font-semibold'
           : 'text-[theme(colors.white/.7)] fill-[theme(colors.white/.7)]',
       ]"
     >
@@ -29,7 +28,10 @@ const currentRoute = useRoute();
             : 'w-8',
         ]"
       >
-        <Compass :active="currentRoute.href === route.Path" />
+        <component
+          :is="route.Icon"
+          :active="currentRoute.href === route.Path"
+        />
       </div>
       <p class="text-center text-sm leading-none transition-[color] duration-200">
         {{ route.Key }}
