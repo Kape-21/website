@@ -23,6 +23,7 @@ export const Routes = {
     "Path": "/themes",
   },
 } as const;
+export const RoutesArray: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Routes);
 export const RoutesConfiguration = Object
   .values(Routes)
   .map(({ Key, Path }) => createRoute({

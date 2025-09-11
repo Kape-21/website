@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "@kitbag/router";
-import { ExternalLinks, Routes } from "@/constants/routes.ts";
+import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
 import LocaleSelector from "@/components/base/LocaleSelector.vue";
 
-const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Routes);
 const currentRoute = useRoute();
 </script>
 
@@ -17,14 +16,14 @@ const currentRoute = useRoute();
       <div class="flex flex-nowrap items-center gap-2 md:gap-4">
         <nav class="flex flex-nowrap gap-0">
           <RouterLink
-            v-for="route in routes"
+            v-for="route in RoutesArray"
             :key="route.Key"
             :to="route.Path"
             :class="[
               'relative p-1 md:p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0',
               'before:bg-mauve before:transition-[width] before:duration-300 before:content-empty',
-              'hover:before:w-[calc(100%-16px)]',
-              route.Path === currentRoute.href && 'before:!w-[calc(100%-16px)]',
+              'hover:before:!w-[calc(100%-8px)] md:hover:before:!w-[calc(100%-16px)]',
+              route.Path === currentRoute.href && 'before:!w-[calc(100%-8px)] md:before:!w-[calc(100%-16px)]',
             ]"
           >
             {{ route.Key }}
