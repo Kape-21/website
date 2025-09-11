@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { RouterLink } from "@kitbag/router";
+import { RouterLink, useRoute } from "@kitbag/router";
 import { ExternalLinks, Routes } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
 import LocaleSelector from "@/components/base/LocaleSelector.vue";
 
 const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Routes);
+const currentRoute = useRoute();
 </script>
 
 <template>
@@ -19,7 +20,10 @@ const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Rou
             v-for="route in routes"
             :key="route.Key"
             :to="route.Path"
-            class="relative p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0 before:bg-mauve before:transition-[width] before:duration-300 before:content-empty hover:before:w-[calc(100%-16px)]"
+            :class="[
+              'relative p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0 before:bg-mauve before:transition-[width] before:duration-300 before:content-empty hover:before:w-[calc(100%-16px)]',
+              route.Path === currentRoute.href && 'before:!w-[calc(100%-16px)]',
+            ]"
           >
             {{ route.Key }}
           </RouterLink>
