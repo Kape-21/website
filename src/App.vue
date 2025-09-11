@@ -9,6 +9,12 @@ import Layout from "@/components/layout/Layout.vue";
     <span class="i-mdi-github i-mdi-telegram" />
   </div>
   <Layout>
-    <RouterView />
+    <RouterView>
+      <template #default="{ component }">
+        <Transition name="page">
+          <component :is="component" />
+        </Transition>
+      </template>
+    </RouterView>
   </Layout>
 </template>

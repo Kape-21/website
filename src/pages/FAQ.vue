@@ -1,5 +1,8 @@
+<!-- eslint-disable unicorn/filename-case -->
 <script setup lang="ts"></script>
 
 <template>
-  FAQ
+  <div>
+    FAQ
+  </div>
 </template>
