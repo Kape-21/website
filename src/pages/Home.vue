@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <div>
+  <div class="mx-4 max-w-320 w-full py-4">
     <div>
       Home page
     </div>
