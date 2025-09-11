@@ -10,11 +10,9 @@ const { active } = defineProps<{
   transition-property: d;
   transition-duration: 150ms;
 }
-
 .book-icon__bookmark-first {
   transition-timing-function: cubic-bezier(.75,.25,.75,.25);
 }
-
 .book-icon__bookmark-second {
   transition-timing-function: cubic-bezier(.25,.75,.25,.75);
   transition-delay: 200ms;
@@ -23,7 +21,6 @@ const { active } = defineProps<{
 .active .book-icon__bookmark-first {
   d: path("M 730 -440 m 0 290 l -100 0 l -400 0 v -680 H 730 Z");
 }
-
 .active .book-icon__bookmark-second {
   d: path("M 640 -440 m 0 -80 l -100 -60 l -100 60 v -360 H 640 Z");
 }
