@@ -2,17 +2,18 @@
 import { RouterLink } from "@kitbag/router";
 import { ExternalLinks, Routes } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
+import LocaleSelector from "@/components/base/LocaleSelector.vue";
 
 const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Routes);
 </script>
 
 <template>
-  <header class="sticky top-0 hidden h-20 w-full select-none border-b border-catppuccin-800 bg-catppuccin-950/50 backdrop-blur-sm sm:block">
-    <div class="mx-auto h-full max-w-320 w-full flex items-center justify-between">
-      <RouterLink to="/">
-        <Image src="/freesm-launcher-logo.webp" alt="Freesm Launcher logo" class-names="ml-4 h-12" />
+  <header class="sticky top-0 hidden h-20 w-full select-none justify-center border-b border-catppuccin-800 bg-catppuccin-950/50 backdrop-blur-sm sm:flex">
+    <div class="mx-4 h-full max-w-320 w-full flex items-center justify-between gap-2 md:gap-4">
+      <RouterLink to="/" class="shrink-0">
+        <Image src="/freesm-launcher-logo.webp" alt="Freesm Launcher logo" class-names="h-12" />
       </RouterLink>
-      <div class="mr-4 flex flex-nowrap items-center gap-4">
+      <div class="flex flex-nowrap items-center gap-2 md:gap-4">
         <RouterLink
           v-for="route in routes"
           :key="route.Key"
@@ -27,10 +28,11 @@ const routes: Array<{ "Key": string; "Path": `/${string}` }> = Object.values(Rou
           :key="link.Key"
           :href="link.Link"
           target="_blank"
-          class="grid size-8 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] hover:bg-catppuccin-600"
+          class="grid size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] hover:bg-catppuccin-600"
         >
-          <div :class="[link.Icon, 'size-5 shrink-0']"></div>
+          <div :class="[link.Icon, 'size-5']" />
         </a>
+        <LocaleSelector />
       </div>
     </div>
   </header>
