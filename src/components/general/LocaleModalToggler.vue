@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Modal from "@/components/base/Modal.vue";
 import World from "@/components/icons/World.vue";
+import { Locales } from "@/constants/locales.ts";
 
 const { shown, toggle } = defineProps<{
   "shown" : boolean;
@@ -37,7 +38,31 @@ const { shown, toggle } = defineProps<{
   <Modal
     :shown="shown"
     :toggle="toggle"
+    class-names="left-[calc(50%-96px)] top-[calc(50%-128px-40px)]"
   >
-    Hellooo
+    <div class="h-64 w-48 flex flex-col select-none gap-4 p-4">
+      <div class="flex flex-nowrap items-center justify-between">
+        <p class="text-xl leading-none">
+          Locale
+        </p>
+        <button
+          @click="toggle"
+          class="grid h-8 w-8 place-items-center rounded-md bg-catppuccin-700"
+        >
+          <span class="i-lucide-x block h-5 w-5" />
+        </button>
+      </div>
+      <div class="h-[1px] w-full bg-catppuccin-700" />
+      <div class="flex flex-col gap-0">
+        <button
+          v-for="locale in Locales"
+          :key="locale.Code"
+          class="w-full flex flex-nowrap gap-4 rounded-md px-4 py-3 text-lg transition-[background-color] hover:bg-catppuccin-600"
+        >
+          <span>{{ locale.Flag }}</span>
+          <span>{{ locale.Name }}</span>
+        </button>
+      </div>
+    </div>
   </Modal>
 </template>

@@ -23,7 +23,7 @@ function toggleModal(properties?: { "show"?: boolean }) {
 </script>
 
 <template>
-  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap select-none overflow-x-auto border-t border-catppuccin-700 bg-catppuccin-900 sm:hidden">
+  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto border-t border-catppuccin-700 bg-catppuccin-900 sm:hidden">
     <RouterLink
       @click="() => toggleModal({ show: false })"
       v-for="route in RoutesArray"

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const { shown, toggle } = defineProps<{
-  "shown" : boolean;
-  "toggle": () => void;
+const { shown, toggle, classNames } = defineProps<{
+  "shown"      : boolean;
+  "toggle"     : () => void;
+  "classNames"?: string;
 }>();
 </script>
 
@@ -17,7 +18,10 @@ const { shown, toggle } = defineProps<{
     <Transition name="slide-fade">
       <div
         v-show="shown"
-        class="fixed bottom-26 left-6 right-6 top-6 z-600 border border-catppuccin-600 rounded-md bg-catppuccin-900"
+        :class="[
+          'fixed z-600 border border-catppuccin-700 rounded-md bg-catppuccin-900',
+          classNames,
+        ]"
       >
         <slot />
       </div>

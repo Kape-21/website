@@ -16,7 +16,7 @@ const shown = ref<boolean>(false);
     :alt="alt"
     :src="src"
     :class="[
-      'shrink-0 select-none transition-[opacity] duration-300',
+      'shrink-0 transition-[opacity] duration-300',
       shown ? 'opacity-100' : 'opacity-0',
       classNames,
     ]"
