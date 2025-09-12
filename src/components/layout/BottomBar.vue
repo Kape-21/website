@@ -6,20 +6,29 @@ import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { useVibrate } from "@vueuse/core";
 
 const currentRoute = useRoute();
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 const shown = ref<boolean>(false);
 
+const { vibrate } = useVibrate({ "pattern": [10] });
+
 function toggleModal(properties?: { "show"?: boolean }) {
   shown.value = properties?.show ?? !shown.value;
+  vibrate();
+}
+
+function onNavigate() {
+  toggleModal({ "show": false });
+  vibrate();
 }
 </script>
 
 <template>
   <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto border-t border-catppuccin-700 bg-catppuccin-900 sm:hidden">
     <RouterLink
-      @click="() => toggleModal({ show: false })"
+      @click="onNavigate"
       v-for="route in RoutesArray"
       :key="route.Key"
       :to="route.Path"
