@@ -3,10 +3,13 @@ import Modal from "@/components/base/Modal.vue";
 import World from "@/components/icons/World.vue";
 import { Locales } from "@/constants/locales.ts";
 import { inject } from "vue";
-import type { TranslateType } from "@/types/translate.type.ts";
-import { TranslateContextKey } from "@/constants/application.ts";
+import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
+import { translate } from "@/lib/translations/translate.ts";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 
-const translate = inject<TranslateType>(TranslateContextKey);
+const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
+const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
 const { shown, toggle } = defineProps<{
   "shown" : boolean;
   "toggle": () => void;
@@ -25,18 +28,18 @@ const { shown, toggle } = defineProps<{
   >
     <span
       :class="[
-          'relative flex justify-center h-8 rounded-full duration-200 transition-[width,background-color]',
-          'group-hover:before:bg-[theme(colors.white/.02)] group-active:before:bg-[theme(colors.white/.02)]',
-          'before:w-18 before:h-full before:rounded-full before:absolute before:content-empty',
-          shown
-            ? 'w-18 bg-catppuccin-600'
-            : 'w-8',
+        'relative flex justify-center h-8 rounded-full duration-200 transition-[width,background-color]',
+        'group-hover:before:bg-[theme(colors.white/.02)] group-active:before:bg-[theme(colors.white/.02)]',
+        'before:w-18 before:h-full before:rounded-full before:absolute before:content-empty',
+        shown
+          ? 'w-18 bg-catppuccin-600'
+          : 'w-8',
         ]"
     >
       <World :active="shown" />
     </span>
     <span class="block pb-1 text-center text-sm leading-none transition-[color] duration-200">
-      {{ translate?.("general.locale") }}
+      {{ translate("general.locale", currentLocale) }}
     </span>
   </button>
   <Modal
@@ -47,7 +50,7 @@ const { shown, toggle } = defineProps<{
     <div class="h-65 w-48 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
-          {{ translate?.("general.locale") }}
+          {{ translate("general.locale", currentLocale) }}
         </p>
         <button
           @click="toggle"
@@ -59,9 +62,15 @@ const { shown, toggle } = defineProps<{
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-0">
         <button
+          @click="() => selectLocale?.(locale.Code)"
           v-for="locale in Locales"
           :key="locale.Code"
-          class="w-full flex flex-nowrap gap-4 rounded-md px-4 py-3 text-lg transition-[background-color] hover:bg-catppuccin-600"
+          :disabled="currentLocale === locale.Code"
+          :class="[
+            'w-full flex flex-nowrap gap-4 rounded-md px-4 py-3 text-lg',
+            'transition-[background-color] hover:bg-catppuccin-600',
+            currentLocale === locale.Code && 'bg-catppuccin-800 hover:bg-catppuccin-800',
+          ]"
         >
           <span class="shrink-0">{{ locale.Flag }}</span>
           <span class="w-full text-center">{{ locale.Name }}</span>

@@ -1,3 +1,6 @@
 export const ApplicationName = "Freesm Launcher";
-export const TranslateContextKey = Symbol();
+
+export const LocaleContextKey = Symbol();
+export const LocaleSelectorContextKey = Symbol();
+
 export const LocaleKey = "locale";

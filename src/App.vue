@@ -1,24 +1,19 @@
 <script setup lang="ts">
 import Layout from "@/components/layout/Layout.vue";
 import { RouterView } from "@kitbag/router";
-import { provide } from "vue";
-import { LocaleKey, TranslateContextKey } from "@/constants/application.ts";
+import { provide, readonly, type Ref, ref } from "vue";
+import { LocaleKey, LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
-import type { TranslateType } from "@/types/translate.type.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
-
-/* Translations */
-import English from "@/locales/en.json";
-import Russian from "@/locales/ru.json";
-import Ukrainian from "@/locales/ua.json";
+import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
-let locale: LocaleType = DefaultLocale;
+const locale = ref<LocaleType>(DefaultLocale);
 let isValid: boolean = false;
 
 for (const validLocale of LocalesArray) {
   if (validLocale === storedLocale) {
-    locale = validLocale;
+    locale.value = validLocale;
     isValid = true;
   }
 }
@@ -27,23 +22,15 @@ if (!isValid) {
   localStorage.setItem(LocaleKey, DefaultLocale);
 }
 
-document.getElementById("__html-tag")?.setAttribute?.("lang", locale);
+document.getElementById("__html-tag")?.setAttribute?.("lang", locale.value);
 
-function translate(key: keyof typeof English): string {
-  switch (locale) {
-    case "en": {
-      return English[key];
-    }
-    case "ru": {
-      return Russian[key];
-    }
-    case "ua": {
-      return Ukrainian[key];
-    }
-  }
+function selectLocale(selected: LocaleType): void {
+  locale.value = selected;
+  localStorage.setItem(LocaleKey, selected);
 }
 
-provide<TranslateType>(TranslateContextKey, translate);
+provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
+provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
 </script>
 
 <template>

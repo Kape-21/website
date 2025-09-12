@@ -4,11 +4,12 @@ import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
 import LocaleSelector from "@/components/general/LocaleSelector.vue";
 import { inject } from "vue";
-import { TranslateContextKey } from "@/constants/application.ts";
-import type { TranslateType } from "@/types/translate.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+import { translate } from "@/lib/translations/translate.ts";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 
 const currentRoute = useRoute();
-const translate = inject<TranslateType>(TranslateContextKey);
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
@@ -31,7 +32,7 @@ const translate = inject<TranslateType>(TranslateContextKey);
                 && 'before:!w-[calc(100%-8px)] md:before:!w-[calc(100%-16px)]',
             ]"
           >
-            {{ translate?.(route.Name) }}
+            {{ translate(route.Name, locale) }}
           </RouterLink>
         </nav>
         <div className="w-[2px] h-8 bg-mauve" />
