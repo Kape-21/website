@@ -2,9 +2,9 @@
 import { ref } from "vue";
 
 const { src, alt, classNames } = defineProps<{
-  "src"       : string;
-  "alt"       : string;
-  "classNames": string;
+  "src"        : string;
+  "alt"        : string;
+  "classNames"?: string;
 }>();
 const shown = ref<boolean>(false);
 </script>
