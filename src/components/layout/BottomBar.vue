@@ -1,14 +1,31 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { RouterLink, useRoute } from "@kitbag/router";
 import { RoutesArray } from "@/constants/routes.ts";
 import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
 
 const currentRoute = useRoute();
+const shown = ref<boolean>(false);
+
+function toggleModal(properties?: { "show"?: boolean }) {
+  shown.value = properties?.show ?? !shown.value;
+
+  const htmlTag = document.getElementById("__html-tag");
+
+  if (htmlTag === null) {
+    return;
+  }
+
+  htmlTag.style.overflowY = (properties?.show ?? (htmlTag.style.overflowY === "auto"))
+    ? "hidden"
+    : "auto";
+}
 </script>
 
 <template>
   <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap select-none overflow-x-auto border-t border-catppuccin-700 bg-catppuccin-900 sm:hidden">
     <RouterLink
+      @click="() => toggleModal({ show: false })"
       v-for="route in RoutesArray"
       :key="route.Key"
       :to="route.Path"
@@ -38,6 +55,9 @@ const currentRoute = useRoute();
         {{ route.Key }}
       </p>
     </RouterLink>
-    <LocaleModalToggler />
+    <LocaleModalToggler
+      :shown="shown"
+      :toggle="toggleModal"
+    />
   </div>
 </template>

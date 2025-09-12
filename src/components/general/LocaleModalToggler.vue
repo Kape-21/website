@@ -1,28 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import Modal from "@/components/base/Modal.vue";
-import Compass from "@/components/icons/Compass.vue";
+import World from "@/components/icons/World.vue";
 
-const shown = ref<boolean>(false);
-
-function toggleModal() {
-  shown.value = !shown.value;
-
-  const htmlTag = document.getElementById("__html-tag");
-
-  if (htmlTag === null) {
-    return;
-  }
-
-  htmlTag.style.overflowY = htmlTag.style.overflowY === "hidden"
-    ? "auto"
-    : "hidden";
-}
+const { shown, toggle } = defineProps<{
+  "shown" : boolean;
+  "toggle": () => void;
+}>();
 </script>
 
 <template>
   <button
-    @click="toggleModal"
+    @click="toggle"
     :class="[
       'group h-full min-w-20 shrink-0 flex flex-col gap-2 justify-center items-center flex-1',
       shown
@@ -40,7 +28,7 @@ function toggleModal() {
             : 'w-8',
         ]"
     >
-      <Compass :active="shown" />
+      <World :active="shown" />
     </span>
     <span class="block pb-1 text-center text-sm leading-none transition-[color] duration-200">
       Locale
@@ -48,7 +36,7 @@ function toggleModal() {
   </button>
   <Modal
     :shown="shown"
-    :toggle="toggleModal"
+    :toggle="toggle"
   >
     Hellooo
   </Modal>
