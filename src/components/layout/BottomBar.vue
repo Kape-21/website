@@ -33,7 +33,7 @@ const currentRoute = useRoute();
           :active="currentRoute.href === route.Path"
         />
       </div>
-      <p class="text-center text-sm leading-none transition-[color] duration-200">
+      <p class="pb-2 text-center text-sm leading-none transition-[color] duration-200">
         {{ route.Key }}
       </p>
     </RouterLink>
