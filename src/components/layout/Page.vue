@@ -60,7 +60,7 @@ watchEffect(() => {
 <template>
   <div
     ref="element"
-    class="absolute w-[calc(100%-80px)] select-none overflow-x-visible pb-24 pt-4 transition-[opacity,transform] duration-50 ease-linear"
+    class="absolute w-[calc(100%-80px)] select-none overflow-x-visible pb-24 pt-4 transition-[opacity,transform] duration-50 ease-linear sm:pb-4"
     :style="isReallySwiping ? {
       transform: `translateX(${
         direction === 'right'
