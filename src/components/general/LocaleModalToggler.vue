@@ -18,7 +18,7 @@ const { shown, toggle } = defineProps<{
   "toggle": () => void;
 }>();
 
-const { vibrate } = useVibrate({ "pattern": [40] });
+const { vibrate } = useVibrate({ "pattern": [20] });
 
 function applyLocale(code: LocaleType) {
   selectLocale?.(code);
