@@ -7,13 +7,23 @@ import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/applicat
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import { useVibrate } from "@vueuse/core";
+import type { LocaleType } from "@/types/locale.type.ts";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
 const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
+
 const { shown, toggle } = defineProps<{
   "shown" : boolean;
   "toggle": () => void;
 }>();
+
+const { vibrate } = useVibrate({ "pattern": [40] });
+
+function applyLocale(code: LocaleType) {
+  selectLocale?.(code);
+  vibrate();
+}
 </script>
 
 <template>
@@ -62,7 +72,7 @@ const { shown, toggle } = defineProps<{
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-0">
         <button
-          @click="() => selectLocale?.(locale.Code)"
+          @click="() => applyLocale(locale.Code)"
           v-for="locale in Locales"
           :key="locale.Code"
           :disabled="currentLocale === locale.Code"
