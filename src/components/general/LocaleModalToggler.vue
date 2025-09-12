@@ -54,7 +54,7 @@ const { shown, toggle } = defineProps<{
         </p>
         <button
           @click="toggle"
-          class="grid h-9 w-9 place-items-center rounded-md bg-catppuccin-700"
+          class="grid h-9 w-9 place-items-center rounded-full bg-catppuccin-700"
         >
           <span class="i-lucide-x block h-5 w-5" />
         </button>
@@ -67,7 +67,7 @@ const { shown, toggle } = defineProps<{
           :key="locale.Code"
           :disabled="currentLocale === locale.Code"
           :class="[
-            'w-full flex flex-nowrap gap-4 rounded-md px-4 py-3 text-lg',
+            'w-full flex flex-nowrap gap-4 rounded-full px-4 py-3 text-lg',
             'transition-[background-color] hover:bg-catppuccin-600',
             currentLocale === locale.Code && 'bg-catppuccin-800 hover:bg-catppuccin-800',
           ]"

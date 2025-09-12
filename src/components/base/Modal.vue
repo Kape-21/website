@@ -19,7 +19,7 @@ const { shown, toggle, classNames } = defineProps<{
       <div
         v-show="shown"
         :class="[
-          'fixed z-600 border border-catppuccin-700 rounded-md bg-catppuccin-900',
+          'fixed z-600 border border-catppuccin-700 rounded-3xl bg-catppuccin-900',
           classNames,
         ]"
       >

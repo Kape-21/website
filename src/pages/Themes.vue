@@ -8,7 +8,7 @@ import Page from "@/components/layout/Page.vue";
       v-for="(_, index) in Array.from({ length: 30 })"
       :key="index"
     >
-      Themes {{ index }}
+      Themes {{ index + 1 }}
     </div>
   </Page>
 </template>
