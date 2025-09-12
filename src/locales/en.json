@@ -1,4 +1,8 @@
 {
+  "pages.not-found.title": "Oh!",
+  "pages.not-found.subtitle": "Page not found",
+  "pages.not-found.description": "The page you are looking for might have been removed, had its name changed or is temporarily unavailable.",
+  "pages.not-found.go-to-home": "Go to Home",
   "routes.home.name": "Home",
   "routes.downloads.name": "Downloads",
   "routes.faq.name": "FAQ",

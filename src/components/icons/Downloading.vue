@@ -16,7 +16,7 @@ const { active } = defineProps<{
   transition-property: opacity;
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(.25,.75,.25,.75);
-  transition-delay: 150ms;
+  transition-delay: 50ms;
 }
 
 .active .downloading-icon__outer {

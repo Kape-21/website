@@ -1,4 +1,8 @@
 {
+  "pages.not-found.title": "Ой!",
+  "pages.not-found.subtitle": "Страница не найдена",
+  "pages.not-found.description": "Страница, которую вы открыли, не существует, либо её название было изменено, либо она временно недоступна.",
+  "pages.not-found.go-to-home": "Вернуться домой",
   "routes.home.name": "Главная",
   "routes.downloads.name": "Скачать",
   "routes.faq.name": "FAQ",

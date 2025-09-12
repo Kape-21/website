@@ -1,4 +1,8 @@
 {
+  "pages.not-found.title": "Ой!",
+  "pages.not-found.subtitle": "Сторінку не знайдено",
+  "pages.not-found.description": "Сторінка, яку ви шукаєте, могла бути видалена, її назву змінено або вона тимчасово недоступна.",
+  "pages.not-found.go-to-home": "Повернутися на головну",
   "routes.home.name": "Головна",
   "routes.downloads.name": "Завантажити",
   "routes.faq.name": "FAQ",
