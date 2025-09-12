@@ -44,6 +44,7 @@ export default defineConfigWithVueTs(
       "unicorn/no-null"                   : ["off"], // 'JSON.stringify' second argument doesn't accept 'undefined' to save formatting
       "unicorn/prefer-global-this"        : ["off"], // no need for this rule because app is CSR and Web Workers will not be used
       "unicorn/prefer-top-level-await"    : ["off"], // broken
+      "unicorn/prefer-query-selector"     : ["off"],
       "@stylistic/no-multi-spaces"        : ["off"], // conflict with eslint@stylistic/key-spacing
       "@stylistic/line-comment-position"  : ["off"],
       "@stylistic/linebreak-style"        : ["off"],
@@ -117,7 +118,6 @@ export default defineConfigWithVueTs(
         "multilineDetection": "brackets",
       }],
       "@stylistic/multiline-comment-style" : ["error", "starred-block"],
-      "@stylistic/multiline-ternary"       : ["error", "never"],
       "@stylistic/new-parens"              : ["warn", "never"],
       "@stylistic/newline-per-chained-call": ["warn", { "ignoreChainWithDepth": 2 }],
       "@stylistic/no-confusing-arrow"      : ["error", { "allowParens": true, "onlyOneSimpleParam": false }],

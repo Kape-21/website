@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from "@kitbag/router";
 import { RoutesArray } from "@/constants/routes.ts";
+import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
 
 const currentRoute = useRoute();
 </script>
@@ -33,9 +34,10 @@ const currentRoute = useRoute();
           :active="currentRoute.href === route.Path"
         />
       </div>
-      <p class="pb-2 text-center text-sm leading-none transition-[color] duration-200">
+      <p class="pb-1 text-center text-sm leading-none transition-[color] duration-200">
         {{ route.Key }}
       </p>
     </RouterLink>
+    <LocaleModalToggler />
   </div>
 </template>

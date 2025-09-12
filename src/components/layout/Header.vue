@@ -2,7 +2,7 @@
 import { RouterLink, useRoute } from "@kitbag/router";
 import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
-import LocaleSelector from "@/components/base/LocaleSelector.vue";
+import LocaleSelector from "@/components/general/LocaleSelector.vue";
 
 const currentRoute = useRoute();
 </script>
