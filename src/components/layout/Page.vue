@@ -58,19 +58,18 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div ref="element" class="absolute max-w-320 min-h-[calc(100vh-80px)] w-[calc(100%-32px)] px-4">
-    <div
-      class="absolute w-[calc(100%-80px)] select-none overflow-x-visible pb-24 pt-4 transition-[opacity,transform] duration-50 ease-linear sm:pb-4"
-      :style="isReallySwiping ? {
-      transform: `translateX(${
-        direction === 'right'
-          ? Math.min(swipedDistance / 2, 48)
-          : Math.max(swipedDistance * -1 / 2, -48)
-      }px)`,
-      opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
-    } : {}"
-    >
-      <slot />
-    </div>
+  <div
+    ref="element"
+    class="absolute h-full max-w-320 w-full p-4 transition-[opacity,transform] duration-50 ease-linear"
+    :style="isReallySwiping ? {
+    transform: `translateX(${
+      direction === 'right'
+        ? Math.min(swipedDistance / 2, 48)
+        : Math.max(swipedDistance * -1 / 2, -48)
+    }px)`,
+    opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
+  } : {}"
+  >
+    <slot />
   </div>
 </template>
