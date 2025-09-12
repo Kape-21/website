@@ -3,7 +3,6 @@ import { defineAsyncComponent } from "vue";
 import Compass from "@/components/icons/Compass.vue";
 import Book from "@/components/icons/Book.vue";
 import Downloading from "@/components/icons/Downloading.vue";
-import Info from "@/components/icons/Info.vue";
 import Blocks from "@/components/icons/Blocks.vue";
 
 export const Routes = {
@@ -21,11 +20,6 @@ export const Routes = {
     "Key" : "FAQ",
     "Icon": Book,
     "Path": "/faq",
-  },
-  "About": {
-    "Key" : "About",
-    "Icon": Info,
-    "Path": "/about",
   },
   "Themes": {
     "Key" : "Themes",
