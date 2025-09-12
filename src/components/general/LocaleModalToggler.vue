@@ -59,8 +59,8 @@ const { shown, toggle } = defineProps<{
           :key="locale.Code"
           class="w-full flex flex-nowrap gap-4 rounded-md px-4 py-3 text-lg transition-[background-color] hover:bg-catppuccin-600"
         >
-          <span>{{ locale.Flag }}</span>
-          <span>{{ locale.Name }}</span>
+          <span class="shrink-0">{{ locale.Flag }}</span>
+          <span class="w-full text-center">{{ locale.Name }}</span>
         </button>
       </div>
     </div>

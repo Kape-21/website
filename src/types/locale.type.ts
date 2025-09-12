@@ -1,1 +1,3 @@
-export type LocaleType = "en" | "ru" | "ua";
+import type { Locales } from "@/constants/locales.ts";
+
+export type LocaleType = typeof Locales[number]["Code"];

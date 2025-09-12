@@ -1,6 +1,4 @@
-import type { LocaleType } from "@/types/locale.type.ts";
-
-export const Locales: Array<{ "Code": LocaleType; "Name": string; "Flag": string }> = [
+export const Locales = [
   {
     "Code": "en",
     "Name": "English",
@@ -16,4 +14,4 @@ export const Locales: Array<{ "Code": LocaleType; "Name": string; "Flag": string
     "Name": "Українська",
     "Flag": "\uD83C\uDDFA\uD83C\uDDE6",
   },
-];
+] as const;
