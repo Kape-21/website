@@ -4,6 +4,11 @@ import Page from "@/components/layout/Page.vue";
 
 <template>
   <Page>
-    Hello
+    <div
+      v-for="(_, index) in Array.from({ length: 30 })"
+      :key="index"
+    >
+      Themes {{ index }}
+    </div>
   </Page>
 </template>

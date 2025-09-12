@@ -5,6 +5,11 @@ import Page from "@/components/layout/Page.vue";
 
 <template>
   <Page>
-    FAQ
+    <div
+      v-for="(_, index) in Array.from({ length: 30 })"
+      :key="index"
+    >
+      FAQ {{ index }}
+    </div>
   </Page>
 </template>

@@ -4,89 +4,11 @@ import Page from "@/components/layout/Page.vue";
 
 <template>
   <Page>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
-    </div>
-    <div>
-      Home page
+    <div
+      v-for="(_, index) in Array.from({ length: 30 })"
+      :key="index"
+    >
+      Home {{ index }}
     </div>
   </Page>
 </template>

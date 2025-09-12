@@ -70,12 +70,6 @@ watchEffect(() => {
       opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
     } : {}"
   >
-    <!-- div>
-      isReallySwiping: {{ isReallySwiping }}; direction: {{ direction }}; swipedDistance: {{ swipedDistance }}
-    </div -->
-    <p>
-      dfj dak ;lfjklj jsdfl;ks adhfjklsadhfklj sdafkljsh adjfdk
-    </p>
     <slot />
   </div>
 </template>
