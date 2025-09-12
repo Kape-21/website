@@ -42,7 +42,7 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden">
+        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden bg-catppuccin-900">
           <Transition name="page">
             <component :is="component" />
           </Transition>
