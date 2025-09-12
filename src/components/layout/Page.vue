@@ -58,10 +58,10 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div
-    ref="element"
-    class="absolute w-[calc(100%-80px)] select-none overflow-x-visible pb-24 pt-4 transition-[opacity,transform] duration-50 ease-linear sm:pb-4"
-    :style="isReallySwiping ? {
+  <div ref="element" class="absolute max-w-320 min-h-[calc(100vh-80px)] w-[calc(100%-32px)] px-4">
+    <div
+      class="absolute w-[calc(100%-80px)] select-none overflow-x-visible pb-24 pt-4 transition-[opacity,transform] duration-50 ease-linear sm:pb-4"
+      :style="isReallySwiping ? {
       transform: `translateX(${
         direction === 'right'
           ? Math.min(swipedDistance / 2, 48)
@@ -69,7 +69,8 @@ watchEffect(() => {
       }px)`,
       opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
     } : {}"
-  >
-    <slot />
+    >
+      <slot />
+    </div>
   </div>
 </template>

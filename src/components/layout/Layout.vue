@@ -8,7 +8,5 @@ import BottomBar from "@/components/layout/BottomBar.vue";
   <ProgressBar />
   <Header />
   <BottomBar />
-  <div class="h-[calc(100vh-80px)] w-full flex flex-col items-center px-4">
-    <slot />
-  </div>
+  <slot />
 </template>

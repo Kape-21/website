@@ -11,7 +11,7 @@ import Layout from "@/components/layout/Layout.vue";
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div class="max-w-320 w-full">
+        <div class="mx-auto max-w-320 min-h-[calc(100vh-80px)] w-full">
           <Transition name="page">
             <component :is="component" />
           </Transition>
