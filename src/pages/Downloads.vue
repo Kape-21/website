@@ -4,11 +4,9 @@ import Page from "@/components/layout/Page.vue";
 
 <template>
   <Page>
-    <div
-      v-for="(_, index) in Array.from({ length: 30 })"
-      :key="index"
-    >
-      Downloads {{ index }}
-    </div>
+    <iframe
+      class="h-[calc(100vh-112px)] w-full"
+      src="https://freesmlauncher.org/downloads"
+    />
   </Page>
 </template>
