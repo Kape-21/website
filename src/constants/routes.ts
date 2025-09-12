@@ -32,6 +32,29 @@ export const RoutesArray: Array<{
   "Icon": typeof Routes["Home"]["Icon"];
   "Path": `/${string}`;
 }> = Object.values(Routes);
+export const Redirects: {
+  "left": Record<
+    typeof Routes[keyof typeof Routes]["Path"],
+    typeof Routes[keyof typeof Routes]["Path"]
+  >;
+  "right": Record<
+    typeof Routes[keyof typeof Routes]["Path"],
+    typeof Routes[keyof typeof Routes]["Path"]
+  >;
+} = {
+  "left": {
+    "/"         : "/downloads",
+    "/downloads": "/faq",
+    "/faq"      : "/themes",
+    "/themes"   : "/",
+  },
+  "right": {
+    "/downloads": "/",
+    "/faq"      : "/downloads",
+    "/themes"   : "/faq",
+    "/"         : "/themes",
+  },
+};
 export const RoutesConfiguration = Object
   .values(Routes)
   .map(({ Key, Path }) => createRoute({

@@ -31,7 +31,7 @@ function toggleModal(properties?: { "show"?: boolean }) {
       :to="route.Path"
       :class="[
         'group h-full min-w-20 shrink-0 flex flex-col gap-2 justify-center items-center flex-1',
-        currentRoute.href === route.Path
+        currentRoute?.matched?.path === route.Path
           ? 'text-white fill-white font-semibold'
           : 'text-[theme(colors.white/.7)] fill-[theme(colors.white/.7)]',
       ]"
@@ -41,14 +41,14 @@ function toggleModal(properties?: { "show"?: boolean }) {
           'relative flex justify-center h-8 rounded-full duration-200 transition-[width,background-color]',
           'group-hover:before:bg-[theme(colors.white/.02)] group-active:before:bg-[theme(colors.white/.02)]',
           'before:w-18 before:h-full before:rounded-full before:absolute before:content-empty',
-          currentRoute.href === route.Path
+          currentRoute?.matched?.path === route.Path
             ? 'w-18 bg-catppuccin-600'
             : 'w-8',
         ]"
       >
         <component
           :is="route.Icon"
-          :active="currentRoute.href === route.Path"
+          :active="currentRoute?.matched?.path === route.Path"
         />
       </div>
       <p class="pb-1 text-center text-sm leading-none transition-[color] duration-200">
