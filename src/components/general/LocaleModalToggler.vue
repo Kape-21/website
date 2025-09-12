@@ -40,14 +40,14 @@ const { shown, toggle } = defineProps<{
     :toggle="toggle"
     class-names="left-[calc(50%-96px)] top-[calc(50%-128px-40px)]"
   >
-    <div class="h-64 w-48 flex flex-col select-none gap-4 p-4">
+    <div class="h-65 w-48 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
           Locale
         </p>
         <button
           @click="toggle"
-          class="grid h-8 w-8 place-items-center rounded-md bg-catppuccin-700"
+          class="grid h-9 w-9 place-items-center rounded-md bg-catppuccin-700"
         >
           <span class="i-lucide-x block h-5 w-5" />
         </button>
