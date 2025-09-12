@@ -12,7 +12,7 @@ const currentRoute = useRoute();
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 const shown = ref<boolean>(false);
 
-const { vibrate } = useVibrate({ "pattern": [10] });
+const { vibrate } = useVibrate({ "pattern": [15] });
 
 function toggleModal(properties?: { "show"?: boolean }) {
   shown.value = properties?.show ?? !shown.value;
@@ -21,7 +21,6 @@ function toggleModal(properties?: { "show"?: boolean }) {
 
 function onNavigate() {
   toggleModal({ "show": false });
-  vibrate();
 }
 </script>
 

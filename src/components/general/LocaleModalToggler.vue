@@ -18,7 +18,7 @@ const { shown, toggle } = defineProps<{
   "toggle": () => void;
 }>();
 
-const { vibrate } = useVibrate({ "pattern": [10] });
+const { vibrate } = useVibrate({ "pattern": [15] });
 
 function applyLocale(code: LocaleType) {
   selectLocale?.(code);
@@ -75,7 +75,6 @@ function applyLocale(code: LocaleType) {
           @click="() => applyLocale(locale.Code)"
           v-for="locale in Locales"
           :key="locale.Code"
-          :disabled="currentLocale === locale.Code"
           :class="[
             'w-full flex flex-nowrap gap-4 rounded-full px-4 py-3 text-lg',
             'transition-[background-color] hover:bg-catppuccin-600',
