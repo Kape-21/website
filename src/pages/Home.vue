@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import Page from "@/components/layout/Page.vue";
 </script>
 
 <template>
-  <div class="max-w-320 w-full py-4">
+  <Page>
     <div>
       Home page
     </div>
@@ -87,5 +88,5 @@
     <div>
       Home page
     </div>
-  </div>
+  </Page>
 </template>

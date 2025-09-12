@@ -11,9 +11,11 @@ import Layout from "@/components/layout/Layout.vue";
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <Transition name="page">
-          <component :is="component" />
-        </Transition>
+        <div class="max-w-320 w-full">
+          <Transition name="page">
+            <component :is="component" />
+          </Transition>
+        </div>
       </template>
     </RouterView>
   </Layout>
