@@ -6,17 +6,13 @@ import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { useVibrate } from "@vueuse/core";
 
 const currentRoute = useRoute();
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 const shown = ref<boolean>(false);
 
-const { vibrate } = useVibrate({ "pattern": [15] });
-
 function toggleModal(properties?: { "show"?: boolean }) {
   shown.value = properties?.show ?? !shown.value;
-  vibrate();
 }
 
 function onNavigate() {

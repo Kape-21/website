@@ -60,7 +60,7 @@ watchEffect(() => {
 <template>
   <div
     ref="element"
-    class="absolute h-full max-w-320 w-full p-4 transition-[opacity,transform] duration-50 ease-linear"
+    class="absolute z-5 h-fit max-w-320 w-full transition-[opacity,transform] duration-50 ease-linear"
     :style="isReallySwiping ? {
     transform: `translateX(${
       direction === 'right'
@@ -70,6 +70,9 @@ watchEffect(() => {
     opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
   } : {}"
   >
-    <slot />
+    <div class="bg-catppuccin-950 p-4">
+      <slot />
+    </div>
+    <div class="h-83 w-full -z-50 sm:h-38" />
   </div>
 </template>

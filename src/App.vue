@@ -6,6 +6,7 @@ import { LocaleKey, LocaleContextKey, LocaleSelectorContextKey } from "@/constan
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import Footer from "@/components/layout/Footer.vue";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
 const locale = ref<LocaleType>(DefaultLocale);
@@ -41,10 +42,11 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div class="relative h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden">
+        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden">
           <Transition name="page">
             <component :is="component" />
           </Transition>
+          <Footer />
         </div>
       </template>
     </RouterView>
