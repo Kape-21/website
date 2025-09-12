@@ -3,8 +3,12 @@ import { RouterLink, useRoute } from "@kitbag/router";
 import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
 import LocaleSelector from "@/components/general/LocaleSelector.vue";
+import { inject } from "vue";
+import { TranslateContextKey } from "@/constants/application.ts";
+import type { TranslateType } from "@/types/translate.type.ts";
 
 const currentRoute = useRoute();
+const translate = inject<TranslateType>(TranslateContextKey);
 </script>
 
 <template>
@@ -27,7 +31,7 @@ const currentRoute = useRoute();
                 && 'before:!w-[calc(100%-8px)] md:before:!w-[calc(100%-16px)]',
             ]"
           >
-            {{ route.Key }}
+            {{ translate?.(route.Name) }}
           </RouterLink>
         </nav>
         <div className="w-[2px] h-8 bg-mauve" />

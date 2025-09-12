@@ -27,7 +27,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 If you want to add a new locale:
 
 - use [ISO 639-1](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_ISO_639-1) code names
-- create `your-lang-code.json` file in `public/locales/` and fill the translations
+- create `your-lang-code.json` file in `src/locales/` and fill the translations
 - add `your-lang-code` data in `src/constants/locales.ts`
 
 ### Repositories

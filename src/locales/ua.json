@@ -1,0 +1,7 @@
+{
+  "routes.home.name": "Головна",
+  "routes.downloads.name": "Завантажити",
+  "routes.faq.name": "FAQ",
+  "routes.themes.name": "Теми",
+  "general.locale": "Мова"
+}

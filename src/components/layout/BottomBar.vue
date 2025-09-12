@@ -1,24 +1,17 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import { RouterLink, useRoute } from "@kitbag/router";
 import { RoutesArray } from "@/constants/routes.ts";
 import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
+import type { TranslateType } from "@/types/translate.type.ts";
+import { TranslateContextKey } from "@/constants/application.ts";
 
 const currentRoute = useRoute();
+const translate = inject<TranslateType>(TranslateContextKey);
 const shown = ref<boolean>(false);
 
 function toggleModal(properties?: { "show"?: boolean }) {
   shown.value = properties?.show ?? !shown.value;
-
-  const htmlTag = document.getElementById("__html-tag");
-
-  if (htmlTag === null) {
-    return;
-  }
-
-  htmlTag.style.overflowY = (properties?.show ?? (htmlTag.style.overflowY === "auto"))
-    ? "hidden"
-    : "auto";
 }
 </script>
 
@@ -52,7 +45,7 @@ function toggleModal(properties?: { "show"?: boolean }) {
         />
       </div>
       <p class="pb-1 text-center text-sm leading-none transition-[color] duration-200">
-        {{ route.Key }}
+        {{ translate?.(route.Name) }}
       </p>
     </RouterLink>
     <LocaleModalToggler

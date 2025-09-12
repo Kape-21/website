@@ -2,7 +2,11 @@
 import Modal from "@/components/base/Modal.vue";
 import World from "@/components/icons/World.vue";
 import { Locales } from "@/constants/locales.ts";
+import { inject } from "vue";
+import type { TranslateType } from "@/types/translate.type.ts";
+import { TranslateContextKey } from "@/constants/application.ts";
 
+const translate = inject<TranslateType>(TranslateContextKey);
 const { shown, toggle } = defineProps<{
   "shown" : boolean;
   "toggle": () => void;
@@ -32,7 +36,7 @@ const { shown, toggle } = defineProps<{
       <World :active="shown" />
     </span>
     <span class="block pb-1 text-center text-sm leading-none transition-[color] duration-200">
-      Locale
+      {{ translate?.("general.locale") }}
     </span>
   </button>
   <Modal
@@ -43,7 +47,7 @@ const { shown, toggle } = defineProps<{
     <div class="h-65 w-48 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
-          Locale
+          {{ translate?.("general.locale") }}
         </p>
         <button
           @click="toggle"

@@ -15,3 +15,5 @@ export const Locales = [
     "Flag": "\uD83C\uDDFA\uD83C\uDDE6",
   },
 ] as const;
+export const LocalesArray = Locales.map(({ Code }) => Code);
+export const DefaultLocale = Locales[0].Code;
