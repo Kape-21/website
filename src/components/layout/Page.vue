@@ -5,6 +5,7 @@ import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
 import { SetFooterVisibilityContextKey } from "@/constants/application.ts";
 import type { SetFooterVisibilityType } from "@/types/set-footer-visibility.type.ts";
+import Footer from "@/components/layout/Footer.vue";
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -86,7 +87,7 @@ watchEffect(() => {
 <template>
   <div
     ref="element"
-    class="absolute z-5 h-fit max-w-320 w-full transition-[opacity,transform] duration-50 ease-linear"
+    class="absolute z-5 h-fit max-w-320 w-full translate-x-0 transition-[opacity,transform] duration-50 ease-linear"
     :style="isReallySwiping ? {
     transform: `translateX(${
       direction === 'right'
@@ -96,9 +97,10 @@ watchEffect(() => {
     opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
   } : {}"
   >
-    <div class="bg-catppuccin-950 p-4">
+    <div class="relative z-5 bg-catppuccin-950 p-4">
       <slot />
     </div>
     <div class="h-83 w-full -z-50 sm:h-38" />
+    <Footer :opacity="1" />
   </div>
 </template>

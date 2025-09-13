@@ -11,10 +11,7 @@ import {
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
-import Footer from "@/components/layout/Footer.vue";
 import type { SetFooterVisibilityType } from "@/types/set-footer-visibility.type.ts";
-
-const footerOpacity = ref<number>(1);
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
 const locale = ref<LocaleType>(DefaultLocale);
@@ -76,7 +73,6 @@ provide<SetFooterVisibilityType>(SetFooterVisibilityContextKey, setFooterVisibil
           >
             <component :is="component" />
           </Transition>
-          <Footer :opacity="footerOpacity" />
         </div>
       </template>
     </RouterView>
