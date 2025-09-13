@@ -6,18 +6,21 @@ import { Redirects, Routes } from "@/constants/routes.ts";
 
 const currentRoute = useRoute();
 const router = useRouter();
+
 const element = useTemplateRef<EventTarget>("element");
+
+const swipingThreshold = 32;
 const { isSwiping, direction, lengthX } = useSwipe(element, {
-  "threshold": 48,
+  "threshold": swipingThreshold,
 });
 const swipedDistance = computed<number>(() => Math.min(
-  Math.abs(lengthX.value) - 48,
-  48,
+  Math.abs(lengthX.value) - swipingThreshold,
+  swipingThreshold,
 ));
 const isReallySwiping = computed<boolean>(() => (
   isSwiping.value && (direction.value === "left" || direction.value === "right")
 ));
-const shouldNavigate = computed<boolean>(() => isReallySwiping.value && swipedDistance.value === 48);
+const shouldNavigate = computed<boolean>(() => isReallySwiping.value && swipedDistance.value === swipingThreshold);
 const redirectedRecently = ref<boolean>(false);
 
 watchEffect(() => {
@@ -64,8 +67,8 @@ watchEffect(() => {
     :style="isReallySwiping ? {
     transform: `translateX(${
       direction === 'right'
-        ? Math.min(swipedDistance / 2, 48)
-        : Math.max(swipedDistance * -1 / 2, -48)
+        ? Math.min(swipedDistance / 2, swipingThreshold)
+        : Math.max(swipedDistance * -1 / 2, -1 * swipingThreshold)
     }px)`,
     opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
   } : {}"
