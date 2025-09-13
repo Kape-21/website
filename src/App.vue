@@ -8,6 +8,8 @@ import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import Footer from "@/components/layout/Footer.vue";
 
+const footerShown = ref<boolean>(true);
+
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
 const locale = ref<LocaleType>(DefaultLocale);
 let isValid: boolean = false;
@@ -32,6 +34,14 @@ function selectLocale(selected: LocaleType): void {
 
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
+
+function afterEnter() {
+  footerShown.value = true;
+}
+
+function beforeLeave() {
+  footerShown.value = false;
+}
 </script>
 
 <template>
@@ -43,9 +53,14 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
     <RouterView>
       <template #default="{ component }">
         <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden bg-catppuccin-900">
-          <Transition name="page">
+          <Transition
+            @before-leave="beforeLeave"
+            @after-enter="afterEnter"
+            name="page"
+          >
             <component :is="component" />
           </Transition>
+          <Footer :shown="footerShown" />
         </div>
       </template>
     </RouterView>

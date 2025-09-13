@@ -3,7 +3,6 @@ import { useSwipe } from "@vueuse/core";
 import { ref, computed, useTemplateRef, watchEffect } from "vue";
 import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
-import Footer from "@/components/layout/Footer.vue";
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -76,5 +75,4 @@ watchEffect(() => {
     </div>
     <div class="h-83 w-full -z-50 sm:h-38" />
   </div>
-  <Footer />
 </template>
