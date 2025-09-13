@@ -4,7 +4,7 @@ import { FooterLinks } from "@/constants/routes.ts";
 import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "../../lib/translations/translate.ts";
+import { translate } from "@/lib/translations/translate.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
@@ -20,11 +20,11 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
             alt="Freesm Launcher logo"
           />
         </RouterLink>
-        <p class="text-gray-400 max-sm:text-sm">
+        <p class="select-text text-gray-400 max-sm:text-sm">
           {{ translate("footer.short-description", locale) }}
         </p>
       </div>
-      <div class="flex flex-col gap-4 sm:flex-row">
+      <div class="flex flex-col select-text gap-4 sm:flex-row">
         <div
           v-for="section in FooterLinks"
           :key="section.title"
