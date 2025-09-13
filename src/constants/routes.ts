@@ -69,17 +69,80 @@ export const RoutesConfiguration = Object
     "component": defineAsyncComponent(() => import(`@/pages/${Key}.vue`)),
   }));
 
+export const Socials = {
+  "Github": {
+    "Home"        : "https://github.com/FreesmTeam/FreesmLauncher",
+    "Issues"      : "https://github.com/FreesmTeam/FreesmLauncher/issues",
+    "Contribute"  : "https://github.com/FreesmTeam/FreesmLauncher/blob/develop/CONTRIBUTING.md",
+    "Organization": "https://github.com/FreesmTeam/",
+  },
+  "Telegram": {
+    "Group": "https://t.me/freesmteam",
+    "Chat" : "https://t.me/+DL82hkeJAq9kMTMy",
+  },
+};
+
 export const ExternalLinks = [
   {
     "Key" : "Github",
     // Somehow this icon is not loaded by UnoCSS...
     "Icon": "i-mdi-github",
-    "Link": "https://github.com/FreesmTeam/FreesmLauncher",
+    "Link": Socials.Github.Home,
   },
   {
     "Key" : "Telegram",
     // Somehow this icon is not loaded by UnoCSS...
     "Icon": "i-mdi-telegram",
-    "Link": "https://t.me/freesmteam",
+    "Link": Socials.Telegram.Group,
+  },
+] as const;
+
+export const FooterLinks = [
+  {
+    "title": "footer.about.title",
+    "links": [
+      {
+        "name": "footer.about.link.contribute",
+        "link": Socials.Github.Contribute,
+      },
+      {
+        "name": "footer.about.link.faq",
+        "link": Routes.FAQ.Path,
+      },
+      {
+        "name": "footer.about.link.download",
+        "link": Routes.Downloads.Path,
+      },
+    ],
+  },
+  {
+    "title": "footer.community.title",
+    "links": [
+      {
+        "name": "footer.community.link.telegram-channel",
+        "link": Socials.Telegram.Group,
+      },
+      {
+        "name": "footer.community.link.telegram-chat",
+        "link": Socials.Telegram.Chat,
+      },
+      {
+        "name": "footer.community.link.follow-on-github",
+        "link": Socials.Github.Organization,
+      },
+    ],
+  },
+  {
+    "title": "footer.project.title",
+    "links": [
+      {
+        "name": "footer.project.source-code",
+        "link": Socials.Github.Home,
+      },
+      {
+        "name": "footer.project.github-issues",
+        "link": Socials.Github.Issues,
+      },
+    ],
   },
 ] as const;

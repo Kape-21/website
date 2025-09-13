@@ -7,5 +7,17 @@
   "routes.downloads.name": "Завантажити",
   "routes.faq.name": "FAQ",
   "routes.themes.name": "Теми",
-  "general.locale": "Мова"
+  "general.locale": "Мова",
+  "footer.short-description": "Грайте в Minecraft без обмежень.",
+  "footer.about.title": "Про лаунчер",
+  "footer.about.link.contribute": "Зробити внесок",
+  "footer.about.link.faq": "Про команду",
+  "footer.about.link.download": "Завантажити",
+  "footer.community.title": "Спільнота",
+  "footer.community.link.telegram-channel": "Telegram-канал",
+  "footer.community.link.telegram-chat": "Telegram-чат",
+  "footer.community.link.follow-on-github": "Стежити на Github",
+  "footer.project.title": "Проєкт",
+  "footer.project.source-code": "Вихідний код",
+  "footer.project.github-issues": "Github Issues"
 }

@@ -7,5 +7,17 @@
   "routes.downloads.name": "Downloads",
   "routes.faq.name": "FAQ",
   "routes.themes.name": "Themes",
-  "general.locale": "Locale"
+  "general.locale": "Locale",
+  "footer.short-description": "Another way to play Minecraft for free.",
+  "footer.about.title": "About",
+  "footer.about.link.contribute": "Contribute",
+  "footer.about.link.faq": "FAQ",
+  "footer.about.link.download": "Download",
+  "footer.community.title": "Community",
+  "footer.community.link.telegram-channel": "Telegram Channel",
+  "footer.community.link.telegram-chat": "Telegram Chat",
+  "footer.community.link.follow-on-github": "Follow on Github",
+  "footer.project.title": "Project",
+  "footer.project.source-code": "Source Code",
+  "footer.project.github-issues": "Github Issues"
 }

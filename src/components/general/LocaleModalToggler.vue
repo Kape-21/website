@@ -6,8 +6,6 @@ import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/applicat
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
-import { useVibrate } from "@vueuse/core";
-import type { LocaleType } from "@/types/locale.type.ts";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
@@ -17,13 +15,6 @@ const { shown, toggle } = defineProps<{
   "shown" : boolean;
   "toggle": () => void;
 }>();
-
-const { vibrate } = useVibrate({ "pattern": [15] });
-
-function applyLocale(code: LocaleType) {
-  selectLocale?.(code);
-  vibrate();
-}
 </script>
 
 <template>
@@ -71,7 +62,7 @@ function applyLocale(code: LocaleType) {
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-0">
-        <LocaleSelectors :apply="applyLocale" :current="currentLocale" />
+        <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
       </div>
     </div>
   </Modal>

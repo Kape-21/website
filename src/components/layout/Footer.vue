@@ -1,9 +1,16 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
+import { FooterLinks } from "@/constants/routes.ts";
+import { inject } from "vue";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+import { translate } from "../../lib/translations/translate.ts";
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <div class="sticky bottom-0 left-0 right-0 z-0 h-83 flex justify-center bg-catppuccin-900 p-8 sm:h-38">
+  <div class="sticky bottom-0 left-0 right-0 z-0 h-83 flex justify-center bg-catppuccin-900 p-8 sm:h-58 sm:rounded-t-md">
     <div class="max-w-320 w-full flex flex-col flex-nowrap gap-4 sm:flex-row sm:justify-between">
       <div class="flex flex-col items-center gap-2 sm:items-start">
         <RouterLink to="/">
@@ -14,27 +21,27 @@ import Image from "@/components/base/Image.vue";
           />
         </RouterLink>
         <p class="text-gray-400 max-sm:text-sm">
-          Short Description
+          {{ translate("footer.short-description", locale) }}
         </p>
       </div>
       <div class="flex flex-col gap-4 sm:flex-row">
         <div
-          v-for="item in []"
-          :key="item"
+          v-for="section in FooterLinks"
+          :key="section.title"
           class="flex flex-1 flex-col items-center gap-2 px-4 sm:items-start"
         >
           <p class="text-white font-semibold max-sm:text-sm">
-            item.title
+            {{ translate(section.title, locale) }}
           </p>
           <div class="flex flex-row items-center gap-2 sm:flex-col sm:items-start">
             <a
-              v-for="item in []"
-              :key="item"
-              href=""
+              v-for="link in section.links"
+              :key="link.name"
+              :href="link.link"
               target="_blank"
               class="text-center text-wrap text-gray-400 leading-5 underline-offset-[5px] sm:text-start max-sm:text-sm hover:underline"
             >
-              item.name
+              {{ translate(link.name, locale) }}
             </a>
           </div>
         </div>

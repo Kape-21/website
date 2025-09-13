@@ -2,7 +2,7 @@
 import { RouterLink, useRoute } from "@kitbag/router";
 import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
-import LocaleSelector from "@/components/general/LocaleSelector.vue";
+import LocaleDropdownSelector from "@/components/general/LocaleDropdownSelector.vue";
 import { inject } from "vue";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
@@ -45,7 +45,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
         >
           <div :class="[link.Icon, 'size-5']" />
         </a>
-        <LocaleSelector />
+        <LocaleDropdownSelector />
       </div>
     </div>
   </header>
