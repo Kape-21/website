@@ -46,7 +46,6 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
           <Transition name="page">
             <component :is="component" />
           </Transition>
-          <Footer />
         </div>
       </template>
     </RouterView>
