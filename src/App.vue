@@ -6,13 +6,15 @@ import {
   LocaleKey,
   LocaleContextKey,
   LocaleSelectorContextKey,
+  SetFooterVisibilityContextKey,
 } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import Footer from "@/components/layout/Footer.vue";
+import type { SetFooterVisibilityType } from "@/types/set-footer-visibility.type.ts";
 
-const footerShown = ref<boolean>(true);
+const footerOpacity = ref<number>(1);
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
 const locale = ref<LocaleType>(DefaultLocale);
@@ -36,16 +38,21 @@ function selectLocale(selected: LocaleType): void {
   localStorage.setItem(LocaleKey, selected);
 }
 
-provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
-provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
-
 function afterEnter() {
-  footerShown.value = true;
+  footerOpacity.value = 1;
 }
 
 function beforeLeave() {
-  footerShown.value = false;
+  footerOpacity.value = 0;
 }
+
+function setFooterVisibility(opacity: number): void {
+  footerOpacity.value = opacity;
+}
+
+provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
+provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
+provide<SetFooterVisibilityType>(SetFooterVisibilityContextKey, setFooterVisibility);
 </script>
 
 <template>
@@ -69,7 +76,7 @@ function beforeLeave() {
           >
             <component :is="component" />
           </Transition>
-          <Footer :shown="footerShown" />
+          <Footer :opacity="footerOpacity" />
         </div>
       </template>
     </RouterView>
