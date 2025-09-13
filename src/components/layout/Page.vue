@@ -79,7 +79,6 @@ watchEffect(() => {
     <div class="relative z-5 bg-catppuccin-950 p-4">
       <slot />
     </div>
-    <div class="h-83 w-full bg-catppuccin-900 -z-50 sm:h-38" />
     <Footer />
   </div>
 </template>
