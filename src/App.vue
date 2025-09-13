@@ -6,12 +6,10 @@ import {
   LocaleKey,
   LocaleContextKey,
   LocaleSelectorContextKey,
-  SetFooterVisibilityContextKey,
 } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
-import type { SetFooterVisibilityType } from "@/types/set-footer-visibility.type.ts";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
 const locale = ref<LocaleType>(DefaultLocale);
@@ -35,21 +33,8 @@ function selectLocale(selected: LocaleType): void {
   localStorage.setItem(LocaleKey, selected);
 }
 
-function afterEnter() {
-  footerOpacity.value = 1;
-}
-
-function beforeLeave() {
-  footerOpacity.value = 0;
-}
-
-function setFooterVisibility(opacity: number): void {
-  footerOpacity.value = opacity;
-}
-
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
-provide<SetFooterVisibilityType>(SetFooterVisibilityContextKey, setFooterVisibility);
 </script>
 
 <template>
@@ -60,17 +45,8 @@ provide<SetFooterVisibilityType>(SetFooterVisibilityContextKey, setFooterVisibil
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div
-          :class="[
-            'relative min-h-[calc(100svh-80px)] w-full flex',
-            'justify-center overflow-x-hidden bg-catppuccin-900',
-          ]"
-        >
-          <Transition
-            @before-leave="beforeLeave"
-            @after-enter="afterEnter"
-            name="page"
-          >
+        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden">
+          <Transition name="page">
             <component :is="component" />
           </Transition>
         </div>

@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { useSwipe } from "@vueuse/core";
-import { ref, computed, useTemplateRef, watchEffect, inject } from "vue";
+import { ref, computed, useTemplateRef, watchEffect } from "vue";
 import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
-import { SetFooterVisibilityContextKey } from "@/constants/application.ts";
-import type { SetFooterVisibilityType } from "@/types/set-footer-visibility.type.ts";
 import Footer from "@/components/layout/Footer.vue";
 
 const currentRoute = useRoute();
@@ -28,25 +26,6 @@ const shouldNavigate = computed<boolean>(
 );
 const redirectedRecently = ref<boolean>(false);
 
-const setFooterVisibility = inject<SetFooterVisibilityType>(SetFooterVisibilityContextKey);
-
-const footerActionTimeout = ref<number>();
-
-watchEffect(() => {
-  if (isReallySwiping.value && swipedDistance.value) {
-    clearTimeout(footerActionTimeout.value);
-    setFooterVisibility?.(
-      (32 - swipedDistance.value) / 32,
-    );
-    console.log((32 - swipedDistance.value) / 32);
-
-    footerActionTimeout.value = setTimeout(() => {
-      setFooterVisibility?.(1);
-    }, 750);
-
-    return () => clearTimeout(footerActionTimeout.value);
-  }
-});
 watchEffect(() => {
   if (!shouldNavigate.value || redirectedRecently.value) {
     return;
@@ -100,7 +79,7 @@ watchEffect(() => {
     <div class="relative z-5 bg-catppuccin-950 p-4">
       <slot />
     </div>
-    <div class="h-83 w-full -z-50 sm:h-38" />
-    <Footer :opacity="1" />
+    <div class="h-83 w-full bg-catppuccin-900 -z-50 sm:h-38" />
+    <Footer />
   </div>
 </template>

@@ -1,1 +1,0 @@
-export type SetFooterVisibilityType = (opacity: number) => void;

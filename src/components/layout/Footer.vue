@@ -1,21 +1,9 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
-
-const { opacity } = defineProps<{
-  "opacity": number;
-}>();
 </script>
 
 <template>
-  <div
-    :class="[
-      'fixed flex justify-center bottom-20 left-0 right-0 z-0 h-83',
-      'p-8 transition-[opacity] sm:bottom-0 sm:h-38',
-      /* one way transition with duration overrides */
-      opacity === 1 ? 'duration-150' : 'duration-50',
-    ]"
-    :style="{ opacity: opacity }"
-  >
+  <div class="fixed bottom-0 left-0 right-0 z-0 h-83 flex justify-center p-8 sm:h-38">
     <div class="max-w-320 w-full flex flex-col flex-nowrap gap-4 sm:flex-row sm:justify-between">
       <div class="flex flex-col items-center gap-2 sm:items-start">
         <RouterLink to="/">
@@ -44,7 +32,7 @@ const { opacity } = defineProps<{
               :key="item"
               href=""
               target="_blank"
-              class="text-center sm:text-start leading-5 text-wrap text-gray-400 max-sm:text-sm underline-offset-[5px] hover:underline"
+              class="text-center text-wrap text-gray-400 leading-5 underline-offset-[5px] sm:text-start max-sm:text-sm hover:underline"
             >
               item.name
             </a>
