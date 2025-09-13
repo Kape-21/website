@@ -68,7 +68,6 @@ function beforeLeave() {
           :class="[
             'relative min-h-[calc(100svh-80px)] w-full flex',
             'justify-center overflow-x-hidden bg-catppuccin-900',
-            scrollLocked && 'overflow-y-hidden',
           ]"
         >
           <Transition
