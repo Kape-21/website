@@ -11,7 +11,7 @@ import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 
-const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
+const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
 const locale = ref<LocaleType>(DefaultLocale);
 let isValid: boolean = false;
 
