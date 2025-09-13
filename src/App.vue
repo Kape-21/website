@@ -6,15 +6,12 @@ import {
   LocaleKey,
   LocaleContextKey,
   LocaleSelectorContextKey,
-  ScrollLockerContextKey,
 } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import Footer from "@/components/layout/Footer.vue";
-import type { ScrollLockerType } from "@/types/scroll-locker.type.ts";
 
-const scrollLocked = ref<boolean>(false);
 const footerShown = ref<boolean>(true);
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
@@ -39,13 +36,8 @@ function selectLocale(selected: LocaleType): void {
   localStorage.setItem(LocaleKey, selected);
 }
 
-function lockScroll(state: boolean): void {
-  scrollLocked.value = state;
-}
-
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
-provide<ScrollLockerType>(ScrollLockerContextKey, lockScroll);
 
 function afterEnter() {
   footerShown.value = true;
