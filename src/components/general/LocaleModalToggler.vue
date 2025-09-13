@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import Modal from "@/components/base/Modal.vue";
 import World from "@/components/icons/World.vue";
-import { Locales } from "@/constants/locales.ts";
 import { inject } from "vue";
 import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
@@ -9,6 +8,7 @@ import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import { useVibrate } from "@vueuse/core";
 import type { LocaleType } from "@/types/locale.type.ts";
+import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
 const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
@@ -71,19 +71,7 @@ function applyLocale(code: LocaleType) {
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-0">
-        <button
-          @click="() => applyLocale(locale.Code)"
-          v-for="locale in Locales"
-          :key="locale.Code"
-          :class="[
-            'w-full flex flex-nowrap gap-4 rounded-full px-4 py-3 text-lg',
-            'transition-[background-color] hover:bg-catppuccin-600',
-            currentLocale === locale.Code && 'bg-catppuccin-800 hover:bg-catppuccin-800',
-          ]"
-        >
-          <span class="shrink-0">{{ locale.Flag }}</span>
-          <span class="w-full text-center">{{ locale.Name }}</span>
-        </button>
+        <LocaleSelectors :apply="applyLocale" :current="currentLocale" />
       </div>
     </div>
   </Modal>
