@@ -3,7 +3,7 @@ import Image from "@/components/base/Image.vue";
 </script>
 
 <template>
-  <div class="sticky bottom-0 left-0 right-0 z-0 h-83 flex justify-center p-8 sm:h-38">
+  <div class="sticky bottom-0 left-0 right-0 z-0 h-83 flex justify-center bg-catppuccin-900 p-8 sm:h-38">
     <div class="max-w-320 w-full flex flex-col flex-nowrap gap-4 sm:flex-row sm:justify-between">
       <div class="flex flex-col items-center gap-2 sm:items-start">
         <RouterLink to="/">
