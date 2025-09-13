@@ -2,12 +2,19 @@
 import Layout from "@/components/layout/Layout.vue";
 import { RouterView } from "@kitbag/router";
 import { provide, readonly, type Ref, ref } from "vue";
-import { LocaleKey, LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
+import {
+  LocaleKey,
+  LocaleContextKey,
+  LocaleSelectorContextKey,
+  ScrollLockerContextKey,
+} from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import Footer from "@/components/layout/Footer.vue";
+import type { ScrollLockerType } from "@/types/scroll-locker.type.ts";
 
+const scrollLocked = ref<boolean>(false);
 const footerShown = ref<boolean>(true);
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? DefaultLocale;
@@ -32,8 +39,13 @@ function selectLocale(selected: LocaleType): void {
   localStorage.setItem(LocaleKey, selected);
 }
 
+function lockScroll(state: boolean): void {
+  scrollLocked.value = state;
+}
+
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
+provide<ScrollLockerType>(ScrollLockerContextKey, lockScroll);
 
 function afterEnter() {
   footerShown.value = true;
@@ -52,7 +64,13 @@ function beforeLeave() {
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden bg-catppuccin-900">
+        <div
+          :class="[
+            'relative min-h-[calc(100svh-80px)] w-full flex',
+            'justify-center overflow-x-hidden bg-catppuccin-900',
+            scrollLocked && 'overflow-y-hidden',
+          ]"
+        >
           <Transition
             @before-leave="beforeLeave"
             @after-enter="afterEnter"

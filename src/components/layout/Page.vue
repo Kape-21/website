@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { useSwipe } from "@vueuse/core";
-import { ref, computed, useTemplateRef, watchEffect } from "vue";
+import { ref, computed, useTemplateRef, watchEffect, inject } from "vue";
 import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
+import type { ScrollLockerType } from "@/types/scroll-locker.type.ts";
+import { ScrollLockerContextKey } from "@/constants/application.ts";
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -20,10 +22,18 @@ const swipedDistance = computed<number>(() => Math.min(
 const isReallySwiping = computed<boolean>(() => (
   isSwiping.value && (direction.value === "left" || direction.value === "right")
 ));
-const shouldNavigate = computed<boolean>(() => isReallySwiping.value && swipedDistance.value === swipingThreshold);
+const shouldNavigate = computed<boolean>(
+  () => isReallySwiping.value && swipedDistance.value === swipingThreshold,
+);
 const redirectedRecently = ref<boolean>(false);
 
+const lockScroll = inject<ScrollLockerType>(ScrollLockerContextKey);
+
 watchEffect(() => {
+  lockScroll?.(direction.value === "left" || direction.value === "right");
+});
+watchEffect(() => {
+  console.log(swipedDistance.value, direction.value === "left" || direction.value === "right");
   if (!shouldNavigate.value || redirectedRecently.value) {
     return;
   }

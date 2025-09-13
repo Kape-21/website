@@ -1,0 +1,1 @@
+export type ScrollLockerType = (state: boolean) => void;
