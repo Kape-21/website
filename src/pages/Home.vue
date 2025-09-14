@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
 import Image from "@/components/base/Image.vue";
+import Hero from "@/components/general/Hero.vue";
 </script>
 
 <template>
   <Page>
+    <Hero></Hero>
     <div class="pointer-events-none grid cols-2 gap-4">
       <Image src="/ame-chan.jpg" alt="temp" />
       <Image src="/bocchi-tired.jpg" alt="temp" />
