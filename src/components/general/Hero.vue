@@ -6,6 +6,7 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import { Routes, Socials } from "@/constants/routes.ts";
+import Launcher from "@/components/launcher/Launcher.vue";
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -42,7 +43,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
     <div class="flex justify-center gap-2">
       <RouterLink
         :to="Routes.Downloads.Path"
-        class="flex items-center gap-2 rounded-md bg-mauve px-4 py-2 text-center text-balance text-[18px] text-black font-bold transition-[background-color,color] hover:bg-mauve_latte hover:text-white"
+        class="animate-bg-chroma flex items-center gap-2 rounded-md px-4 py-2 text-center text-balance text-[18px] text-black font-bold transition-[opacity] hover:opacity-80"
       >
         <div class="grid min-h-6 min-w-6 place-items-center">
           <div :class="['w-6 h-6', icon]" />
@@ -52,10 +53,11 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       <a
         target="_blank"
         :href="Socials.Github.Home"
-        class="rounded-md bg-transparent px-4 py-2 text-center text-balance text-[18px] text-white font-bold transition-[background-color,color] hover:text-mauve hover:bg-[theme(colors.mauve/.1)]"
+        class="rounded-md bg-transparent px-4 py-2 text-center text-balance text-[18px] text-white font-bold transition-[background-color] hover:bg-[theme(colors.white/.1)]"
       >
         Github
       </a>
     </div>
+    <Launcher />
   </div>
 </template>

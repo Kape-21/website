@@ -43,6 +43,13 @@
   animation-timing-function: linear;
   animation-direction: alternate;
 }
+.animate-bg-chroma {
+  animation-name: bg-chroma;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
 
 /* Keyframes */
 @keyframes progress-bar {
@@ -58,19 +65,16 @@
   }
 }
 @keyframes text-chroma {
-  0% {
-    color: #cba6f7;
-  }
-  25% {
-    color: #89b4fa;
-  }
-  50% {
-    color: #94e2d5;
-  }
-  75% {
-    color: #f9e2af;
-  }
-  100% {
-    color: #f38ba8;
-  }
+  0% { color: #cba6f7 }
+  25% { color: #89b4fa }
+  50% { color: #94e2d5 }
+  75% { color: #f9e2af }
+  100% { color: #f38ba8 }
+}
+@keyframes bg-chroma {
+  0% { background-color: #cba6f7 }
+  25% { background-color: #89b4fa }
+  50% { background-color: #94e2d5 }
+  75% { background-color: #f9e2af }
+  100% { background-color: #f38ba8 }
 }
