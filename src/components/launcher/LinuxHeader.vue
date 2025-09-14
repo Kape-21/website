@@ -43,7 +43,8 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
         <button @click="maximize" class="group grid w-6 place-items-center sm:w-8">
           <span
             :class="[
-              'grid h-4 w-4 place-items-center rounded-full text-[#999] transition-[background-color,color] sm:h-5 sm:w-5 group-hover:bg-white group-hover:text-catppuccin-900',
+              'grid h-4 w-4 place-items-center rounded-full text-[#999] transition-[background-color,color]',
+              'sm:h-5 sm:w-5 group-hover:bg-white group-hover:text-catppuccin-900',
               maximized && 'bg-white text-catppuccin-900',
             ]"
           >
