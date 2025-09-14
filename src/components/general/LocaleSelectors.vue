@@ -21,10 +21,11 @@ function applyLocale(selected: LocaleType): void {
     v-for="locale in Locales"
     :key="locale.Code"
     :class="[
-      'w-full flex flex-nowrap gap-4 rounded-full px-4 py-3 text-lg',
-      'sm:gap-2 sm:rounded-md sm:px-2 sm:py-1',
+      'w-full flex flex-nowrap gap-4 px-4 py-3 text-lg',
+      'first:rounded-t-3xl first:rounded-b-lg last:rounded-t-lg last:rounded-b-3xl rounded-lg',
+      'bg-catppuccin-800 sm:bg-transparent sm:gap-2 sm:!rounded-md sm:px-2 sm:py-1',
       'transition-[background-color] hover:bg-catppuccin-600',
-      current === locale.Code && 'bg-catppuccin-800 hover:bg-catppuccin-800',
+      current === locale.Code && '!bg-catppuccin-600 sm:!bg-catppuccin-800 sm:hover:bg-catppuccin-800',
     ]"
   >
     <span class="max-sm:shrink-0">{{ locale.Flag }}</span>

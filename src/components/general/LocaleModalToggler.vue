@@ -46,9 +46,9 @@ const { shown, toggle } = defineProps<{
   <Modal
     :shown="shown"
     :toggle="toggle"
-    class-names="left-[calc(50%-96px)] top-[calc(50%-128px-40px)]"
+    class-names="left-[calc(50%-96px)] top-[calc(50%-132px-40px)]"
   >
-    <div class="h-65 w-48 flex flex-col select-none gap-4 p-4">
+    <div class="h-fit w-48 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
           {{ translate("general.locale", currentLocale) }}
@@ -61,7 +61,7 @@ const { shown, toggle } = defineProps<{
         </button>
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
-      <div class="flex flex-col gap-0">
+      <div class="flex flex-col gap-1">
         <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
       </div>
     </div>
