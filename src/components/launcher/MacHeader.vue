@@ -18,18 +18,18 @@ const { title, maximize, minimize, close } = inject<ContextLauncherType>(Launche
 <template>
   <div class="h-6 w-full flex flex-nowrap items-center justify-between gap-2 rounded-t-md bg-catppuccin-900 sm:h-8">
     <div class="h-full flex items-stretch gap-0">
-      <button @click="close" class="group grid w-6 cursor-default place-items-center sm:w-8">
+      <button aria-label="Launcher close button" @click="close" class="group grid w-6 cursor-default place-items-center sm:w-8">
         <span class="grid h-[14px] w-[14px] place-items-center rounded-full bg-[#ff5e54] text-transparent transition-[color] sm:h-[18px] sm:w-[18px] group-hover-text-[#700700]">
           <span class="sm:h-18px] i-stash-times-solid block h-[14px] w-[14px] sm:w-[18px] -scale-x-100" />
         </span>
       </button>
       <template v-if="!onlyCloseButton">
-        <button @click="minimize" class="group grid w-6 cursor-default place-items-center sm:w-8">
+        <button aria-label="Launcher minimize button" @click="minimize" class="group grid w-6 cursor-default place-items-center sm:w-8">
           <span class="grid h-[14px] w-[14px] place-items-center rounded-full bg-[#ffbd2e] text-transparent transition-[color] sm:h-[18px] sm:w-[18px] group-hover:text-[#733e01]">
             <span class="i-stash-minus-solid block h-[14px] w-[14px] sm:h-[18px] sm:w-[18px] -scale-x-100" />
           </span>
         </button>
-        <button @click="maximize" class="group grid w-6 cursor-default place-items-center sm:w-8">
+        <button aria-label="Launcher maximize button" @click="maximize" class="group grid w-6 cursor-default place-items-center sm:w-8">
           <span class="grid h-[14px] w-[14px] place-items-center rounded-full bg-[#27c93f] text-transparent transition-[color] sm:h-[18px] sm:w-[18px] group-hover:text-[#01540d]">
             <span class="i-stash-expand-diagonal-solid block h-[14px] w-[14px] sm:h-[18px] sm:w-[18px] -scale-x-100"></span>
           </span>

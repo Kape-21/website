@@ -35,12 +35,12 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
     </div>
     <div class="h-full flex items-stretch gap-0">
       <template v-if="!onlyCloseButton">
-        <button @click="minimize" class="group grid w-6 cursor-default place-items-center sm:w-8">
+        <button aria-label="Launcher minimize button" @click="minimize" class="group grid w-6 cursor-default place-items-center sm:w-8">
           <span class="grid h-4 w-4 place-items-center rounded-full text-[#999] transition-[background-color,color] sm:h-5 sm:w-5 group-hover:bg-white group-hover:text-catppuccin-900">
             <span class="i-mdi-chevron-down block h-4 w-4 sm:h-5 sm:w-5" />
           </span>
         </button>
-        <button @click="maximize" class="group grid w-6 cursor-default place-items-center sm:w-8">
+        <button aria-label="Launcher maximize button" @click="maximize" class="group grid w-6 cursor-default place-items-center sm:w-8">
           <span
             :class="[
               'grid h-4 w-4 place-items-center rounded-full text-[#999] transition-[background-color,color]',
@@ -52,7 +52,7 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
           </span>
         </button>
       </template>
-      <button @click="close" class="group grid w-6 cursor-default place-items-center sm:w-8">
+      <button aria-label="Launcher close button" @click="close" class="group grid w-6 cursor-default place-items-center sm:w-8">
         <span class="grid h-4 w-4 place-items-center rounded-full text-[#999] transition-[background-color,color] sm:h-5 sm:w-5 group-hover:bg-white group-hover:text-catppuccin-900">
           <span class="i-mdi-close block h-3 w-3 sm:h-4 sm:w-4" />
         </span>

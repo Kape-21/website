@@ -40,6 +40,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           v-for="link in ExternalLinks"
           :key="link.Key"
           :href="link.Link"
+          :aria-label="`A link to our ${link.Key}`"
           target="_blank"
           class="grid size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] hover:bg-catppuccin-600"
         >
