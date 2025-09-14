@@ -2,6 +2,14 @@
 import Page from "@/components/layout/Page.vue";
 import Image from "@/components/base/Image.vue";
 import Hero from "@/components/general/Hero.vue";
+
+document.title = "Freesm Launcher";
+document
+  ?.querySelector?.("meta[name=\"description\"]")
+  ?.setAttribute?.(
+    "content",
+    "A Prism Launcher fork aimed to provide a free way to play Minecraft.",
+  );
 </script>
 
 <template>

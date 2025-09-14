@@ -2,6 +2,14 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
 import Image from "@/components/base/Image.vue";
+
+document.title = "FAQ - Freesm Launcher";
+document
+  ?.querySelector?.("meta[name=\"description\"]")
+  ?.setAttribute?.(
+    "content",
+    "A collection of helpful information for frequent problems when using Freesm Launcher.",
+  );
 </script>
 
 <template>

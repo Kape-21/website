@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
+
+document.title = "Themes - Freesm Launcher";
+document
+  ?.querySelector?.("meta[name=\"description\"]")
+  ?.setAttribute?.(
+    "content",
+    "Easily create and preview your Freesm Launcher theme in real-time.",
+  );
 </script>
 
 <template>

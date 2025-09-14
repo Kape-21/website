@@ -7,6 +7,14 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { translate } from "../lib/translations/translate.ts";
 
+document.title = "Not Found - Freesm Launcher";
+document
+  ?.querySelector?.("meta[name=\"description\"]")
+  ?.setAttribute?.(
+    "content",
+    "A Prism Launcher fork aimed to provide a free way to play Minecraft.",
+  );
+
 const hidden = ref<boolean>(false);
 const router = useRouter();
 const pathname = location.pathname;
