@@ -19,11 +19,8 @@ function toggleMenu() {
 const target = useTemplateRef<HTMLElement>("target");
 
 onClickOutside(target, event => {
-  if (event.target === null || !("id" in event.target)) {
-    return;
-  }
-
-  if (event.target.id === "__locale-selector") {
+  // Don't close dropdown if target element was a dropdown toggle button
+  if (event.target === null || !("id" in event.target) || event.target.id === "__locale-selector") {
     return;
   }
 

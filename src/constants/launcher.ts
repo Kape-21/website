@@ -41,32 +41,32 @@ export const LauncherMenuBarProfiles: Array<{
   "Note"? : string;
 }> = [
   {
-    "Name" : "windstone_",
+    "Name" : "users.windstone_",
     "Image": "/skins/windstone.png",
     "Note" : "Maintainer",
   },
   {
-    "Name" : "hand7s",
+    "Name" : "users.hand7s",
     "Image": "/skins/hand7s.png",
     "Note" : "Maintainer",
   },
   {
-    "Name" : "kaeeraa",
+    "Name" : "users.kaeeraa",
     "Image": "/skins/kaeeraa.png",
     "Note" : "Maintainer",
   },
   {
-    "Name" : "so5iso4ka",
+    "Name" : "users.so5iso4ka",
     "Image": "/skins/so5iso4ka.png",
     "Note" : "Maintainer",
   },
   {
-    "Name" : "no-default-account",
+    "Name" : "launcher.no-default-account",
     "Image": "/skins/monochrome_steve.png",
     "Note" : "Ctrl+0",
   },
   {
-    "Name": "manage-accounts",
+    "Name": "launcher.manage-accounts",
     "Icon": "i-fluent-people-16-regular",
   },
 ];

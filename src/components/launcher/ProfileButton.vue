@@ -1,36 +1,23 @@
 <script setup lang="ts">
-import { inject, ref, useTemplateRef } from "vue";
-import Image from "@/components/base/Image.vue";
-import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { inject, ref, useTemplateRef, watchEffect } from "vue";
+import { translate } from "@/lib/translations/translate.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { LauncherMenuBarProfiles } from "@/constants/launcher.ts";
-import { onClickOutside } from "@vueuse/core";
+import { onClickOutside, useMagicKeys } from "@vueuse/core";
+import Image from "@/components/base/Image.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const opened = ref<boolean>(false);
-const currentProfile = ref<{
-  "Name" : string;
-  "Skin"?: string;
-}>({
+const currentProfile = ref<{ "Name": string; "Skin"?: string }>({
   "Name": LauncherMenuBarProfiles[0].Name,
   "Skin": LauncherMenuBarProfiles[0]?.Image,
 });
 
 const target = useTemplateRef<HTMLElement>("target");
 
-onClickOutside(target, event => {
-  if (event.target === null || !("id" in event.target)) {
-    return;
-  }
-
-  if (event.target.id === "__profile-selector") {
-    return;
-  }
-
-  opened.value = false;
-});
+const keys = useMagicKeys();
 
 function toggleDropdown():void {
   opened.value = !opened.value;
@@ -42,6 +29,25 @@ function select(profile: { "Name": string; "Image"?: string }): void {
   };
   opened.value = false;
 }
+
+onClickOutside(target, event => {
+  // Don't close dropdown if target element was a dropdown toggle button
+  if (event.target === null || !("id" in event.target) || event.target.id === "__profile-selector") {
+    return;
+  }
+
+  opened.value = false;
+});
+watchEffect(() => {
+  if (!keys["control"].value || !keys["0"].value) {
+    return;
+  }
+
+  currentProfile.value = {
+    "Name": "launcher.no-default-account",
+    "Skin": "/skins/monochrome_steve.png",
+  };
+});
 </script>
 
 <template>
@@ -80,11 +86,11 @@ function select(profile: { "Name": string; "Image"?: string }): void {
     </div>
     <button id="__profile-selector" @click="toggleDropdown" class="h-full w-full flex flex flex-wrap items-center justify-center gap-2 rounded-md px-2 transition-[background-color] sm:flex-nowrap sm:justify-normal focus:bg-[#171721] hover:bg-[#211e2f]">
       <Image
-        class-names="h-6 pointer-events-none"
-        :src="currentProfile?.Skin ?? '/monochrome_steve.png'"
+        class-names="pointer-events-none h-6"
+        :src="currentProfile?.Skin ?? '/skins/monochrome_steve.png'"
         :alt="`${currentProfile.Name}'s skin avatar`"
       />
-      <span class="block text-[10px] text-[#cdd6f4] sm:text-[13px]">
+      <span class="pointer-events-none block text-[10px] text-[#cdd6f4] sm:text-[13px]">
         {{ translate('launcher.folders', locale) }}
       </span>
     </button>
