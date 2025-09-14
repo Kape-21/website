@@ -36,6 +36,13 @@
    */
   animation-delay: 100ms;
 }
+.animate-text-chroma {
+  animation-name: text-chroma;
+  animation-duration: 10000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
 
 /* Keyframes */
 @keyframes progress-bar {
@@ -48,5 +55,22 @@
     transform: translateX(100%);
     /* Override initial opacity value */
     opacity: 1;
+  }
+}
+@keyframes text-chroma {
+  0% {
+    color: #cba6f7;
+  }
+  25% {
+    color: #89b4fa;
+  }
+  50% {
+    color: #94e2d5;
+  }
+  75% {
+    color: #f9e2af;
+  }
+  100% {
+    color: #f38ba8;
   }
 }
