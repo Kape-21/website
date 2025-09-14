@@ -34,7 +34,10 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
           <span class="block h-[1px] w-2 bg-[#999] transition-[background-color] sm:w-[10px] group-hover:bg-black" />
         </button>
         <button @click="maximize" class="group grid w-8 cursor-default place-items-center transition-[background-color] sm:w-12 hover:bg-[#e5e5e5]">
-          <span v-if="maximized" class="relative block"></span>
+          <span v-if="maximized" class="relative block">
+            <span class="absolute left-[calc(50%-5px)] top-[calc(50%-2px)] z-2 block h-[6px] w-[6px] border border-[#999] bg-catppuccin-900 transition-[background-color,border-color] sm:h-2 sm:w-2 group-hover:border-black group-hover:bg-[#e5e5e5]" />
+            <span class="absolute left-[calc(50%-3px)] top-[calc(50%-4px)] block h-[6px] w-[6px] border border-[#999] transition-[border-color] sm:h-2 sm:w-2 group-hover:border-black" />
+          </span>
           <span v-else class="block h-2 w-2 border border-[#999] transition-[border-color] sm:h-[10px] sm:w-[10px] group-hover:border-black" />
         </button>
       </template>
