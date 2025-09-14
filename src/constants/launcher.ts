@@ -35,35 +35,35 @@ export const LauncherTabs: Array<{
   },
 ];
 export const LauncherMenuBarProfiles: Array<{
-  "Name"  : string;
+  "Name"  : TranslationsType;
   "Icon"? : string;
   "Image"?: string;
-  "Note"? : string;
+  "Note"? : TranslationsType;
 }> = [
   {
     "Name" : "users.windstone_",
     "Image": "/skins/windstone.png",
-    "Note" : "Maintainer",
+    "Note" : "launcher.maintainer",
   },
   {
     "Name" : "users.hand7s",
     "Image": "/skins/hand7s.png",
-    "Note" : "Maintainer",
+    "Note" : "launcher.maintainer",
   },
   {
     "Name" : "users.kaeeraa",
     "Image": "/skins/kaeeraa.png",
-    "Note" : "Maintainer",
+    "Note" : "launcher.maintainer",
   },
   {
     "Name" : "users.so5iso4ka",
     "Image": "/skins/so5iso4ka.png",
-    "Note" : "Maintainer",
+    "Note" : "launcher.maintainer",
   },
   {
     "Name" : "launcher.no-default-account",
     "Image": "/skins/monochrome_steve.png",
-    "Note" : "Ctrl+0",
+    "Note" : "launcher.profile-hotkey",
   },
   {
     "Name": "launcher.manage-accounts",

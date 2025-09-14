@@ -35,5 +35,14 @@
   "launcher.folders": "Folders",
   "launcher.settings": "Settings",
   "launcher.help": "Help",
-  "launcher.update": "Update"
+  "launcher.update": "Update",
+  "launcher.no-default-account": "No Default Account",
+  "launcher.manage-accounts": "Manage Accounts...",
+  "launcher.more-news": "More news",
+  "launcher.maintainer": "Maintainer",
+  "launcher.profile-hotkey": "Ctrl+0",
+  "users.windstone_": "windstone_",
+  "users.hand7s": "hand7s",
+  "users.kaeeraa": "kaeeraa",
+  "users.so5iso4ka": "so5iso4ka"
 }

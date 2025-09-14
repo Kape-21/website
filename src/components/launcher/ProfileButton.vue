@@ -6,11 +6,12 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import { LauncherMenuBarProfiles } from "@/constants/launcher.ts";
 import { onClickOutside, useMagicKeys } from "@vueuse/core";
 import Image from "@/components/base/Image.vue";
+import type { TranslationsType } from "@/types/translations.type.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const opened = ref<boolean>(false);
-const currentProfile = ref<{ "Name": string; "Skin"?: string }>({
+const currentProfile = ref<{ "Name": TranslationsType; "Skin"?: string }>({
   "Name": LauncherMenuBarProfiles[0].Name,
   "Skin": LauncherMenuBarProfiles[0]?.Image,
 });
@@ -22,7 +23,7 @@ const keys = useMagicKeys();
 function toggleDropdown():void {
   opened.value = !opened.value;
 }
-function select(profile: { "Name": string; "Image"?: string }): void {
+function select(profile: { "Name": TranslationsType; "Image"?: string }): void {
   currentProfile.value = {
     "Name": profile.Name,
     "Skin": profile?.Image,
@@ -76,22 +77,22 @@ watchEffect(() => {
         />
         <span class="block w-80 flex items-center justify-between gap-2">
           <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px] group-disabled:text-[#939ab8]">
-            {{ profile.Name }}
+            {{ translate(profile.Name, locale) }}
           </span>
           <span v-if="profile?.Note" class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
-            {{ profile.Note }}
+            {{ translate(profile.Note, locale) }}
           </span>
         </span>
       </button>
     </div>
     <button id="__profile-selector" @click="toggleDropdown" class="h-full w-full flex flex flex-wrap items-center justify-center gap-2 rounded-md px-2 transition-[background-color] sm:flex-nowrap sm:justify-normal focus:bg-[#171721] hover:bg-[#211e2f]">
       <Image
-        class-names="pointer-events-none h-6"
+        class-names="h-6"
         :src="currentProfile?.Skin ?? '/skins/monochrome_steve.png'"
         :alt="`${currentProfile.Name}'s skin avatar`"
       />
-      <span class="pointer-events-none block text-[10px] text-[#cdd6f4] sm:text-[13px]">
-        {{ translate('launcher.folders', locale) }}
+      <span class="block text-[10px] text-[#cdd6f4] sm:text-[13px]">
+        {{ translate(currentProfile.Name, locale) }}
       </span>
     </button>
   </div>
