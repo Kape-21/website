@@ -34,3 +34,39 @@ export const LauncherTabs: Array<{
     "Icon": "i-fluent-animal-cat-24-regular",
   },
 ];
+export const LauncherMenuBarProfiles: Array<{
+  "Name"  : string;
+  "Icon"? : string;
+  "Image"?: string;
+  "Note"? : string;
+}> = [
+  {
+    "Name" : "windstone_",
+    "Image": "/skins/windstone.png",
+    "Note" : "Maintainer",
+  },
+  {
+    "Name" : "hand7s",
+    "Image": "/skins/hand7s.png",
+    "Note" : "Maintainer",
+  },
+  {
+    "Name" : "kaeeraa",
+    "Image": "/skins/kaeeraa.png",
+    "Note" : "Maintainer",
+  },
+  {
+    "Name" : "so5iso4ka",
+    "Image": "/skins/so5iso4ka.png",
+    "Note" : "Maintainer",
+  },
+  {
+    "Name" : "no-default-account",
+    "Image": "/skins/monochrome_steve.png",
+    "Note" : "Ctrl+0",
+  },
+  {
+    "Name": "manage-accounts",
+    "Icon": "i-fluent-people-16-regular",
+  },
+];
