@@ -30,5 +30,10 @@
   "footer.community.link.follow-on-github": "Follow on Github",
   "footer.project.title": "Project",
   "footer.project.source-code": "Source Code",
-  "footer.project.github-issues": "Github Issues"
+  "footer.project.github-issues": "Github Issues",
+  "launcher.add-instance": "Add Instance",
+  "launcher.folders": "Folders",
+  "launcher.settings": "Settings",
+  "launcher.help": "Help",
+  "launcher.update": "Update"
 }

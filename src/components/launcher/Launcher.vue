@@ -62,7 +62,7 @@ provide<ContextLauncherType>(LauncherContextKey, {
       <WindowsHeader v-if="platform === 'Windows'" />
       <MacHeader v-else-if="platform === 'macOS'" />
       <LinuxHeader v-else />
-      <div :class="['w-full flex flex-col gap-0', maximized && 'h-svh']">
+      <div class="w-full flex flex-col gap-0">
         <MenuBar />
         <NewsBar v-if="barStates.news" />
         <InstanceBar />

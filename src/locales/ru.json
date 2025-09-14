@@ -30,5 +30,10 @@
   "footer.community.link.follow-on-github": "Подписаться на Github",
   "footer.project.title": "Проект",
   "footer.project.source-code": "Исходный код",
-  "footer.project.github-issues": "Github Issues"
+  "footer.project.github-issues": "Github Issues",
+  "launcher.add-instance": "",
+  "launcher.folders": "",
+  "launcher.settings": "",
+  "launcher.help": "",
+  "launcher.update": ""
 }

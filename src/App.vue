@@ -40,7 +40,7 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
 <template>
   <div v-show="false">
     <!-- This block contains UnoCSS icons that somehow are not included in the bundle -->
-    <span class="i-mdi-github i-mdi-telegram" />
+    <span class="i-mdi-github i-mdi-telegram i-fluent-add-square-24-regular i-fluent-folder-24-regular i-fluent-settings-24-regular i-fluent-chat-help-24-regular i-fluent-phone-update-24-regular i-fluent-animal-cat-24-regular" />
   </div>
   <Layout>
     <RouterView>
