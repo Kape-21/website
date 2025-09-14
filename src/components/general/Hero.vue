@@ -37,7 +37,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       {{ " " }}
       <span class="animate-text-chroma">{{ platform }}</span>
     </p>
-    <p class="text-center text-balance text-lg text-gray-400 sm:text-2xl">
+    <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
       {{ translate("pages.home.hero.description", locale) }}
     </p>
     <div class="flex justify-center gap-2">
