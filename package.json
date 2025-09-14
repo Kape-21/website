@@ -23,6 +23,7 @@
     "@eslint/js": "^9.35.0",
     "@iconify-json/lucide": "^1.2.67",
     "@iconify-json/mdi": "^1.2.3",
+    "@iconify-json/stash": "^1.2.4",
     "@stylistic/eslint-plugin": "^5.3.1",
     "@types/node": "^24.3.1",
     "@unocss/eslint-config": "^66.5.1",
