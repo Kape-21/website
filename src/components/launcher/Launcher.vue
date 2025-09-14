@@ -56,7 +56,7 @@ provide<ContextLauncherType>(LauncherContextKey, {
       'colors.violet.100)_80%,_theme(colors.violet.300)_88%,_theme(colors.catppuccin.800/.48))_border-box]',
       /* Class ends */
       'border-2 border-transparent animate-border transition duration-300',
-      maximized && 'fixed top-0 left-0 right-0 bottom-0 z-[6000]',
+      maximized && '!w-auto fixed h-full top-4 left-4 right-4 bottom-4 z-[6000] select-none',
     ]"
     >
       <WindowsHeader v-if="platform === 'Windows'" />
