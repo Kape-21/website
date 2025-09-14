@@ -1,4 +1,17 @@
 import type { TranslationsType } from "@/types/translations.type.ts";
+import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
+
+export const EaglerCraftName = "";
+export const ClassicMinecraftName = "";
+export const Groups = {
+  "None"       : "launcher.ungrouped",
+  "Placeholder": "launcher.placeholder-group",
+};
+export const Deleted = {
+  "Process": "launcher.in-the-process",
+  "Yes"    : "launcher.yes",
+  "No"     : "launcher.no",
+} as const;
 
 export const LauncherTabs: Array<{
   "Icon"     : string;
@@ -68,5 +81,47 @@ export const LauncherMenuBarProfiles: Array<{
   {
     "Name": "launcher.manage-accounts",
     "Icon": "i-fluent-people-16-regular",
+  },
+];
+export const LauncherInstances: Array<LauncherInstanceType> = [
+  {
+    "Name"    : EaglerCraftName,
+    "Version" : "1.5.2",
+    "Group"   : Groups.None,
+    "Icon"    : "/assets/grass.svg",
+    "Launched": false,
+    "Deleted" : Deleted.No,
+  },
+  {
+    "Name"    : ClassicMinecraftName,
+    "Version" : "1.0",
+    "Group"   : Groups.None,
+    "Icon"    : "/assets/grass.svg",
+    "Launched": false,
+    "Deleted" : Deleted.No,
+  },
+  {
+    "Name"    : "1.21",
+    "Version" : "1.21",
+    "Group"   : Groups.Placeholder,
+    "Icon"    : "/assets/grass.svg",
+    "Launched": false,
+    "Deleted" : Deleted.No,
+  },
+  {
+    "Name"    : "1.12.2",
+    "Version" : "1.12.2",
+    "Group"   : Groups.Placeholder,
+    "Icon"    : "/assets/stone.svg",
+    "Launched": false,
+    "Deleted" : Deleted.No,
+  },
+  {
+    "Name"    : "Some 1.16.5 modpack with a long name",
+    "Version" : "1.16.5",
+    "Group"   : Groups.Placeholder,
+    "Icon"    : "/assets/diamond.svg",
+    "Launched": false,
+    "Deleted" : Deleted.No,
   },
 ];
