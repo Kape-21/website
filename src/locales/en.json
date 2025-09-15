@@ -39,6 +39,7 @@
   "launcher.no-default-account": "No Default Account",
   "launcher.manage-accounts": "Manage Accounts...",
   "launcher.more-news": "More news",
+  "launcher.website-in-vue": "This website was written in Vue <3",
   "launcher.maintainer": "Maintainer",
   "launcher.profile-hotkey": "Ctrl+0",
   "launcher.ungrouped": "Ungrouped",
