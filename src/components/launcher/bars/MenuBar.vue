@@ -4,7 +4,7 @@ import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
-import ProfileButton from "@/components/launcher/ProfileButton.vue";
+import ProfileButton from "@/components/launcher/bars/ProfileButton.vue";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);

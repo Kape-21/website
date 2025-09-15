@@ -7,7 +7,7 @@ import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 import { Groups } from "@/constants/launcher.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import InstanceButton from "@/components/launcher/InstanceButton.vue";
+import InstanceButton from "@/components/launcher/instances/InstanceButton.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 

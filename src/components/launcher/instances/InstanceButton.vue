@@ -7,7 +7,7 @@ import Image from "@/components/base/Image.vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { onClickOutside } from "@vueuse/core";
-import InstanceContextMenu from "@/components/launcher/InstanceContextMenu.vue";
+import InstanceContextMenu from "@/components/launcher/instances/InstanceContextMenu.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 

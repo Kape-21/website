@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import MenuBar from "@/components/launcher/MenuBar.vue";
-import NewsBar from "@/components/launcher/NewsBar.vue";
-import InstanceBar from "@/components/launcher/InstanceBar.vue";
-import StatusBar from "@/components/launcher/StatusBar.vue";
+import MenuBar from "@/components/launcher/bars/MenuBar.vue";
+import NewsBar from "@/components/launcher/bars/NewsBar.vue";
+import InstanceBar from "@/components/launcher/instances/InstanceBar.vue";
+import StatusBar from "@/components/launcher/bars/StatusBar.vue";
 import { provide, readonly, ref } from "vue";
 import { ApplicationName as title, LauncherContextKey } from "@/constants/application.ts";
-import LauncherModals from "@/components/launcher/LauncherModals.vue";
+import LauncherModals from "@/components/launcher/misc/LauncherModals.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
-import WindowsHeader from "@/components/launcher/WindowsHeader.vue";
-import MacHeader from "@/components/launcher/MacHeader.vue";
-import LinuxHeader from "@/components/launcher/LinuxHeader.vue";
+import WindowsHeader from "@/components/launcher/headers/WindowsHeader.vue";
+import MacHeader from "@/components/launcher/headers/MacHeader.vue";
+import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 
 const { os } = UAParser(navigator.userAgent);
