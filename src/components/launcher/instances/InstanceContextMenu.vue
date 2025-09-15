@@ -165,7 +165,7 @@ const disableStates = computed((): Record<
       :key="item.Name"
       @click="actionStates[item.Name]"
       :disabled="disableStates[item.Name]"
-      class="w-full flex items-center gap-3 rounded-md p-1 text-[#cdd6f4] transition-[background-color] disabled:cursor-default sm:gap-4 hover:bg-[#1d1a28] disabled:text-[#9298b6] disabled:transition-none disabled:hover:bg-none"
+      class="w-full flex items-center gap-3 rounded-md p-1 text-[#cdd6f4] transition-[background-color] disabled:cursor-default sm:gap-4 hover:bg-[#1d1a28] disabled:text-[#9298b6] disabled:transition-none disabled:hover:bg-transparent"
     >
       <span
         v-if="item.Icon"

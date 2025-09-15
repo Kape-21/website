@@ -66,7 +66,7 @@ watchEffect(() => {
         @click="() => select(profile)"
         :key="profile.Name"
         :disabled="profile?.Note === undefined"
-        class="group flex items-center gap-2 rounded-md p-1 transition-[background-color] sm:gap-4 hover:bg-[#1d1a28] disabled:bg-none disabled:transition-none"
+        class="group flex items-center gap-2 rounded-md p-1 transition-[background-color] sm:gap-4 disabled:bg-transparent hover:bg-[#1d1a28] disabled:transition-none"
       >
         <span v-if="profile?.Icon" :class="['block h-4', profile.Icon]" />
         <Image

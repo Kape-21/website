@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { computed, inject, provide, ref } from "vue";
-import { Deleted } from "@/constants/launcher.ts";
+import { Deleted, UnknownInstance } from "@/constants/launcher.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
@@ -12,6 +12,7 @@ import { LauncherModalContextKey, LocaleContextKey } from "@/constants/applicati
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -19,6 +20,7 @@ const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
 
 const allInstances = useAllInstances();
+const currentInstanceStore = useCurrentInstance();
 const deletingInstance = computed((): LauncherInstanceType | undefined => {
   return allInstances
     .instances
@@ -30,6 +32,7 @@ function deleteInstance() {
     return;
   }
 
+  currentInstanceStore.setCurrent(UnknownInstance.Id);
   allInstances.delete(deletingInstance.value.Id);
 }
 function close() {

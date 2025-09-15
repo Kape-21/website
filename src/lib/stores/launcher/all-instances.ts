@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { LauncherInstances } from "@/constants/launcher.ts";
+import { Deleted, LauncherInstances } from "@/constants/launcher.ts";
 
 export const useAllInstances = defineStore("all-instances", {
   "state": () => ({
@@ -7,7 +7,16 @@ export const useAllInstances = defineStore("all-instances", {
   }),
   "actions": {
     "delete"(id: string) {
-      this.instances = this.instances.filter(instance => instance.Id !== id);
+      this.instances = this.instances.map(instance => {
+        if (instance.Id !== id) {
+          return instance;
+        }
+
+        return {
+          ...instance,
+          "Deleted": Deleted.Yes,
+        };
+      });
     },
     "rename"(id: string, to: string) {
       this.instances = this.instances.map(instance => {

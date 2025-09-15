@@ -4,10 +4,11 @@ import { inject, ref } from "vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import { LauncherContextKey, LocaleContextKey } from "@/constants/application.ts";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
-import { Groups } from "@/constants/launcher.ts";
+import { Groups, Deleted as DeletedResponses } from "@/constants/launcher.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import InstanceButton from "@/components/launcher/instances/InstanceButton.vue";
+import InstanceCurrent from "@/components/launcher/instances/InstanceCurrent.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -41,7 +42,7 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
       barStates.status ? 'rounded-b-none' : 'rounded-b-md',
     ]"
   >
-    <!-- TODO instance left bar -->
+    <InstanceCurrent :barStates="barStates" />
     <div
       :class="[
         'w-full flex flex-col gap-2 bg-[#0c0c13] p-4',
@@ -76,7 +77,11 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
           class="flex flex-wrap gap-2"
         >
           <InstanceButton
-            v-for="instance in instancesStore.instances.filter(filtering => filtering.Group === group)"
+            v-for="instance in instancesStore
+              .instances
+              .filter(
+                ({ Group, Deleted }) => Group === group && Deleted !== DeletedResponses.Yes,
+              )"
             :key="instance.Name"
             :instance="instance"
           />

@@ -6,6 +6,7 @@ import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { onClickOutside } from "@vueuse/core";
 import InstanceContextMenu from "@/components/launcher/instances/InstanceContextMenu.vue";
+import { UnknownInstance } from "@/constants/launcher.ts";
 
 const { instance } = defineProps<{
   "instance": LauncherInstanceType;
@@ -20,7 +21,7 @@ const currentInstance = computed(
     .instances
     .find(
       searching => searching.Id === currentInstanceStore.id,
-    ) ?? allInstancesStore.instances[0],
+    ) ?? UnknownInstance,
 );
 
 const isBeingRenamed = computed(
