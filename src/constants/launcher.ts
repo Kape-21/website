@@ -6,7 +6,7 @@ export const ClassicMinecraftName = "";
 export const Groups = {
   "None"       : "launcher.ungrouped",
   "Placeholder": "launcher.placeholder-group",
-};
+} as const;
 export const Deleted = {
   "Process": "launcher.in-the-process",
   "Yes"    : "launcher.yes",

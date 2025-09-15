@@ -18,11 +18,13 @@ const platform = getPlatformName(os?.name);
 
 const maximized = ref<boolean>(false);
 const barStates = ref<{
-  "news"  : boolean;
-  "status": boolean;
+  "news"    : boolean;
+  "status"  : boolean;
+  "instance": boolean;
 }>({
-  "news"  : true,
-  "status": true,
+  "news"    : true,
+  "status"  : true,
+  "instance": true,
 });
 
 function maximize() {
@@ -65,7 +67,7 @@ provide<ContextLauncherType>(LauncherContextKey, {
       <div class="w-full flex flex-col gap-0">
         <MenuBar />
         <NewsBar v-if="barStates.news" />
-        <InstanceBar />
+        <InstanceBar :barStates="barStates" />
         <StatusBar v-if="barStates.status" />
       </div>
       <LauncherModals />
