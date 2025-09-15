@@ -58,7 +58,10 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
 </script>
 
 <template>
-  <LauncherModal :context-key="LauncherModalContextKey" :opened="deletingInstance !== undefined">
+  <LauncherModal
+    :context-key="LauncherModalContextKey"
+    :opened="deletingInstance !== undefined"
+  >
     <div class="flex flex-col gap-4 rounded-b-md px-[6px] pb-[6px] pt-[2px] text-xs text-[#cdd6f4] sm:px-2 sm:pb-2 sm:text-sm">
       <div class="whitespace-pre-wrap">
         {{

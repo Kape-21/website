@@ -5,13 +5,14 @@ import InstanceBar from "@/components/launcher/instances/InstanceBar.vue";
 import StatusBar from "@/components/launcher/bars/StatusBar.vue";
 import { provide, readonly, ref } from "vue";
 import { ApplicationName as title, LauncherContextKey } from "@/constants/application.ts";
-import LauncherModals from "@/components/launcher/modals/LauncherModals.vue";
+import DeleteConfirmationModal from "@/components/launcher/modals/DeleteConfirmationModal.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import WindowsHeader from "@/components/launcher/headers/WindowsHeader.vue";
 import MacHeader from "@/components/launcher/headers/MacHeader.vue";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
+import GameModal from "@/components/launcher/modals/GameModal.vue";
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -70,7 +71,8 @@ provide<ContextLauncherType>(LauncherContextKey, {
         <InstanceBar :barStates="barStates" />
         <StatusBar v-if="barStates.status" />
       </div>
-      <LauncherModals />
+      <DeleteConfirmationModal />
+      <GameModal />
     </div>
   </Teleport>
 </template>

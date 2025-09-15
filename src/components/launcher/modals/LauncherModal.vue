@@ -8,38 +8,44 @@ import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
 
-const { opened, contextKey } = defineProps<{
-  "opened"    : boolean;
-  "contextKey": symbol;
+const { opened, contextKey, onlyCloseButton, useTeleport } = defineProps<{
+  "opened"          : boolean;
+  "contextKey"      : symbol;
+  "onlyCloseButton"?: boolean;
+  "useTeleport"?    : boolean;
 }>();
 </script>
 
 <template>
-  <div
-    :class="[
-      'absolute left-[50%] top-[50%] z-1500 flex flex-col gap-0 rounded-md',
+  <Teleport to="body" :disabled="!useTeleport">
+    <div
+      :class="[
+      'absolute z-1500 flex flex-col gap-0 rounded-md',
       'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
-      'translate-x-[-50%] translate-y-[-50%]',
+      useTeleport
+        ? 'left-0 top-0 right-0 bottom-0'
+        : 'left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
       opened
         ? 'visible opacity-100 scale-100'
         : 'invisible opacity-0 scale-85',
     ]"
-  >
-    <WindowsHeader
-      :context-key="contextKey"
-      v-if="platform === 'Windows'"
-      only-close-button
-    />
-    <MacHeader
-      :context-key="contextKey"
-      v-else-if="platform === 'macOS'"
-      only-close-button
-    />
-    <LinuxHeader
-      :context-key="contextKey"
-      only-close-button
-      v-else
-    />
-    <slot />
-  </div>
+    >
+      <WindowsHeader
+        v-if="platform === 'Windows'"
+        :context-key="contextKey"
+        :only-close-button="onlyCloseButton"
+      />
+      <MacHeader
+        v-else-if="platform === 'macOS'"
+        :context-key="contextKey"
+        :only-close-button="onlyCloseButton"
+      />
+      <LinuxHeader
+        v-else
+        :context-key="contextKey"
+        :only-close-button="onlyCloseButton"
+      />
+      <slot />
+    </div>
+  </Teleport>
 </template>

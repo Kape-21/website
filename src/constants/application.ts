@@ -4,5 +4,6 @@ export const LocaleContextKey = Symbol();
 export const LocaleSelectorContextKey = Symbol();
 export const LauncherContextKey = Symbol();
 export const LauncherModalContextKey = Symbol();
+export const LauncherModalEmbedContextKey = Symbol();
 
 export const LocaleKey = "locale";

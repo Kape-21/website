@@ -1,6 +1,8 @@
 import type { TranslationsType } from "@/types/translations.type.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 
+export const EaglerCraftID = "eagler";
+export const EaglerCraftNewID = "eagler-new";
 export const EaglerCraftName = "EaglerCraft 1.5.2";
 export const EaglerCraftNewName = "EaglerCraft 1.8.8";
 export const Groups = {
@@ -85,7 +87,7 @@ export const LauncherMenuBarProfiles: Array<{
 ];
 export const LauncherInstances: Array<LauncherInstanceType> = [
   {
-    "Id"     : "eagler",
+    "Id"     : EaglerCraftID,
     "Name"   : EaglerCraftName,
     "Version": "1.5.2",
     "Group"  : Groups.None,
@@ -93,7 +95,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted": Deleted.No,
   },
   {
-    "Id"     : "classic",
+    "Id"     : EaglerCraftNewID,
     "Name"   : EaglerCraftNewName,
     "Version": "1.8.8",
     "Group"  : Groups.None,
