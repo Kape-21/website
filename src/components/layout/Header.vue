@@ -13,7 +13,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 hidden h-20 w-full justify-center border-b border-catppuccin-800 bg-catppuccin-950/50 backdrop-blur-sm sm:flex">
+  <header class="sticky top-0 z-50 hidden h-20 w-full justify-center border-b border-catppuccin-800 bg-catppuccin-950 sm:flex">
     <div class="h-full max-w-320 w-full flex items-center justify-between gap-0 px-4 md:gap-4">
       <RouterLink to="/" class="shrink-0">
         <Image src="/freesm-launcher-logo.webp" alt="Freesm Launcher logo" class-names="h-12" />
