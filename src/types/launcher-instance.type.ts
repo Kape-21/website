@@ -1,6 +1,7 @@
 import { Deleted, Groups } from "@/constants/launcher.ts";
 
 export type LauncherInstanceType = {
+  "Id"      : string;
   "Name"    : string;
   "Version" : string;
   "Group"   : typeof Groups[keyof typeof Groups];

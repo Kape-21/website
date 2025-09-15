@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { computed, inject } from "vue";
+import { computed, inject, ref, useTemplateRef } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import Image from "@/components/base/Image.vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
+import { onClickOutside } from "@vueuse/core";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -14,32 +15,57 @@ const { instance } = defineProps<{
   "instance": LauncherInstanceType;
 }>();
 
-const currentInstanceStore = useCurrentInstance();
+const renamingValue = ref<string>(instance.Name);
+
 const allInstancesStore = useAllInstances();
+const currentInstanceStore = useCurrentInstance();
 const currentInstance = computed(
   (): LauncherInstanceType => allInstancesStore
     .instances
     .find(
-      (_, index) => index === currentInstanceStore.index,
+      searching => searching.Id === currentInstanceStore.id,
     ) ?? allInstancesStore.instances[0],
 );
 
+const isBeingRenamed = computed(
+  () => currentInstanceStore.id === instance.Id && currentInstanceStore.renaming,
+);
 const instanceIconFilters = computed(() => (
   instance.Name === currentInstance.value.Name ? "saturate-[200%] contrast-[20%] brightness-[125%]" : ""
 ));
 
-function selectInstance() {
-  const instanceIndex: number = allInstancesStore
-    .instances
-    .findIndex(searching => searching.Name === instance.Name);
+const textareaTarget = useTemplateRef<HTMLElement>("textareaTarget");
 
-  if (instanceIndex === -1) {
-    console.error("Could not find an instance index");
-
+onClickOutside(textareaTarget, () => {
+  if (!isBeingRenamed.value) {
     return;
   }
 
-  currentInstanceStore.setCurrent(instanceIndex);
+  currentInstanceStore.setRenaming(false);
+
+  if (renamingValue.value.trim() === "") {
+    return;
+  }
+
+  allInstancesStore.rename(instance.Id, renamingValue.value);
+});
+
+function selectInstance() {
+  currentInstanceStore.setCurrent(instance.Id);
+}
+function handleTextareaKeys(event: KeyboardEvent) {
+  if (event.key !== "Enter") {
+    return;
+  }
+
+  event.preventDefault();
+  currentInstanceStore.setRenaming(false);
+
+  if (renamingValue.value.trim() === "") {
+    return;
+  }
+
+  allInstancesStore.rename(instance.Id, renamingValue.value);
 }
 </script>
 
@@ -65,5 +91,25 @@ function selectInstance() {
       :src="instance.Icon"
       :alt="`${instance.Name}'s instance icon`"
     />
+    <textarea
+      v-if="isBeingRenamed"
+      ref="textareaTarget"
+      @keydown="handleTextareaKeys"
+      :placeholder="instance.Name"
+      v-model="renamingValue"
+      class="w-25 resize-none border border-mauve bg-[#0c0c13] px-[2px] text-center text-[10px] text-white outline-none sm:text-[13px] focus:outline-none"
+      autofocus
+    />
+    <span
+      v-else
+      :class="[
+        'w-full break-words text-center text-[10px] text-[#cdd6f4] sm:text-[13px]',
+        currentInstance.Id === instance.Id
+          ? 'bg-[#a285c6]'
+          : 'bg-[#040407]',
+      ]"
+    >
+      {{ instance.Name }}
+    </span>
   </button>
 </template>

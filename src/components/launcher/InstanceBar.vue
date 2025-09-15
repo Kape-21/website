@@ -18,6 +18,7 @@ const { barStates } = defineProps<{
     "instance": boolean;
   };
 }>();
+
 const hiddenGroups = ref<
   Record<typeof Groups[keyof typeof Groups], boolean>
 >({

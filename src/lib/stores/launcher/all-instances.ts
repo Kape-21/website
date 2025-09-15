@@ -6,12 +6,12 @@ export const useAllInstances = defineStore("all-instances", {
     "instances": LauncherInstances,
   }),
   "actions": {
-    "delete"(name: string) {
-      this.instances = this.instances.filter(instance => instance.Name !== name);
+    "delete"(id: string) {
+      this.instances = this.instances.filter(instance => instance.Id !== id);
     },
-    "rename"(name: string, to: string) {
+    "rename"(id: string, to: string) {
       this.instances = this.instances.map(instance => {
-        if (instance.Name !== name) {
+        if (instance.Id !== id) {
           return instance;
         }
 

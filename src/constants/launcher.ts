@@ -85,6 +85,7 @@ export const LauncherMenuBarProfiles: Array<{
 ];
 export const LauncherInstances: Array<LauncherInstanceType> = [
   {
+    "Id"      : "eagler",
     "Name"    : EaglerCraftName,
     "Version" : "1.5.2",
     "Group"   : Groups.None,
@@ -93,6 +94,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted" : Deleted.No,
   },
   {
+    "Id"      : "classic",
     "Name"    : ClassicMinecraftName,
     "Version" : "1.0",
     "Group"   : Groups.None,
@@ -101,6 +103,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted" : Deleted.No,
   },
   {
+    "Id"      : "new",
     "Name"    : "1.21",
     "Version" : "1.21",
     "Group"   : Groups.Placeholder,
@@ -109,6 +112,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted" : Deleted.No,
   },
   {
+    "Id"      : "old",
     "Name"    : "1.12.2",
     "Version" : "1.12.2",
     "Group"   : Groups.Placeholder,
@@ -117,6 +121,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted" : Deleted.No,
   },
   {
+    "Id"      : "modpack",
     "Name"    : "Some 1.16.5 modpack with a long name",
     "Version" : "1.16.5",
     "Group"   : Groups.Placeholder,
