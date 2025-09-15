@@ -2,7 +2,7 @@ import type { TranslationsType } from "@/types/translations.type.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 
 export const EaglerCraftName = "EaglerCraft 1.5.2";
-export const ClassicMinecraftName = "Minecraft Classic";
+export const EaglerCraftNewName = "EaglerCraft 1.8.8";
 export const Groups = {
   "None"       : "launcher.ungrouped",
   "Placeholder": "launcher.placeholder-group",
@@ -94,8 +94,8 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
   },
   {
     "Id"     : "classic",
-    "Name"   : ClassicMinecraftName,
-    "Version": "1.0",
+    "Name"   : EaglerCraftNewName,
+    "Version": "1.8.8",
     "Group"  : Groups.None,
     "Icon"   : "/assets/grass.svg",
     "Deleted": Deleted.No,
@@ -125,3 +125,66 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted": Deleted.No,
   },
 ];
+
+/*
+ * Array<{
+ *  "Name": TranslationsType;
+ *  "Icon": string;
+ * }>
+ */
+export const LauncherInstanceBarItems = [
+  {
+    "Name": "launcher.launch",
+    "Icon": "i-fluent-triangle-right-16-regular",
+  },
+  {
+    "Name": "launcher.kill",
+    "Icon": "i-fluent-dismiss-circle-16-regular",
+  },
+  {
+    "Name": "launcher.edit",
+    "Icon": "i-fluent-settings-16-regular",
+  },
+  {
+    "Name": "launcher.change-group",
+    "Icon": "i-fluent-tag-16-regular",
+  },
+  {
+    "Name": "launcher.folder",
+    "Icon": "i-fluent-folder-16-regular",
+  },
+  {
+    "Name": "launcher.export",
+    "Icon": "i-fluent-folder-arrow-right-16-regular",
+  },
+  {
+    "Name": "launcher.copy",
+    "Icon": "i-fluent-copy-arrow-right-16-regular",
+  },
+  {
+    "Name": "launcher.delete",
+    "Icon": "i-fluent-delete-16-regular",
+  },
+  {
+    "Name": "launcher.create-shortcut",
+    "Icon": "i-fluent-link-16-regular",
+  },
+] as const;
+
+/*
+ * Array<{
+ *  "Name": TranslationsType;
+ *  "Icon": string | undefined;
+ * }>
+ */
+export const LauncherInstanceContextMenuItems = [
+  {
+    "Name": "launcher.rename",
+    "Icon": "i-fluent-edit-16-regular",
+  },
+  {
+    "Name": "launcher.change-icon",
+    "Icon": undefined,
+  },
+  ...LauncherInstanceBarItems,
+] as const;

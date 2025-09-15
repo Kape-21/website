@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { computed, inject, ref, useTemplateRef } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
+import { computed, ref, useTemplateRef } from "vue";
 import Image from "@/components/base/Image.vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { onClickOutside } from "@vueuse/core";
 import InstanceContextMenu from "@/components/launcher/instances/InstanceContextMenu.vue";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
-
-console.log(locale?.value);
 const { instance } = defineProps<{
   "instance": LauncherInstanceType;
 }>();

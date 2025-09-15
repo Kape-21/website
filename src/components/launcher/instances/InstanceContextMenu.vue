@@ -1,7 +1,14 @@
 <script setup lang="ts">
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { shallowRef, useTemplateRef } from "vue";
+import { computed, inject, shallowRef, useTemplateRef } from "vue";
 import { onClickOutside, useEventListener } from "@vueuse/core";
+import { LauncherInstanceContextMenuItems } from "@/constants/launcher.ts";
+import Image from "@/components/base/Image.vue";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+import { translate } from "@/lib/translations/translate.ts";
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const { instance, selectInstance } = defineProps<{
   "instance"      : LauncherInstanceType;
@@ -55,6 +62,41 @@ useEventListener("contextmenu", (event: MouseEvent) => {
     "opened": true,
   };
 });
+
+const actionStates: Record<
+  typeof LauncherInstanceContextMenuItems[number]["Name"],
+  () => void
+> = {
+  "launcher.launch"         : () => {},
+  "launcher.kill"           : () => {},
+  "launcher.edit"           : () => {},
+  "launcher.change-group"   : () => {},
+  "launcher.folder"         : () => {},
+  "launcher.export"         : () => {},
+  "launcher.copy"           : () => {},
+  "launcher.delete"         : () => {},
+  "launcher.create-shortcut": () => {},
+  "launcher.rename"         : () => {},
+  "launcher.change-icon"    : () => {},
+};
+const disableStates = computed((): Record<
+  typeof LauncherInstanceContextMenuItems[number]["Name"],
+  boolean
+> => {
+  return {
+    "launcher.launch"         : false,
+    "launcher.kill"           : false,
+    "launcher.edit"           : false,
+    "launcher.change-group"   : false,
+    "launcher.folder"         : false,
+    "launcher.export"         : false,
+    "launcher.copy"           : false,
+    "launcher.delete"         : false,
+    "launcher.create-shortcut": false,
+    "launcher.rename"         : false,
+    "launcher.change-icon"    : false,
+  };
+});
 </script>
 
 <template>
@@ -73,6 +115,26 @@ useEventListener("contextmenu", (event: MouseEvent) => {
     <p class="pointer-events-none p-1 text-center text-nowrap text-[10px] text-[#9da3bd] sm:text-[13px]">
       {{ instance.Name }}
     </p>
-    asdf
+    <button
+      v-for="item in LauncherInstanceContextMenuItems"
+      :key="item.Name"
+      @click="actionStates[item.Name]"
+      :disabled="disableStates[item.Name]"
+      class="w-full flex items-center gap-3 rounded-md p-1 text-[#cdd6f4] transition-[background-color] disabled:cursor-default sm:gap-4 hover:bg-[#1d1a28] disabled:text-[#9298b6] disabled:transition-none disabled:hover:bg-none"
+    >
+      <span
+        v-if="item.Icon"
+        :class="['block h-[14px]', item.Icon]"
+      />
+      <Image
+        v-else
+        class-names="h-[14px]"
+        :src="instance.Icon"
+        :alt="`${instance.Name}'s icon`"
+      />
+      <span class="block text-nowrap text-[10px] sm:text-[13px]">
+        {{ translate(item.Name, locale) }}
+      </span>
+    </button>
   </div>
 </template>
