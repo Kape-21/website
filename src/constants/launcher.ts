@@ -1,8 +1,8 @@
 import type { TranslationsType } from "@/types/translations.type.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 
-export const EaglerCraftName = "";
-export const ClassicMinecraftName = "";
+export const EaglerCraftName = "EaglerCraft 1.5.2";
+export const ClassicMinecraftName = "Minecraft Classic";
 export const Groups = {
   "None"       : "launcher.ungrouped",
   "Placeholder": "launcher.placeholder-group",

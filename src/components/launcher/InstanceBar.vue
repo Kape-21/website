@@ -75,8 +75,9 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
           class="flex flex-wrap gap-2"
         >
           <InstanceButton
-            v-for="instance in instancesStore.instances"
+            v-for="instance in instancesStore.instances.filter(filtering => filtering.Group === group)"
             :key="instance.Name"
+            :instance="instance"
           />
         </div>
       </template>
