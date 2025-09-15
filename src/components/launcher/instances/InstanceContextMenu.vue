@@ -2,11 +2,13 @@
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 import { computed, inject, shallowRef, useTemplateRef } from "vue";
 import { onClickOutside, useEventListener } from "@vueuse/core";
-import { LauncherInstanceContextMenuItems } from "@/constants/launcher.ts";
+import { LauncherInstanceContextMenuItems, UnknownInstance } from "@/constants/launcher.ts";
 import Image from "@/components/base/Image.vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
+import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
+import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -14,8 +16,8 @@ const { instance, selectInstance } = defineProps<{
   "instance"      : LauncherInstanceType;
   "selectInstance": () => void;
 }>();
-const contextTarget = useTemplateRef<HTMLElement>("contextTarget");
 
+const contextTarget = useTemplateRef<HTMLElement>("contextTarget");
 const contextMenu = shallowRef<{
   "opened": boolean;
   "x"     : number;
@@ -25,6 +27,9 @@ const contextMenu = shallowRef<{
   "x"     : 0,
   "y"     : 0,
 });
+
+const currentInstanceStore = useCurrentInstance();
+const allInstances = useAllInstances();
 
 const closeContextMenu = () => {
   contextMenu.value = {
@@ -67,34 +72,62 @@ const actionStates: Record<
   typeof LauncherInstanceContextMenuItems[number]["Name"],
   () => void
 > = {
-  "launcher.launch"         : () => {},
-  "launcher.kill"           : () => {},
-  "launcher.edit"           : () => {},
-  "launcher.change-group"   : () => {},
-  "launcher.folder"         : () => {},
-  "launcher.export"         : () => {},
-  "launcher.copy"           : () => {},
-  "launcher.delete"         : () => {},
+  "launcher.launch": () => {
+    currentInstanceStore.setLaunched(instance.Id);
+    closeContextMenu();
+  },
+  "launcher.kill": () => {
+    currentInstanceStore.setLaunched(undefined);
+    closeContextMenu();
+  },
+  "launcher.edit"        : () => {},
+  "launcher.change-group": () => {},
+  "launcher.folder"      : () => {},
+  "launcher.export"      : () => {},
+  "launcher.copy"        : () => {},
+  "launcher.delete"      : () => {
+    allInstances.delete(instance.Id);
+    closeContextMenu();
+  },
   "launcher.create-shortcut": () => {},
-  "launcher.rename"         : () => {},
-  "launcher.change-icon"    : () => {},
+  "launcher.rename"         : () => {
+    currentInstanceStore.setRenaming(instance.Id);
+    closeContextMenu();
+  },
+  "launcher.change-icon": () => {},
 };
 const disableStates = computed((): Record<
   typeof LauncherInstanceContextMenuItems[number]["Name"],
   boolean
 > => {
+  if (currentInstanceStore.id === UnknownInstance.Id) {
+    return {
+      "launcher.launch"         : true,
+      "launcher.kill"           : true,
+      "launcher.edit"           : true,
+      "launcher.change-group"   : true,
+      "launcher.folder"         : true,
+      "launcher.export"         : true,
+      "launcher.copy"           : true,
+      "launcher.delete"         : true,
+      "launcher.create-shortcut": true,
+      "launcher.rename"         : true,
+      "launcher.change-icon"    : true,
+    };
+  }
+
   return {
-    "launcher.launch"         : false,
-    "launcher.kill"           : false,
-    "launcher.edit"           : false,
-    "launcher.change-group"   : false,
-    "launcher.folder"         : false,
-    "launcher.export"         : false,
-    "launcher.copy"           : false,
+    "launcher.launch"         : currentInstanceStore.launched === instance.Id,
+    "launcher.kill"           : currentInstanceStore.launched !== instance.Id,
+    "launcher.edit"           : true,
+    "launcher.change-group"   : true,
+    "launcher.folder"         : true,
+    "launcher.export"         : true,
+    "launcher.copy"           : true,
     "launcher.delete"         : false,
-    "launcher.create-shortcut": false,
+    "launcher.create-shortcut": true,
     "launcher.rename"         : false,
-    "launcher.change-icon"    : false,
+    "launcher.change-icon"    : true,
   };
 });
 </script>

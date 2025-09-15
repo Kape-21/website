@@ -125,6 +125,14 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Deleted": Deleted.No,
   },
 ];
+export const UnknownInstance = {
+  "Id"     : "unknown",
+  "Name"   : "Unknown",
+  "Version": "unknown",
+  "Group"  : Groups.None,
+  "Icon"   : "/assets/grass.svg",
+  "Deleted": Deleted.No,
+} as const;
 
 /*
  * Array<{
