@@ -20,7 +20,7 @@ const catPackEnabled = true;
         v-for="tab in LauncherTabs"
         :key="tab.Icon"
         :disabled="tab?.Disabled"
-        :aria-label="(tab?.Name === undefined && catPackEnabled) ? 'Cat Pack toggle button' : undefined"
+        :aria-label="tab?.Name === undefined && catPackEnabled ? 'Cat Pack toggle button' : undefined"
         :class="[
           'group min-h-8 flex items-center gap-1 rounded-md px-1 py-1 transition-[background-color] ease-out',
           'sm:min-h-10 sm:px-2 sm:py-0 hover:bg-[#211e2f] active:bg-[#171721]',
