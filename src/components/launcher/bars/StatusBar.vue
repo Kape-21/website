@@ -2,7 +2,7 @@
 import { computed, inject, ref, watchEffect } from "vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useIntervalFn } from "@vueuse/core";
-import { LauncherInstances, UnknownInstance } from "@/constants/launcher.ts";
+import { Deleted, LauncherInstances, UnknownInstance } from "@/constants/launcher.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
@@ -84,7 +84,13 @@ const { pause, resume } = useIntervalFn(() => {
 });
 
 watchEffect(() => {
-  if (currentInstanceStore.launched === undefined) {
+  const isNotLaunched = currentInstanceStore.launched === undefined;
+  const isDeleted =
+    allInstances.instances.find(
+      searching => searching.Id === currentInstanceStore.launched,
+    )?.Deleted === Deleted.Yes;
+
+  if (isNotLaunched || isDeleted) {
     pause();
 
     return;
