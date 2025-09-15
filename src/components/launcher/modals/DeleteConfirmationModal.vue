@@ -59,6 +59,7 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
 
 <template>
   <LauncherModal
+    only-close-button
     :context-key="LauncherModalContextKey"
     :opened="deletingInstance !== undefined"
   >
