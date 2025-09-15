@@ -3,21 +3,14 @@ import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { computed, inject, provide, ref } from "vue";
 import { Deleted, UnknownInstance } from "@/constants/launcher.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { UAParser } from "ua-parser-js";
-import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
-import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
-import WindowsHeader from "@/components/launcher/headers/WindowsHeader.vue";
-import MacHeader from "@/components/launcher/headers/MacHeader.vue";
 import { LauncherModalContextKey, LocaleContextKey } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
+import LauncherModal from "@/components/launcher/modals/LauncherModal.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
-
-const { os } = UAParser(navigator.userAgent);
-const platform = getPlatformName(os?.name);
 
 const allInstances = useAllInstances();
 const currentInstanceStore = useCurrentInstance();
@@ -65,31 +58,7 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
 </script>
 
 <template>
-  <div
-    :class="[
-      'absolute left-[50%] top-[50%] z-1500 flex flex-col gap-0 rounded-md',
-      'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
-      'translate-x-[-50%] translate-y-[-50%]',
-      deletingInstance !== undefined
-        ? 'visible opacity-100 scale-100'
-        : 'invisible opacity-0 scale-85',
-    ]"
-  >
-    <WindowsHeader
-      :context-key="LauncherModalContextKey"
-      v-if="platform === 'Windows'"
-      only-close-button
-    />
-    <MacHeader
-      :context-key="LauncherModalContextKey"
-      v-else-if="platform === 'macOS'"
-      only-close-button
-    />
-    <LinuxHeader
-      :context-key="LauncherModalContextKey"
-      only-close-button
-      v-else
-    />
+  <LauncherModal :context-key="LauncherModalContextKey" :opened="deletingInstance !== undefined">
     <div class="flex flex-col gap-4 rounded-b-md px-[6px] pb-[6px] pt-[2px] text-xs text-[#cdd6f4] sm:px-2 sm:pb-2 sm:text-sm">
       <div class="whitespace-pre-wrap">
         {{
@@ -108,5 +77,5 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
         </button>
       </div>
     </div>
-  </div>
+  </LauncherModal>
 </template>
