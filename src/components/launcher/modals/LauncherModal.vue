@@ -13,6 +13,7 @@ const { opened, contextKey, onlyCloseButton, useTeleport } = defineProps<{
   "contextKey"      : symbol;
   "onlyCloseButton"?: boolean;
   "useTeleport"?    : boolean;
+  "maximized"?      : boolean;
 }>();
 </script>
 
@@ -20,10 +21,10 @@ const { opened, contextKey, onlyCloseButton, useTeleport } = defineProps<{
   <Teleport to="body" :disabled="!useTeleport">
     <div
       :class="[
-      'absolute z-1500 flex flex-col gap-0 rounded-md',
+      'select-none absolute z-1500 flex flex-col gap-0 rounded-md',
       'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
-      useTeleport
-        ? 'left-0 top-0 right-0 bottom-0'
+      useTeleport && maximized
+        ? 'left-0 top-0 right-0 bottom-0 transition-none'
         : 'left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
       opened
         ? 'visible opacity-100 scale-100'
