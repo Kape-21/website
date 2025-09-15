@@ -6,6 +6,5 @@ export type LauncherInstanceType = {
   "Version" : string;
   "Group"   : typeof Groups[keyof typeof Groups];
   "Icon"    : string;
-  "Launched": boolean;
   "Deleted" : typeof Deleted[keyof typeof Deleted];
 };
