@@ -2,7 +2,7 @@
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 import { computed, inject, shallowRef, useTemplateRef } from "vue";
 import { onClickOutside, useEventListener } from "@vueuse/core";
-import { LauncherInstanceContextMenuItems, UnknownInstance } from "@/constants/launcher.ts";
+import { Deleted, LauncherInstanceContextMenuItems, UnknownInstance } from "@/constants/launcher.ts";
 import Image from "@/components/base/Image.vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
@@ -86,7 +86,19 @@ const actionStates: Record<
   "launcher.export"      : () => {},
   "launcher.copy"        : () => {},
   "launcher.delete"      : () => {
-    allInstances.delete(instance.Id);
+    allInstances.instances = allInstances
+      .instances
+      .map(mapping => {
+        if (mapping.Id !== instance.Id) {
+          return mapping;
+        }
+
+        return {
+          ...mapping,
+          "Deleted": Deleted.Process,
+        };
+      });
+
     closeContextMenu();
   },
   "launcher.create-shortcut": () => {},

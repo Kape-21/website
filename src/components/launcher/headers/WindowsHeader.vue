@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import { ApplicationName, LauncherContextKey } from "@/constants/application.ts";
+import { ApplicationName } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import Image from "@/components/base/Image.vue";
 
-const { onlyCloseButton } = defineProps<{
+const { contextKey, onlyCloseButton } = defineProps<{
+  "contextKey"      : symbol;
   "onlyCloseButton"?: boolean;
 }>();
-const { maximized, title, maximize, minimize, close } = inject<ContextLauncherType>(LauncherContextKey) ?? {
+const { maximized, title, maximize, minimize, close } = inject<ContextLauncherType>(contextKey) ?? {
   "maximized": false,
   "title"    : ApplicationName,
   "maximize" : () => {},

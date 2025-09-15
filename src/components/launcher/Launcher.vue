@@ -5,7 +5,7 @@ import InstanceBar from "@/components/launcher/instances/InstanceBar.vue";
 import StatusBar from "@/components/launcher/bars/StatusBar.vue";
 import { provide, readonly, ref } from "vue";
 import { ApplicationName as title, LauncherContextKey } from "@/constants/application.ts";
-import LauncherModals from "@/components/launcher/misc/LauncherModals.vue";
+import LauncherModals from "@/components/launcher/modals/LauncherModals.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import WindowsHeader from "@/components/launcher/headers/WindowsHeader.vue";
@@ -61,9 +61,9 @@ provide<ContextLauncherType>(LauncherContextKey, {
       maximized && '!w-auto fixed h-full top-4 left-4 right-4 bottom-4 z-[6000] select-none',
     ]"
     >
-      <WindowsHeader v-if="platform === 'Windows'" />
-      <MacHeader v-else-if="platform === 'macOS'" />
-      <LinuxHeader v-else />
+      <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />
+      <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
+      <LinuxHeader :context-key="LauncherContextKey" v-else />
       <div class="w-full flex flex-col gap-0">
         <MenuBar />
         <NewsBar v-if="barStates.news" />
