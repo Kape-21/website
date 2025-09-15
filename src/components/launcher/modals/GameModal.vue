@@ -57,7 +57,6 @@ provide<ContextLauncherType>(LauncherModalEmbedContextKey, {
     :maximized="maximized"
     :context-key="LauncherModalEmbedContextKey"
     opened
-    use-teleport
   >
     <iframe
       :class="[
