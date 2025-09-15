@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { computed, inject, ref, useTemplateRef } from "vue";
+import { computed, inject, ref, shallowRef, useTemplateRef } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import Image from "@/components/base/Image.vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
-import { onClickOutside } from "@vueuse/core";
+import { onClickOutside, useEventListener } from "@vueuse/core";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -16,6 +16,15 @@ const { instance } = defineProps<{
 }>();
 
 const renamingValue = ref<string>(instance.Name);
+const contextMenu = shallowRef<{
+  "opened": boolean;
+  "x"     : number;
+  "y"     : number;
+}>({
+  "opened": false,
+  "x"     : 0,
+  "y"     : 0,
+});
 
 const allInstancesStore = useAllInstances();
 const currentInstanceStore = useCurrentInstance();
@@ -38,6 +47,7 @@ const instanceIconFilters = computed(() => (
 ));
 
 const textareaTarget = useTemplateRef<HTMLElement>("textareaTarget");
+const contextTarget = useTemplateRef<HTMLElement>("contextTarget");
 
 onClickOutside(textareaTarget, () => {
   if (!isBeingRenamed.value) {
@@ -51,6 +61,34 @@ onClickOutside(textareaTarget, () => {
   }
 
   allInstancesStore.rename(instance.Id, renamingValue.value);
+});
+
+const closeContextMenu = () => {
+  contextMenu.value = {
+    ...contextMenu.value,
+    "opened": false,
+  };
+};
+
+onClickOutside(contextTarget, closeContextMenu);
+useEventListener("contextmenu", (event: MouseEvent) => {
+  if (
+    event.target === null ||
+    !("id" in event.target) ||
+    event.target.id !== `__instance-selector-${instance.Id}`
+  ) {
+    closeContextMenu();
+
+    return;
+  }
+
+  selectInstance();
+
+  contextMenu.value = {
+    "x"     : event.offsetX,
+    "y"     : event.offsetY,
+    "opened": true,
+  };
 });
 
 function selectInstance() {
@@ -72,7 +110,11 @@ function handleTextareaKeys(event: KeyboardEvent) {
 }
 function handleDoubleClick(event: MouseEvent) {
   // Don't launch an instance if target element wasn't an instance selector button
-  if (event.target === null || !("id" in event.target) || event.target.id !== "__instance-selector") {
+  if (
+    event.target === null ||
+    !("id" in event.target) ||
+    event.target.id !== `__instance-selector-${instance.Id}`
+  ) {
     return;
   }
 
@@ -82,10 +124,9 @@ function handleDoubleClick(event: MouseEvent) {
 
 <template>
   <button
-    id="__instance-selector"
+    :id="`__instance-selector-${instance.Id}`"
     @click="selectInstance"
     @dblclick="handleDoubleClick"
-    @contextmenu="() => {}"
     class="relative h-fit w-25 flex flex-col items-center justify-start gap-2"
   >
     <span
@@ -95,8 +136,20 @@ function handleDoubleClick(event: MouseEvent) {
       ]"
     />
     <span
-      class="block cursor-default transition-[opacity]"
-    ><!-- TODO context menu --></span>
+      ref="contextTarget"
+      :class="[
+        'absolute z-1000 flex flex-col cursor-default gap-1',
+        'border border-[#181822] bg-catppuccin-900 p-1 transition-[opacity]',
+        contextMenu.opened
+          ? 'visible opacity-100'
+          : 'invisible opacity-0',
+      ]"
+      :style="{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }"
+    >
+      <span class="block p-1 text-center text-nowrap text-[10px] text-[#9da3bd] sm:text-[13px]">
+        {{ instance.Name }}
+      </span>
+    </span>
     <Image
       :class-names="`pointer-events-none w-12 h-12 !transition-[opacity,filter] ${instanceIconFilters}`"
       :src="instance.Icon"
