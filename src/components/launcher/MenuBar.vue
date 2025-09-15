@@ -5,10 +5,11 @@ import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import ProfileButton from "@/components/launcher/ProfileButton.vue";
+import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
-const catPackEnabled = true;
+const catStore = useCatPackState();
 </script>
 
 <template>
@@ -17,17 +18,18 @@ const catPackEnabled = true;
     <div class="flex flex-wrap items-stretch gap-2">
       <div class="w-[5px] cursor-move rounded-full bg-mauve" />
       <button
+        @click="catStore.toggle"
         v-for="tab in LauncherTabs"
         :key="tab.Icon"
         :disabled="tab?.Disabled"
-        :aria-label="tab?.Name === undefined && catPackEnabled ? 'Cat Pack toggle button' : undefined"
+        :aria-label="tab?.Name === undefined && catStore.enabled ? 'Cat Pack toggle button' : undefined"
         :class="[
           'group min-h-8 flex items-center gap-1 rounded-md px-1 py-1 transition-[background-color] ease-out',
           'sm:min-h-10 sm:px-2 sm:py-0 hover:bg-[#211e2f] active:bg-[#171721]',
           'disabled:text-[#9298b6] disabled:transition-none',
           'disabled:hover:bg-transparent disabled:active:bg-transparent',
           // Check if the button is a Cat Pack button
-          tab?.Name === undefined && catPackEnabled && 'bg-[#211e2f]',
+          tab?.Name === undefined && catStore.enabled && 'bg-[#211e2f]',
         ]"
       >
         <span class="block min-w-6">
