@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
-import { onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useIntervalFn } from "@vueuse/core";
+import { WebTerm } from "web-term-ui";
+import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
+import { DesktopTerminalContextKey } from "@/constants/application.ts";
 
 const { open } = defineProps<{
   "open": () => void;
@@ -12,7 +15,28 @@ const { pause } = useIntervalFn(() => {
   currentDate.value = new Date;
 }, 1000);
 
+const apps = ref<{
+  "terminal": boolean;
+}>({
+  "terminal": false,
+});
+
 onUnmounted(pause);
+onMounted(() => {
+  const term = new WebTerm({
+    "title"    : "Welcome",
+    "container": "#__web-terminal",
+    "header"   : "$ ",
+    "style"    : {
+      "background": "transparent",
+      "color"     : "#bfc6ce",
+    },
+  });
+
+  term.on("tab", () => {
+    term.insertText("Hello");
+  });
+});
 </script>
 
 <template>
@@ -37,14 +61,17 @@ onUnmounted(pause);
       </span>
     </button>
     <div class="absolute bottom-2 left-2 right-2 h-12 flex justify-between rounded-lg bg-[#eff0f1] text-black">
-      <div class="h-full flex flex-nowrap items-center gap-2">
-        <div class="grid h-12 w-12 place-items-center">
+      <div class="h-full flex flex-nowrap items-center gap-0">
+        <button class="grid h-12 w-12 place-items-center">
           <Image
             class-names="h-6"
             src="/assets/simple-icons-kde-plasma.svg"
             alt="KDE Plasma logo"
           />
-        </div>
+        </button>
+        <button @click="() => apps.terminal = !apps.terminal" class="grid h-12 w-12 place-items-center">
+          <span class="i-lucide-terminal block h-8 w-8" />
+        </button>
       </div>
       <div class="h-full flex flex-nowrap items-center gap-2">
         <div class="flex flex-col items-center gap-0 px-4">
@@ -57,5 +84,14 @@ onUnmounted(pause);
         </div>
       </div>
     </div>
+    <Transition css name="slide-fade">
+      <div
+        v-show="apps.terminal"
+        class="absolute left-[20%] top-[20%] h-[60%] w-[60%] flex flex-col gap-0 rounded-md bg-catppuccin-900"
+      >
+        <LinuxHeader :context-key="DesktopTerminalContextKey" />
+        <div id="__web-terminal" class="h-full" />
+      </div>
+    </Transition>
   </div>
 </template>
