@@ -5,7 +5,7 @@ import { provide, readonly, type Ref, ref } from "vue";
 import {
   LocaleKey,
   LocaleContextKey,
-  LocaleSelectorContextKey,
+  LocaleSelectorContextKey, PageWrapperContextKey,
 } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
@@ -13,6 +13,7 @@ import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
 const locale = ref<LocaleType>(DefaultLocale);
+const scrollLocked = ref<boolean>(false);
 let isValid: boolean = false;
 
 for (const validLocale of LocalesArray) {
@@ -32,7 +33,11 @@ function selectLocale(selected: LocaleType): void {
   locale.value = selected;
   localStorage.setItem(LocaleKey, selected);
 }
+function lockScroll(state: boolean): void {
+  scrollLocked.value = state;
+}
 
+provide<(state: boolean) => void>(PageWrapperContextKey, lockScroll);
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
 </script>
@@ -45,7 +50,12 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
   <Layout>
     <RouterView>
       <template #default="{ component }">
-        <div class="relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden">
+        <div
+          :class="[
+            'relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden',
+            scrollLocked && 'overflow-y-hidden',
+          ]"
+        >
           <Transition name="page">
             <component :is="component" />
           </Transition>

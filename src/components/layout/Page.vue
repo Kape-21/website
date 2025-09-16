@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { useSwipe } from "@vueuse/core";
-import { ref, computed, useTemplateRef, watchEffect } from "vue";
+import { ref, computed, useTemplateRef, watchEffect, inject } from "vue";
 import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
 import Footer from "@/components/layout/Footer.vue";
+import { PageWrapperContextKey } from "@/constants/application.ts";
+
+const lockScroll = inject<(state: boolean) => void>(PageWrapperContextKey);
 
 const currentRoute = useRoute();
 const router = useRouter();
@@ -12,20 +15,25 @@ const element = useTemplateRef<EventTarget>("element");
 
 const swipingThreshold = 32;
 const { isSwiping, direction, lengthX } = useSwipe(element, {
-  "threshold": swipingThreshold,
+  "threshold": 0,
 });
 const swipedDistance = computed<number>(() => Math.min(
-  Math.abs(lengthX.value) - swipingThreshold,
+  Math.abs(lengthX.value),
   swipingThreshold,
 ));
 const isReallySwiping = computed<boolean>(() => (
-  isSwiping.value && (direction.value === "left" || direction.value === "right")
+  isSwiping.value &&
+  (direction.value === "left" || direction.value === "right")
+  // don't trigger swipe if user is scrolling --- Math.abs(lengthY.value) < 24
 ));
 const shouldNavigate = computed<boolean>(
   () => isReallySwiping.value && swipedDistance.value === swipingThreshold,
 );
 const redirectedRecently = ref<boolean>(false);
 
+watchEffect(() => {
+  lockScroll?.(isReallySwiping.value);
+});
 watchEffect(() => {
   if (!shouldNavigate.value || redirectedRecently.value) {
     return;
