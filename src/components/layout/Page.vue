@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useSwipe } from "@vueuse/core";
-import { ref, computed, useTemplateRef, watchEffect, inject } from "vue";
+import { ref, computed, useTemplateRef, watchEffect, inject, watch } from "vue";
 import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
 import Footer from "@/components/layout/Footer.vue";
@@ -13,28 +13,30 @@ const router = useRouter();
 
 const element = useTemplateRef<EventTarget>("element");
 
-const swipingThreshold = 32;
-const { isSwiping, direction, lengthX, lengthY } = useSwipe(element, {
+const swipingLimit = 32;
+const { isSwiping, direction, lengthX } = useSwipe(element, {
   "threshold": 0,
 });
+
+const isReallySwiping = ref<boolean>(false);
+
+watch(isSwiping, (state: boolean) => {
+  const isSwipingToX: boolean = state &&
+    (direction.value === "left" || direction.value === "right");
+
+  isReallySwiping.value = isSwipingToX;
+  lockScroll?.(isSwipingToX);
+});
+
 const swipedDistance = computed<number>(() => Math.min(
   Math.abs(lengthX.value),
-  swipingThreshold,
-));
-const isReallySwiping = computed<boolean>(() => (
-  isSwiping.value &&
-  (direction.value === "left" || direction.value === "right") &&
-  // don't trigger swipe if user is scrolling
-  Math.abs(lengthY.value) < 24
+  swipingLimit,
 ));
 const shouldNavigate = computed<boolean>(
-  () => isReallySwiping.value && swipedDistance.value === swipingThreshold,
+  () => isReallySwiping.value && swipedDistance.value === swipingLimit,
 );
 const redirectedRecently = ref<boolean>(false);
 
-watchEffect(() => {
-  lockScroll?.(isReallySwiping.value);
-});
 watchEffect(() => {
   if (!shouldNavigate.value || redirectedRecently.value) {
     return;
@@ -79,8 +81,8 @@ watchEffect(() => {
     :style="isReallySwiping ? {
     transform: `translateX(${
       direction === 'right'
-        ? Math.min(swipedDistance / 2, swipingThreshold)
-        : Math.max(swipedDistance * -1 / 2, -1 * swipingThreshold)
+        ? Math.min(swipedDistance / 2, swipingLimit)
+        : Math.max(swipedDistance * -1 / 2, -1 * swipingLimit)
     }px)`,
     opacity: `${Math.max(10 / swipedDistance - 0.2, 0)}`,
   } : {}"
