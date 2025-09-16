@@ -64,7 +64,7 @@ onMounted(() => {
   }));
   // for mobile phones
   term.on("input", command => {
-    if (command !== "\n") {
+    if (!command.endsWith("\n")) {
       return;
     }
 

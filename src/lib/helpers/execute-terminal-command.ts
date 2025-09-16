@@ -183,7 +183,7 @@ export function executeTerminalCommand({
       break;
     }
     default: {
-      term.write(command + ": command not found");
+      term.write(JSON.stringify(command) + ": command not found");
     }
   }
 }
