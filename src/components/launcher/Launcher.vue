@@ -13,7 +13,7 @@ import MacHeader from "@/components/launcher/headers/MacHeader.vue";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import GameModal from "@/components/launcher/modals/GameModal.vue";
-import Desktop from "@/components/launcher/Desktop.vue";
+import DesktopWrapper from "@/components/launcher/desktop/DesktopWrapper.vue";
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -66,7 +66,7 @@ provide<ContextLauncherType>(LauncherContextKey, {
           : 'relative',
       ]"
     >
-      <Desktop v-if="minimized" :open="unMinimize" />
+      <DesktopWrapper v-if="minimized" :open="unMinimize" />
       <div :class="['flex flex-col gap-0', minimized && 'invisible']">
         <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />
         <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
