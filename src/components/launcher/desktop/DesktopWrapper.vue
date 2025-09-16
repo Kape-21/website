@@ -14,6 +14,7 @@ const { open } = defineProps<{
 <template>
   <div
     @touchstart.stop
+    @touchmove.stop
     @touchend.stop
     class="absolute h-full w-full overflow-hidden rounded-lg bg-black bg-cover bg-center text-white -z-10"
   >
