@@ -13,6 +13,7 @@ import MacHeader from "@/components/launcher/headers/MacHeader.vue";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import GameModal from "@/components/launcher/modals/GameModal.vue";
+import Desktop from "@/components/launcher/Desktop.vue";
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -35,6 +36,9 @@ function maximize() {
 function minimize() {
   minimized.value = true;
 }
+function unMinimize() {
+  minimized.value = false;
+}
 
 provide<ContextLauncherType>(LauncherContextKey, {
   "maximized": readonly(maximized),
@@ -50,25 +54,29 @@ provide<ContextLauncherType>(LauncherContextKey, {
     <div
       @contextmenu.prevent
       :class="[
-        'w-full flex flex-col gap-0 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)] box-border',
+        'w-full rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)] box-border',
         /* Class starts */
         '[background:linear-gradient(45deg,theme(colors.catppuccin.800))_padding-box,conic-gradient(from_' +
         'var(--border-angle),theme(colors.catppuccin.800/.48)_60%,_theme(colors.violet.300)_72%,_theme(' +
         'colors.violet.100)_80%,_theme(colors.violet.300)_88%,_theme(colors.catppuccin.800/.48))_border-box]',
         /* Class ends */
         'border-2 border-transparent animate-border transition duration-300',
-        maximized && '!w-auto fixed top-4 left-4 right-4 z-[6000] select-none',
-        minimized && 'invisible',
+        maximized
+          ? '!w-auto fixed top-4 left-4 right-4 z-[6000] select-none'
+          : 'relative',
       ]"
     >
-      <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />
-      <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
-      <LinuxHeader :context-key="LauncherContextKey" v-else />
-      <div class="w-full flex flex-col gap-0">
-        <MenuBar />
-        <NewsBar v-if="barStates.news" />
-        <InstanceBar :barStates="barStates" />
-        <StatusBar v-if="barStates.status" />
+      <Desktop v-if="minimized" :open="unMinimize" />
+      <div :class="['flex flex-col gap-0', minimized && 'invisible']">
+        <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />
+        <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
+        <LinuxHeader :context-key="LauncherContextKey" v-else />
+        <div class="w-full flex flex-col gap-0">
+          <MenuBar />
+          <NewsBar v-if="barStates.news" />
+          <InstanceBar :barStates="barStates" />
+          <StatusBar v-if="barStates.status" />
+        </div>
       </div>
       <DeleteConfirmationModal />
       <GameModal />
