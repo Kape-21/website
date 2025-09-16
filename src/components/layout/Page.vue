@@ -14,7 +14,7 @@ const router = useRouter();
 const element = useTemplateRef<EventTarget>("element");
 
 const swipingThreshold = 32;
-const { isSwiping, direction, lengthX } = useSwipe(element, {
+const { isSwiping, direction, lengthX, lengthY } = useSwipe(element, {
   "threshold": 0,
 });
 const swipedDistance = computed<number>(() => Math.min(
@@ -23,8 +23,9 @@ const swipedDistance = computed<number>(() => Math.min(
 ));
 const isReallySwiping = computed<boolean>(() => (
   isSwiping.value &&
-  (direction.value === "left" || direction.value === "right")
-  // don't trigger swipe if user is scrolling --- Math.abs(lengthY.value) < 24
+  (direction.value === "left" || direction.value === "right") &&
+  // don't trigger swipe if user is scrolling
+  Math.abs(lengthY.value) < 24
 ));
 const shouldNavigate = computed<boolean>(
   () => isReallySwiping.value && swipedDistance.value === swipingThreshold,
