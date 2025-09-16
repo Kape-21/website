@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted, provide, ref } from "vue";
 import { useIntervalFn } from "@vueuse/core";
 import { WebTerm } from "web-term-ui";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import { DesktopTerminalContextKey } from "@/constants/application.ts";
+import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 
 const { open } = defineProps<{
   "open": () => void;
@@ -34,8 +35,20 @@ onMounted(() => {
   });
 
   term.on("tab", () => {
-    term.insertText("Hello");
+    term.insertText("    ");
   });
+  term.on("enter", command => {
+    console.log(command);
+    term.write("");
+  });
+});
+
+provide<ContextLauncherType>(DesktopTerminalContextKey, {
+  "maximized": ref<boolean>(false),
+  "close"    : () => apps.value.terminal = false,
+  "title"    : "Terminal",
+  "maximize" : () => {},
+  "minimize" : () => {},
 });
 </script>
 
@@ -62,7 +75,7 @@ onMounted(() => {
     </button>
     <div class="absolute bottom-2 left-2 right-2 h-12 flex justify-between rounded-lg bg-[#eff0f1] text-black">
       <div class="h-full flex flex-nowrap items-center gap-0">
-        <button class="grid h-12 w-12 place-items-center">
+        <button class="relative grid h-12 w-14 place-items-center before:invisible before:absolute before:left-[25%] before:top-0 before:h-1 before:w-[50%] before:bg-blue-400 before:content-empty focus:before:visible">
           <Image
             class-names="h-6"
             src="/assets/simple-icons-kde-plasma.svg"
@@ -89,7 +102,7 @@ onMounted(() => {
         v-show="apps.terminal"
         class="absolute left-[20%] top-[20%] h-[60%] w-[60%] flex flex-col gap-0 rounded-md bg-catppuccin-900"
       >
-        <LinuxHeader :context-key="DesktopTerminalContextKey" />
+        <LinuxHeader only-close-button :context-key="DesktopTerminalContextKey" />
         <div id="__web-terminal" class="h-full" />
       </div>
     </Transition>
