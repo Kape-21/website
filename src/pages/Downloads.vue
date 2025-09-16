@@ -18,7 +18,7 @@ document
       <Image src="/photo_2025-09-04_20-16-02.jpg" alt="temp" />
       <Image src="/photo_2025-08-29_18-35-38.jpg" alt="temp" />
       <Image src="/bocchi-tired.jpg" alt="temp" />
-      <Image src="/ame-chan.jpg" alt="temp" />
+      <Image src="/assets/ame-chan.webp" alt="temp" />
     </div>
   </Page>
 </template>

@@ -27,7 +27,7 @@ onClickOutside(target, event => {
     <div class="flex flex-nowrap items-center gap-2 border-b-2 border-[#d4d6d7] bg-[#e3e5e7] p-2">
       <Image
         class-names="w-8 h-8 rounded-full border-2 border-mauve box-content"
-        src="/ame-chan.jpg"
+        src="/assets/ame-chan.webp"
         alt="Ame-Chan from Needy Streamer Overload"
       />
       <p class="">
