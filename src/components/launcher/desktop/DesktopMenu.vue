@@ -36,14 +36,14 @@ onClickOutside(target, event => {
     </div>
     <div class="flex flex-nowrap gap-0 border-b-2 border-[#d4d6d7]">
       <div class="flex flex-col border-r-2 border-[#d4d6d7] p-2">
-        <div class="min-w-36 flex flex-nowrap items-center gap-2 border border-mauve rounded-md p-2 bg-[theme(colors.mauve/.5)]">
+        <div class="flex flex-nowrap items-center gap-2 border border-mauve rounded-md p-2 sm:min-w-36 bg-[theme(colors.mauve/.5)]">
           <div class="i-lucide-bookmark h-4 w-4" />
           <p class="text-sm">
             Favorites
           </p>
         </div>
       </div>
-      <div class="min-w-56 flex p-2">
+      <div class="flex p-2 sm:min-w-56">
         <button
           aria-label="Open Freesm Launcher"
           @click="open"
