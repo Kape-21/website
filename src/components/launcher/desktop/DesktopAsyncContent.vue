@@ -9,6 +9,7 @@ import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import DesktopMenu from "@/components/launcher/desktop/DesktopMenu.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
+import { executeTerminalCommand } from "@/lib/helpers/execute-terminal-command.ts";
 
 const { open } = defineProps<{
   "open": () => void;
@@ -33,7 +34,10 @@ const apps = ref<{
 onUnmounted(pause);
 onMounted(() => {
   const term = new WebTerm({
-    "title"    : "Welcome to Freesm 1.0 LTS (GNU/Linux 6.8.0-36-generic x86_64)\n* help",
+    "title": "Welcome to <span class='text-mauve_latte underline'>" +
+      "Freesm 1.0 LTS" +
+      "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help",
+    "titleHtml": true,
     "container": "#__web-terminal",
     "header"   : "$ ",
     "style"    : {
@@ -47,55 +51,14 @@ onMounted(() => {
   term.on("tab", () => {
     term.insertText("    ");
   });
-  term.on("enter", command => {
-    switch (command) {
-      case "clear": {
-        term.clearTerminal();
-
-        break;
-      }
-      case "help": {
-        term.write(` help
- clear
- pfetch
- ls
- exit`);
-
-        break;
-      }
-      case "ls": {
-        term.write(".");
-
-        break;
-      }
-      case "exit": {
-        apps.value.terminal = false;
-
-        break;
-      }
-      case "neofetch": {
-        term.write("Command not found. Did you mean 'pfetch'?");
-
-        break;
-      }
-      case "pfetch": {
-        term.write(`
-      /\\        ame@chan
-    //  \\\\      os      ${platform.toLowerCase()}
-   //    \\ \\    browser ${browser?.toString?.()?.toLowerCase?.() ?? "unknown"}
- / /     _) )   engine  ${engine?.name?.toLowerCase?.() ?? "unknown"}
-/_/___-- __-    plugins ${navigator?.plugins?.length ?? 0}
- /____--        ascii   endeavour os
-                de      plasma 6.4
-`);
-
-        break;
-      }
-      default: {
-        term.write(command + ": command not found");
-      }
-    }
-  });
+  term.on("enter", command => executeTerminalCommand({
+    command,
+    term,
+    "platform": platform.toLowerCase(),
+    "browser" : browser?.toString?.()?.toLowerCase?.() ?? "unknown",
+    "engine"  : engine?.name?.toLowerCase?.() ?? "unknown",
+    "close"   : () => apps.value.terminal = false,
+  }));
   // for mobile phones
   term.on("input", command => {
     if (command !== "\n") {
