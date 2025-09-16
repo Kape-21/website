@@ -1,4 +1,5 @@
 import type { WebTerm } from "web-term-ui";
+import type { LocaleType } from "@/types/locale.type.ts";
 
 export function executeTerminalCommand({
   command,
@@ -8,6 +9,8 @@ export function executeTerminalCommand({
   engine,
   close,
   onEditor,
+  locale,
+  setLocale,
 }: {
   "command" : string;
   "term"    : WebTerm;
@@ -20,6 +23,8 @@ export function executeTerminalCommand({
     "quit"  : () => void;
     "save"  : () => void;
   }) => void;
+  "locale"   : LocaleType;
+  "setLocale": (locale: LocaleType) => void;
 }): void {
   if (command === "weather") {
     term.write("<span class='text-red-500'>weather: no arguments</span>", {
@@ -129,9 +134,10 @@ export function executeTerminalCommand({
   }
 
   switch (command) {
+    case "locale":
     case "lang": {
       const editor = term.edit(
-        "locale=ru",
+        `locale=${locale}`,
         {
           "title": "<div class='bg-black text-white px-2'>" +
             "or [ctrl/cmd + s]: save; [esc]: quit" +
@@ -140,12 +146,30 @@ export function executeTerminalCommand({
         },
       );
 
+      const onSave = (result: string) => {
+        const trimmed = result.trim();
+        const pairs = trimmed.split("=");
+        const locale: string = pairs[1];
+
+        switch (locale) {
+          /* govno code production */
+          case "en":
+          case "ru":
+          case "ua": {
+            setLocale?.(locale);
+
+            break;
+          }
+        }
+      };
+
       onEditor({
         "opened": true,
         "quit"  : () => {
           editor.emit("edit-cancel");
         },
         "save": () => {
+          onSave(editor.value);
           editor.emit("edit-done", "");
         },
       });
@@ -156,7 +180,7 @@ export function executeTerminalCommand({
           "quit"  : () => {},
           "save"  : () => {},
         });
-        console.log(result, editor);
+        onSave(result);
       });
 
       break;
@@ -179,6 +203,8 @@ export function executeTerminalCommand({
  ls
  su
  exit
+ lang
+ locale
  eval    eval [javascript code]
  weather weather [city]`);
 

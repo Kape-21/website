@@ -1,19 +1,29 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
-import { onMounted, onUnmounted, provide, ref, shallowRef } from "vue";
+import { inject, onMounted, onUnmounted, provide, ref, shallowRef } from "vue";
 import { useIntervalFn } from "@vueuse/core";
 import { WebTerm } from "web-term-ui";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
-import { DesktopTerminalContextKey } from "@/constants/application.ts";
+import {
+  DesktopTerminalContextKey,
+  LocaleContextKey,
+  LocaleSelectorContextKey,
+} from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import DesktopMenu from "@/components/launcher/desktop/DesktopMenu.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import { executeTerminalCommand } from "@/lib/helpers/execute-terminal-command.ts";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { DefaultLocale } from "@/constants/locales.ts";
+import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 
 const { open } = defineProps<{
   "open": () => void;
 }>();
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
+const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
 
 const { os, browser, engine } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -78,6 +88,8 @@ onMounted(() => {
     }) => {
       editor.value = state;
     },
+    "locale"   : locale?.value ?? DefaultLocale,
+    "setLocale": selectLocale ?? (() => {}),
   }));
   // for mobile phones
   term.on("input", command => {
@@ -100,6 +112,8 @@ onMounted(() => {
       }) => {
         editor.value = state;
       },
+      "locale"   : locale?.value ?? DefaultLocale,
+      "setLocale": selectLocale ?? (() => {}),
     });
   });
 });
@@ -190,7 +204,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
           <button @click="editor.save" class="w-fit px-2 text-[11px] hover:bg-[#eff0f1] sm:text-[14px]">
             Save
           </button>
-          <button @@click="editor.quit" class="w-fit px-2 text-[11px] hover:bg-[#eff0f1] sm:text-[14px]">
+          <button @click="editor.quit" class="w-fit px-2 text-[11px] hover:bg-[#eff0f1] sm:text-[14px]">
             Quit
           </button>
         </div>
