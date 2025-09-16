@@ -59,7 +59,7 @@ provide<ContextLauncherType>(LauncherContextKey, {
       'colors.violet.100)_80%,_theme(colors.violet.300)_88%,_theme(colors.catppuccin.800/.48))_border-box]',
       /* Class ends */
       'border-2 border-transparent animate-border transition duration-300',
-      maximized && '!w-auto fixed h-full top-4 left-4 right-4 bottom-4 z-[6000] select-none',
+      maximized && '!w-auto fixed top-4 left-4 right-4 z-[6000] select-none',
     ]"
     >
       <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />

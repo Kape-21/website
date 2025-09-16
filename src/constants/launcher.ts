@@ -91,7 +91,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Name"   : EaglerCraftName,
     "Version": "1.5.2",
     "Group"  : Groups.None,
-    "Icon"   : "/assets/grass.svg",
+    "Icon"   : "/assets/eagler-craft-logo.webp",
     "Deleted": Deleted.No,
   },
   {
@@ -99,7 +99,7 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Name"   : EaglerCraftNewName,
     "Version": "1.8.8",
     "Group"  : Groups.None,
-    "Icon"   : "/assets/grass.svg",
+    "Icon"   : "/assets/eagler-craft-logo.webp",
     "Deleted": Deleted.No,
   },
   {
