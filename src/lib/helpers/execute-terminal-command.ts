@@ -1,7 +1,5 @@
 import type { WebTerm } from "web-term-ui";
 
-const OpenWeatherAPIKey = "e7600a8eb247eabef85a8a71dacad53e";
-
 export function executeTerminalCommand({
   command,
   term,
@@ -28,14 +26,39 @@ export function executeTerminalCommand({
   if (command.startsWith("weather ")) {
     const city = command.slice(8).toLowerCase();
 
-    term.pushBelow(`Searching '${city}' in OpenWeather...`);
+    term.pushBelow(`Searching '${city}' on OpenMeteo...`);
 
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${OpenWeatherAPIKey}`)
+    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`)
       .then(response => response
         .json()
         .then(data => {
-          term.write("weather: " + JSON.stringify(data, null, 2));
-          term.clearBelow();
+          const coords = {
+            "latitude" : data?.results?.[0]?.latitude,
+            "longitude": data?.results?.[0]?.longitude,
+          };
+
+          term.writeBelow(`Getting a weather for '${coords.latitude}, ${coords.longitude}' on OpenMeteo...`);
+
+          fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&current=temperature_2m,is_day`)
+            .then(response => response
+              .json()
+              .then(data => {
+                term.write(`
+- day        : ${data?.current?.is_day ? "day" : "night"}
+- time       : ${(new Date(data?.current?.time)).toLocaleTimeString()}
+- temperature: ${data?.current?.temperature_2m}${data?.current_units?.temperature_2m}
+                `);
+                term.clearBelow();
+              }))
+            .catch(error => {
+              term.write(
+                "<span class='text-red-500'>error: " +
+                error?.message +
+                "</span>",
+                { "html": true },
+              );
+              term.clearBelow();
+            });
         }))
       .catch(error => {
         term.write(
