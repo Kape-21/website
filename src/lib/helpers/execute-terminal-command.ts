@@ -7,6 +7,7 @@ export function executeTerminalCommand({
   browser,
   engine,
   close,
+  onEditor,
 }: {
   "command" : string;
   "term"    : WebTerm;
@@ -14,6 +15,11 @@ export function executeTerminalCommand({
   "browser" : string;
   "engine"  : string;
   "close"   : () => void;
+  "onEditor": (state: {
+    "opened": boolean;
+    "quit"  : () => void;
+    "save"  : () => void;
+  }) => void;
 }): void {
   if (command === "weather") {
     term.write("<span class='text-red-500'>weather: no arguments</span>", {
@@ -123,6 +129,38 @@ export function executeTerminalCommand({
   }
 
   switch (command) {
+    case "lang": {
+      const editor = term.edit(
+        "locale=ru",
+        {
+          "title": "<div class='bg-black text-white px-2'>" +
+            "or [ctrl/cmd + s]: save; [esc]: quit" +
+            "</div>",
+          "html": true,
+        },
+      );
+
+      onEditor({
+        "opened": true,
+        "quit"  : () => {
+          editor.emit("edit-cancel");
+        },
+        "save": () => {
+          editor.emit("edit-done", "");
+        },
+      });
+
+      editor.on("edit-done", (result: string) => {
+        onEditor({
+          "opened": false,
+          "quit"  : () => {},
+          "save"  : () => {},
+        });
+        console.log(result, editor);
+      });
+
+      break;
+    }
     case "su": {
       term.setHeader("# ");
       term.write("");

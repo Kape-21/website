@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
-import { onMounted, onUnmounted, provide, ref } from "vue";
+import { onMounted, onUnmounted, provide, ref, shallowRef } from "vue";
 import { useIntervalFn } from "@vueuse/core";
 import { WebTerm } from "web-term-ui";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
@@ -19,6 +19,16 @@ const { os, browser, engine } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
 
 const currentDate = ref<Date>(new Date);
+const editor = shallowRef<{
+  "opened": boolean;
+  "quit"  : () => void;
+  "save"  : () => void;
+}>({
+  "opened": false,
+  "quit"  : () => {},
+  "save"  : () => {},
+});
+
 const { pause } = useIntervalFn(() => {
   currentDate.value = new Date;
 }, 1000);
@@ -61,6 +71,13 @@ onMounted(() => {
     "browser" : browser?.toString?.()?.toLowerCase?.() ?? "unknown",
     "engine"  : engine?.name?.toLowerCase?.() ?? "unknown",
     "close"   : () => apps.value.terminal = false,
+    "onEditor": (state: {
+      "opened": boolean;
+      "quit"  : () => void;
+      "save"  : () => void;
+    }) => {
+      editor.value = state;
+    },
   }));
   // for mobile phones
   term.on("input", command => {
@@ -76,6 +93,13 @@ onMounted(() => {
       "browser" : browser?.toString?.()?.toLowerCase?.() ?? "unknown",
       "engine"  : engine?.name?.toLowerCase?.() ?? "unknown",
       "close"   : () => apps.value.terminal = false,
+      "onEditor": (state: {
+        "opened": boolean;
+        "quit"  : () => void;
+        "save"  : () => void;
+      }) => {
+        editor.value = state;
+      },
     });
   });
 });
@@ -162,6 +186,14 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
           invert-colors
           :context-key="DesktopTerminalContextKey"
         />
+        <div v-show="editor.opened" class="w-full flex flex-nowrap bg-white text-black font-[Menlo,Monaco,'Courier_New',monospace]">
+          <button @click="editor.save" class="w-fit px-2 text-[11px] hover:bg-[#eff0f1] sm:text-[14px]">
+            Save
+          </button>
+          <button @@click="editor.quit" class="w-fit px-2 text-[11px] hover:bg-[#eff0f1] sm:text-[14px]">
+            Quit
+          </button>
+        </div>
         <div id="__web-terminal" class="h-full" />
       </div>
     </Transition>
