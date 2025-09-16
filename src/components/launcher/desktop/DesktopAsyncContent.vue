@@ -69,8 +69,9 @@ onMounted(() => {
     }
 
     executeTerminalCommand({
-      command,
       term,
+      // since 'command' contains '\n', we need to remove it
+      "command" : command.slice(0, -2),
       "platform": platform.toLowerCase(),
       "browser" : browser?.toString?.()?.toLowerCase?.() ?? "unknown",
       "engine"  : engine?.name?.toLowerCase?.() ?? "unknown",
