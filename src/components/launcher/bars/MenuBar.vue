@@ -26,7 +26,7 @@ const catStore = useCatPackState();
         :class="[
           'group min-h-8 flex items-center gap-1 rounded-md px-1 py-1 transition-[background-color] ease-out',
           'sm:min-h-10 sm:px-2 sm:py-0 hover:bg-[#211e2f] active:bg-[#171721]',
-          'disabled:text-[#9298b6] disabled:transition-none',
+          'disabled:text-[#9298b6] disabled:transition-none disabled:pointer-events-none',
           'disabled:hover:bg-transparent disabled:active:bg-transparent',
           // Check if the button is a Cat Pack button
           tab?.Name === undefined && catStore.enabled && 'bg-[#211e2f]',
