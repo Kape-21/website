@@ -72,7 +72,12 @@ provide<ContextLauncherType>(LauncherContextKey, {
         <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
         <LinuxHeader :context-key="LauncherContextKey" v-else />
         <div class="w-full flex flex-col gap-0">
-          <MenuBar />
+          <MenuBar
+            :bar-states="barStates"
+            :toggle-news="() => barStates.news = !barStates.news"
+            :toggle-instance="() => barStates.instance = !barStates.instance"
+            :toggle-status="() => barStates.status = !barStates.status"
+          />
           <NewsBar v-if="barStates.news" />
           <InstanceBar :barStates="barStates" />
           <StatusBar v-if="barStates.status" />

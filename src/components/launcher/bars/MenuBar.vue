@@ -1,20 +1,95 @@
 <script setup lang="ts">
 import { LauncherTabs } from "@/constants/launcher.ts";
 import { translate } from "@/lib/translations/translate.ts";
-import { inject } from "vue";
+import { inject, shallowRef, useTemplateRef } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import ProfileButton from "@/components/launcher/bars/ProfileButton.vue";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
+import { onClickOutside } from "@vueuse/core";
+
+const { barStates, toggleNews, toggleStatus, toggleInstance } = defineProps<{
+  "barStates": {
+    "news"    : boolean;
+    "status"  : boolean;
+    "instance": boolean;
+  };
+  "toggleNews"    : () => void;
+  "toggleStatus"  : () => void;
+  "toggleInstance": () => void;
+}>();
+
+const contextActions: Record<string, () => void> = {
+  "news"    : toggleNews,
+  "status"  : toggleStatus,
+  "instance": toggleInstance,
+};
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
-
 const catStore = useCatPackState();
+const contextMenu = shallowRef<{
+  "opened": boolean;
+  "x"     : number;
+  "y"     : number;
+}>({
+  "opened": false,
+  "x"     : 0,
+  "y"     : 0,
+});
+const target = useTemplateRef<HTMLElement>("target");
+
+onClickOutside(target, () => {
+  contextMenu.value = {
+    ...contextMenu.value,
+    "opened": false,
+  };
+});
+
+function handleRightClick(event: MouseEvent): void {
+  contextMenu.value = {
+    "x"     : event.offsetX,
+    "y"     : event.offsetY,
+    "opened": true,
+  };
+}
 </script>
 
 <template>
-  <div class="h-fit w-full flex justify-between bg-catppuccin-900 p-[10px]">
-    <!-- TODO context menu? -->
+  <div
+    @contextmenu="handleRightClick"
+    class="h-fit w-full flex justify-between bg-catppuccin-900 p-[10px]"
+  >
+    <div
+      ref="target"
+      id="__menu-bar-context-menu"
+      :class="[
+        'absolute z-1000 flex flex-col cursor-default gap-1',
+        'border border-[#181822] bg-catppuccin-900 p-1 transition-[opacity]',
+        contextMenu.opened
+          ? 'visible opacity-100'
+          : 'invisible opacity-0',
+      ]"
+      :style="{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }"
+    >
+      <button
+        v-for="[key, value] in Object.entries(barStates)"
+        @click="contextActions[key]"
+        :key="key"
+        class="w-full flex flex-nowrap gap-3 rounded-md p-1 transition-[background-color] sm:gap-4 hover:bg-[#1d1a28]"
+      >
+        <span
+          :class="[
+            'block h-4 min-w-4 rounded-md sm:h-[18px] sm:min-w-[18px]',
+            value
+            ? 'bg-mauve'
+            : 'bg-transparent border border-[#606060]',
+          ]"
+        />
+        <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
+          {{ key }}
+        </span>
+      </button>
+    </div>
     <div class="flex flex-wrap items-stretch gap-2">
       <div class="w-[5px] cursor-move rounded-full bg-mauve" />
       <button

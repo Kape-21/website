@@ -42,7 +42,10 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
       barStates.status ? 'rounded-b-none' : 'rounded-b-md',
     ]"
   >
-    <InstanceCurrent :barStates="barStates" />
+    <InstanceCurrent
+      v-show="barStates.instance"
+      :barStates="barStates"
+    />
     <div
       :class="[
         'w-full flex flex-col gap-2 bg-[#0c0c13] p-4',
