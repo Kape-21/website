@@ -32,6 +32,13 @@ export function executeTerminalCommand({
       .then(response => response
         .json()
         .then(data => {
+          if (data?.results?.[0] === undefined) {
+            term.write(`weather: '${city}' was not found`);
+            term.clearBelow();
+
+            return;
+          }
+
           const coords = {
             "latitude" : data?.results?.[0]?.latitude,
             "longitude": data?.results?.[0]?.longitude,
@@ -132,6 +139,7 @@ export function executeTerminalCommand({
  clear
  pfetch
  ls
+ su
  exit
  eval    eval [javascript code]
  weather weather [city]`);
