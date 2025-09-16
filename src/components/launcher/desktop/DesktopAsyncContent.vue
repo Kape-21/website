@@ -47,7 +47,7 @@ onMounted(() => {
       "selectionBackground": "#000000",
       "fontSize"           : window.innerWidth <= 640
         ? 11
-        : undefined,
+        : 14,
     },
   });
 
