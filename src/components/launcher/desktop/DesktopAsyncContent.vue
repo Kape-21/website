@@ -121,7 +121,15 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
             alt="KDE Plasma logo"
           />
         </button>
-        <button @click="() => apps.terminal = !apps.terminal" class="grid h-12 w-12 place-items-center">
+        <button
+          @click="() => apps.terminal = !apps.terminal"
+          :class="[
+            'relative grid h-12 w-14 place-items-center',
+            'before:absolute before:left-[25%] before:top-0',
+            'before:h-1 before:w-[50%] before:bg-mauve before:content-empty',
+            apps.terminal ? 'before:visible' : 'before:invisible',
+          ]"
+        >
           <span class="i-lucide-terminal block h-8 w-8" />
         </button>
       </div>
