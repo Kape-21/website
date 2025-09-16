@@ -20,7 +20,7 @@ const { opened, contextKey, onlyCloseButton } = defineProps<{
   <Teleport to="body" :disabled="!maximized">
     <div
       :class="[
-      'select-none absolute z-7000 flex flex-col gap-0 rounded-md',
+      'select-none absolute z-7000 flex flex-col gap-0 rounded-md overflow-hidden',
       'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
       maximized
         ? 'left-0 top-0 right-0 bottom-0 transition-none'

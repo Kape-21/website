@@ -18,6 +18,7 @@ const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
 
 const maximized = ref<boolean>(false);
+const minimized = ref<boolean>(false);
 const barStates = ref<{
   "news"    : boolean;
   "status"  : boolean;
@@ -32,18 +33,15 @@ function maximize() {
   maximized.value = !maximized.value;
 }
 function minimize() {
-  console.log("minimized!"); // TODO show desktop screen with wallpapers lol
-}
-function close() {
-  console.log("closed!"); // TODO show desktop screen with wallpapers lol
+  minimized.value = true;
 }
 
 provide<ContextLauncherType>(LauncherContextKey, {
   "maximized": readonly(maximized),
+  "close"    : minimize,
   title,
   maximize,
   minimize,
-  close,
 });
 </script>
 
@@ -52,15 +50,16 @@ provide<ContextLauncherType>(LauncherContextKey, {
     <div
       @contextmenu.prevent
       :class="[
-      'w-full flex flex-col gap-0 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)] box-border',
-      /* Class starts */
-      '[background:linear-gradient(45deg,theme(colors.catppuccin.800))_padding-box,conic-gradient(from_var(' +
-      '--border-angle),theme(colors.catppuccin.800/.48)_60%,_theme(colors.violet.300)_72%,_theme(' +
-      'colors.violet.100)_80%,_theme(colors.violet.300)_88%,_theme(colors.catppuccin.800/.48))_border-box]',
-      /* Class ends */
-      'border-2 border-transparent animate-border transition duration-300',
-      maximized && '!w-auto fixed top-4 left-4 right-4 z-[6000] select-none',
-    ]"
+        'w-full flex flex-col gap-0 rounded-md drop-shadow-[0_25px_25px_rgba(0,0,0,0.5)] box-border',
+        /* Class starts */
+        '[background:linear-gradient(45deg,theme(colors.catppuccin.800))_padding-box,conic-gradient(from_' +
+        'var(--border-angle),theme(colors.catppuccin.800/.48)_60%,_theme(colors.violet.300)_72%,_theme(' +
+        'colors.violet.100)_80%,_theme(colors.violet.300)_88%,_theme(colors.catppuccin.800/.48))_border-box]',
+        /* Class ends */
+        'border-2 border-transparent animate-border transition duration-300',
+        maximized && '!w-auto fixed top-4 left-4 right-4 z-[6000] select-none',
+        minimized && 'invisible',
+      ]"
     >
       <WindowsHeader :context-key="LauncherContextKey" v-if="platform === 'Windows'" />
       <MacHeader :context-key="LauncherContextKey" v-else-if="platform === 'macOS'" />
