@@ -64,6 +64,7 @@ watchEffect(() => {
     Redirects[direction.value === "left" ? "left" : "right"][validHref],
   );
   redirectedRecently.value = true;
+  lockScroll?.(false);
 
   // something like a throttling
   const timeout = setTimeout(() => {

@@ -84,7 +84,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
 <template>
   <div>
     <Image
-      class-names="absolute left-0 top-0 right-0 bottom-0 brightness-70 w-full h-full object-cover"
+      class-names="absolute left-0 top-0 right-0 bottom-0 brightness-70 h-full w-full object-cover"
       src="/assets/plasma-6.jpeg"
       alt="Plasma 6 default wallpapers"
     />
@@ -134,7 +134,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
         </button>
       </div>
       <div class="h-full flex flex-nowrap items-center gap-2">
-        <div class="flex flex-col items-center gap-0 px-4">
+        <div class="flex flex-col select-text items-center gap-0 px-4">
           <p class="text-sm font-semibold">
             {{ currentDate.toLocaleTimeString() }}
           </p>
