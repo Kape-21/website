@@ -45,6 +45,9 @@ onMounted(() => {
       "color"              : "#000000",
       "selectionColor"     : "#ffffff",
       "selectionBackground": "#000000",
+      "fontSize"           : window.innerWidth <= 640
+        ? 11
+        : undefined,
     },
   });
 
@@ -83,7 +86,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
     <Image
       class-names="absolute left-0 top-0 right-0 bottom-0 brightness-70 w-full h-full object-cover"
       src="/assets/plasma-6.jpeg"
-      alt="Temple OS elephant"
+      alt="Plasma 6 default wallpapers"
     />
     <button
       aria-label="Open Freesm Launcher"
