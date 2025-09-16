@@ -4,9 +4,10 @@ import { ApplicationName } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import Image from "@/components/base/Image.vue";
 
-const { contextKey, onlyCloseButton } = defineProps<{
+const { contextKey, onlyCloseButton, invertColors } = defineProps<{
   "contextKey"      : symbol;
   "onlyCloseButton"?: boolean;
+  "invertColors"   ?: boolean;
 }>();
 const { maximized, title, maximize, minimize, close } = inject<ContextLauncherType>(contextKey) ?? {
   "maximized": false,
@@ -18,7 +19,12 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
 </script>
 
 <template>
-  <div class="h-6 w-full flex flex-nowrap items-center justify-between gap-2 rounded-t-md bg-catppuccin-900 sm:h-8">
+  <div
+    :class="[
+      'h-6 w-full flex flex-nowrap items-center justify-between gap-2 rounded-t-md sm:h-8',
+      invertColors ? 'bg-[#eff0f1]' : 'bg-catppuccin-900',
+    ]"
+  >
     <div
       :class="[
         'flex flex-nowrap items-center justify-start gap-2 pl-1 sm:pl-2',
@@ -31,7 +37,7 @@ const { maximized, title, maximize, minimize, close } = inject<ContextLauncherTy
         :alt="`${ApplicationName}'s logo`"
       />
     </div>
-    <div class="text-nowrap text-xs text-white sm:text-sm">
+    <div :class="['text-nowrap text-xs sm:text-sm', invertColors ? 'text-black' : 'text-white']">
       {{ title }}
     </div>
     <div class="h-full flex items-stretch gap-0">
