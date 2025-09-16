@@ -56,7 +56,7 @@ watchEffect(() => {
     <div
       ref="target"
       :class="[
-        'absolute right-0 top-12 z-1000 flex flex-col gap-2',
+        'absolute right-0 top-12 z-1000 flex flex-col gap-2 max-w-[calc(100vw-64px)]',
         'border border-[#181822] bg-catppuccin-900 p-1 transition-[opacity]',
         opened ? 'opacity-100 visible' : 'opacity-0 invisible',
       ]"
