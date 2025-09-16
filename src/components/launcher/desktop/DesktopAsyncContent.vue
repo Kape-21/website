@@ -68,7 +68,14 @@ onMounted(() => {
       return;
     }
 
-    term.write("");
+    executeTerminalCommand({
+      command,
+      term,
+      "platform": platform.toLowerCase(),
+      "browser" : browser?.toString?.()?.toLowerCase?.() ?? "unknown",
+      "engine"  : engine?.name?.toLowerCase?.() ?? "unknown",
+      "close"   : () => apps.value.terminal = false,
+    });
   });
 });
 
