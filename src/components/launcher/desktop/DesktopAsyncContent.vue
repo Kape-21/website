@@ -7,10 +7,15 @@ import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import { DesktopTerminalContextKey } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import DesktopMenu from "@/components/launcher/desktop/DesktopMenu.vue";
+import { UAParser } from "ua-parser-js";
+import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 
 const { open } = defineProps<{
   "open": () => void;
 }>();
+
+const { os, browser, engine } = UAParser(navigator.userAgent);
+const platform = getPlatformName(os?.name);
 
 const currentDate = ref<Date>(new Date);
 const { pause } = useIntervalFn(() => {
@@ -28,7 +33,7 @@ const apps = ref<{
 onUnmounted(pause);
 onMounted(() => {
   const term = new WebTerm({
-    "title"    : "Welcome",
+    "title"    : "Welcome to Freesm 1.0 LTS (GNU/Linux 6.8.0-36-generic x86_64)\n* help",
     "container": "#__web-terminal",
     "header"   : "$ ",
     "style"    : {
@@ -43,8 +48,53 @@ onMounted(() => {
     term.insertText("    ");
   });
   term.on("enter", command => {
-    console.log(command);
-    term.write("");
+    switch (command) {
+      case "clear": {
+        term.clearTerminal();
+
+        break;
+      }
+      case "help": {
+        term.write(` help
+ clear
+ pfetch
+ ls
+ exit`);
+
+        break;
+      }
+      case "ls": {
+        term.write(".");
+
+        break;
+      }
+      case "exit": {
+        apps.value.terminal = false;
+
+        break;
+      }
+      case "neofetch": {
+        term.write("Command not found. Did you mean 'pfetch'?");
+
+        break;
+      }
+      case "pfetch": {
+        term.write(`
+      /\\        ame@chan
+    //  \\\\      os      ${platform.toLowerCase()}
+   //    \\ \\    browser ${browser?.toString?.()?.toLowerCase?.() ?? "unknown"}
+ / /     _) )   engine  ${engine?.name?.toLowerCase?.() ?? "unknown"}
+/_/___-- __-    plugins ${navigator?.plugins?.length ?? 0}
+ /____--        ascii   endeavour os
+                de      plasma 6.4
+`);
+
+        break;
+      }
+      default: {
+        term.write(command + ": command not found");
+      }
+    }
   });
   // for mobile phones
   term.on("input", command => {
