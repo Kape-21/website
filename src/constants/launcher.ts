@@ -3,8 +3,10 @@ import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 
 export const EaglerCraftID = "eagler";
 export const EaglerCraftNewID = "eagler-new";
+export const EaglerCraftNewestID = "eagler-newest";
 export const EaglerCraftName = "EaglerCraft 1.5.2";
 export const EaglerCraftNewName = "EaglerCraft 1.8.8";
+export const EaglerCraftNewestName = "EaglerCraft 1.12.2";
 export const Groups = {
   "None"       : "launcher.ungrouped",
   "Placeholder": "launcher.placeholder-group",
@@ -100,6 +102,14 @@ export const LauncherInstances: Array<LauncherInstanceType> = [
     "Version": "1.8.8",
     "Group"  : Groups.None,
     "Icon"   : "/assets/eagler-craft-logo.webp",
+    "Deleted": Deleted.No,
+  },
+  {
+    "Id"     : EaglerCraftNewestID,
+    "Name"   : EaglerCraftNewestName,
+    "Version": "1.12.2",
+    "Group"  : Groups.None,
+    "Icon"   : "/assets/diamond.svg",
     "Deleted": Deleted.No,
   },
   {

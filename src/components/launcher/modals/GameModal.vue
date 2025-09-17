@@ -3,7 +3,7 @@ import { LauncherModalEmbedContextKey } from "@/constants/application.ts";
 import LauncherModal from "@/components/launcher/modals/LauncherModal.vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { computed, provide, ref } from "vue";
-import { EaglerCraftID, EaglerCraftNewID } from "@/constants/launcher.ts";
+import { EaglerCraftID, EaglerCraftNewestID, EaglerCraftNewID } from "@/constants/launcher.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 
@@ -12,7 +12,8 @@ const currentInstanceStore = useCurrentInstance();
 const areEmbeds = computed(
   (): boolean => (
     currentInstanceStore.launched === EaglerCraftID ||
-    currentInstanceStore.launched === EaglerCraftNewID
+    currentInstanceStore.launched === EaglerCraftNewID ||
+    currentInstanceStore.launched === EaglerCraftNewestID
   ));
 const currentEmbed = computed((): string => {
   switch (currentInstanceStore.launched) {
@@ -21,6 +22,9 @@ const currentEmbed = computed((): string => {
     }
     case EaglerCraftNewID: {
       return "https://eaglercraft.org/";
+    }
+    case EaglerCraftNewestID: {
+      return "https://autopilot-tesla.github.io/eaglercraftx1-8.github.io/eagler-files/1.12/Main/index.html";
     }
     default: {
       return "";
