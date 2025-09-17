@@ -1,5 +1,6 @@
 import type { WebTerm } from "web-term-ui";
 import type { LocaleType } from "@/types/locale.type.ts";
+import { getWeather } from "@/lib/helpers/get-weather.ts";
 
 export function executeTerminalCommand({
   command,
@@ -26,57 +27,24 @@ export function executeTerminalCommand({
   "locale"   : LocaleType;
   "setLocale": (locale: LocaleType) => void;
 }): void {
-  if (command === "weather") {
-    term.write("<span class='text-red-500'>weather: no arguments</span>", {
-      "html": true,
-    });
+  if (command.startsWith("fetch ")) {
+    const url = command.slice(6);
+    const t1 = performance.now();
 
-    return;
-  }
+    term.writeBelow(`Fetching ${url}...`);
 
-  if (command.startsWith("weather ")) {
-    const city = command.slice(8).toLowerCase();
-
-    term.pushBelow(`Searching '${city}' on OpenMeteo...`);
-
-    fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`)
+    fetch(url)
       .then(response => response
         .json()
         .then(data => {
-          if (data?.results?.[0] === undefined) {
-            term.write(`weather: '${city}' was not found`);
-            term.clearBelow();
+          const t2 = performance.now();
 
-            return;
-          }
+          term.write(`
+Fetched in ${t2 - t1} ms
 
-          const coords = {
-            "latitude" : data?.results?.[0]?.latitude,
-            "longitude": data?.results?.[0]?.longitude,
-          };
-
-          term.writeBelow(`Getting a weather for '${coords.latitude}, ${coords.longitude}' on OpenMeteo...`);
-
-          fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.latitude}&longitude=${coords.longitude}&current=temperature_2m,is_day`)
-            .then(response => response
-              .json()
-              .then(data => {
-                term.write(`
-- day        : ${data?.current?.is_day ? "day" : "night"}
-- time       : ${(new Date(data?.current?.time)).toLocaleTimeString()}
-- temperature: ${data?.current?.temperature_2m}${data?.current_units?.temperature_2m}
-                `);
-                term.clearBelow();
-              }))
-            .catch(error => {
-              term.write(
-                "<span class='text-red-500'>error: " +
-                error?.message +
-                "</span>",
-                { "html": true },
-              );
-              term.clearBelow();
-            });
+${JSON.stringify(data, null, 2)}
+`);
+          term.clearBelow();
         }))
       .catch(error => {
         term.write(
@@ -91,18 +59,8 @@ export function executeTerminalCommand({
     return;
   }
 
-  if (command === "eval") {
-    if (term.header !== "# ") {
-      term.write("<span class='text-red-500'>eval: no permission</span>", {
-        "html": true,
-      });
-
-      return;
-    }
-
-    term.write("<span class='text-red-500'>eval: no arguments</span>", {
-      "html": true,
-    });
+  if (command.startsWith("weather ")) {
+    getWeather({ command, term });
 
     return;
   }
@@ -134,6 +92,23 @@ export function executeTerminalCommand({
   }
 
   switch (command) {
+    case "eval":
+    case "fetch":
+    case "weather": {
+      if (command === "eval" && term.header !== "# ") {
+        term.write(`<span class="text-red-500">${command}: no permission</span>`, {
+          "html": true,
+        });
+
+        break;
+      }
+
+      term.write(`<span class="text-red-500">${command}: no arguments</span>`, {
+        "html": true,
+      });
+
+      break;
+    }
     case "locale":
     case "lang": {
       const editor = term.edit(
@@ -225,6 +200,7 @@ export function executeTerminalCommand({
  lang
  locale
  eval    eval [javascript code]
+ fetch   fetch [url]
  weather weather [city]`);
 
       break;
