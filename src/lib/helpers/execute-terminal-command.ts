@@ -111,7 +111,7 @@ export function executeTerminalCommand({
             break;
           }
           default: {
-            term.writeBelow("Invalid locale");
+            term.writeBelow(`locale: invalid string '${result}'`);
 
             setTimeout(() => {
               term.clearBelow();
