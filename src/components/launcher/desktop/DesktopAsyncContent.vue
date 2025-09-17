@@ -76,11 +76,13 @@ onMounted(() => {
   });
 
   closeTerminal.value = () => {
-    term.clearTerminal();
-    term.display.pushContent("Welcome to <span class='text-mauve_latte underline'>" +
-      "Freesm 1.0 LTS" +
-      "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help", true);
     apps.value.terminal = false;
+    setTimeout(() => {
+      term.clearTerminal();
+      term.display.pushContent("Welcome to <span class='text-mauve_latte underline'>" +
+        "Freesm 1.0 LTS" +
+        "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help", true);
+    }, 300);
   };
 
   term.on("tab", () => {
