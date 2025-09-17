@@ -5,7 +5,7 @@ import { LocalesArray } from "@/constants/locales.ts";
 import { inject, ref } from "vue";
 import { LocaleContextKey } from "@/constants/application.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { translate } from "../lib/translations/translate.ts";
+import { translate } from "@/lib/translations/translate.ts";
 
 document.title = "Not Found - Freesm Launcher";
 document
