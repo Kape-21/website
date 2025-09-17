@@ -14,6 +14,8 @@ import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import GameModal from "@/components/launcher/modals/GameModal.vue";
 import DesktopWrapper from "@/components/launcher/desktop/DesktopWrapper.vue";
+import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
+import { EaglerCraftID, EaglerCraftNewestID, EaglerCraftNewID } from "@/constants/launcher.ts";
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -30,11 +32,27 @@ const barStates = ref<{
   "instance": true,
 });
 
+const currentInstanceStore = useCurrentInstance();
+
 function maximize() {
   maximized.value = !maximized.value;
 }
 function minimize() {
   minimized.value = true;
+
+  // Leave instance launched only if it has its modal
+  switch (currentInstanceStore.launched) {
+    case EaglerCraftID:
+    case EaglerCraftNewID:
+    case EaglerCraftNewestID: {
+      break;
+    }
+    default: {
+      currentInstanceStore.setLaunched(undefined);
+
+      break;
+    }
+  }
 }
 function unMinimize() {
   minimized.value = false;
