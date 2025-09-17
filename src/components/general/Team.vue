@@ -11,15 +11,16 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 <template>
   <div class="mx-auto my-12 max-w-240 px-4">
-    <div class="w-full flex flex-col gap-4 rounded-md bg-catppuccin-900 p-4">
-      <p class="select-text pb-2 text-xl text-white font-semibold sm:text-3xl">
+    <div class="w-full flex flex-col gap-4 rounded-md bg-catppuccin-900 p-2">
+      <p class="select-text p-2 text-xl text-white font-semibold sm:text-3xl">
         {{ translate(TeamSocials.Maintainers.Key, locale) }}
       </p>
       <div class="flex flex-wrap gap-4">
-        <div
+        <a
           v-for="member of TeamSocials.Maintainers.List"
           :key="member.Name"
-          class="w-full flex flex-nowrap gap-4 lg:max-w-108"
+          :href="member.Link"
+          class="group w-full flex flex-nowrap gap-4 border border-transparent rounded-md p-2 transition-[background-color,border-color] lg:max-w-112 hover:border-mauve hover:bg-[theme(colors.mauve/.4)]"
         >
           <Image
             class-names="h-20 w-20 rounded-md"
@@ -28,7 +29,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           />
           <div class="flex flex-col gap-2">
             <div class="flex flex-nowrap items-center gap-2">
-              <p class="select-text text-xl text-mauve font-semibold">
+              <p class="select-text text-xl text-mauve font-semibold transition-[color] group-hover:text-white">
                 {{ member.Name }}
               </p>
               <div class="select-text rounded-md bg-catppuccin-800 px-2 py-1 text-sm text-catppuccin-200 leading-none">
@@ -39,12 +40,12 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
               {{ translate(member.Description, locale) }}
             </p>
           </div>
-        </div>
+        </a>
       </div>
-      <p class="select-text py-2 text-xl text-white font-semibold sm:text-3xl">
+      <p class="select-text p-2 text-xl text-white font-semibold sm:text-3xl">
         {{ translate(TeamSocials.Contributors.Key, locale) }}
       </p>
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 p-2">
         <a
           v-for="contributor in TeamSocials.Contributors.List"
           :key="contributor.Link"
