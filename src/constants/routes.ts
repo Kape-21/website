@@ -81,6 +81,96 @@ export const Socials = {
     "Chat" : "https://t.me/+DL82hkeJAq9kMTMy",
   },
 };
+export const TeamSocials: {
+  "Maintainers": {
+    "Key" : TranslationsType;
+    "List": Array<{
+      "Name"       : string;
+      "Link"       : string;
+      "Badge"      : string;
+      "Image"      : string;
+      "Description": TranslationsType;
+    }>;
+  };
+  "Contributors": {
+    "Key" : TranslationsType;
+    "List": Array<{
+      "Link" : string;
+      "Image": string;
+    }>;
+  };
+} = {
+  "Maintainers": {
+    "Key" : "pages.home.team.maintainers.title",
+    "List": [
+      {
+        "Name"       : "so5iso4ka",
+        "Link"       : "https://github.com/so5iso4ka/",
+        "Badge"      : "main developer",
+        "Image"      : "https://avatars.githubusercontent.com/u/170882094?v=4",
+        "Description": "pages.home.team.maintainers.list.so5iso4ka.description",
+      },
+      {
+        "Name"       : "kaeeraa",
+        "Link"       : "https://github.com/kaeeraa/",
+        "Badge"      : "master-of-all-trades",
+        "Image"      : "https://avatars.githubusercontent.com/u/99148867?v=4",
+        "Description": "pages.home.team.maintainers.list.kaeeraa.description",
+      },
+      {
+        "Name"       : "s0me1newithhand7s",
+        "Link"       : "https://github.com/s0me1newithhand7s",
+        "Badge"      : "creator",
+        "Image"      : "https://avatars.githubusercontent.com/u/117505144?v=4",
+        "Description": "pages.home.team.maintainers.list.s0me1newithhand7s.description",
+      },
+      {
+        "Name"       : "windstone",
+        "Link"       : "https://github.com/notwindstone/",
+        "Badge"      : "creator",
+        "Image"      : "https://avatars.githubusercontent.com/u/91563727?v=4",
+        "Description": "pages.home.team.maintainers.list.windstone.description",
+      },
+    ],
+  },
+  "Contributors": {
+    "Key" : "pages.home.team.contributors.title",
+    "List": [
+      {
+        "Link" : "https://github.com/m3oweezed",
+        "Image": "https://avatars.githubusercontent.com/u/76707795?v=4",
+      },
+      {
+        "Link" : "https://github.com/qEniuu/",
+        "Image": "https://avatars.githubusercontent.com/u/95589434?v=4",
+      },
+      {
+        "Link" : "https://github.com/FoxyChipher",
+        "Image": "https://avatars.githubusercontent.com/u/75834304?v=4",
+      },
+      {
+        "Link" : "https://github.com/SophrTemin/",
+        "Image": "/deleted-avatar.webp",
+      },
+      {
+        "Link" : "https://github.com/sn1pp",
+        "Image": "https://avatars.githubusercontent.com/u/79652963?v=4",
+      },
+      {
+        "Link" : "https://github.com/viceversa03",
+        "Image": "https://avatars.githubusercontent.com/u/109146971?v=4",
+      },
+      {
+        "Link" : "https://github.com/ventureoo",
+        "Image": "https://avatars.githubusercontent.com/u/92667539?v=4",
+      },
+      {
+        "Link" : "https://t.me/chaoticbraincat",
+        "Image": "/brainfluid.webp",
+      },
+    ],
+  },
+};
 
 export const ExternalLinks = [
   {

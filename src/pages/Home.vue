@@ -3,6 +3,7 @@ import Page from "@/components/layout/Page.vue";
 import Hero from "@/components/general/Hero.vue";
 import Features from "@/components/general/Features.vue";
 import Details from "@/components/general/Details.vue";
+import Team from "@/components/general/Team.vue";
 
 document.title = "Freesm Launcher";
 document
@@ -18,5 +19,6 @@ document
     <Hero />
     <Details />
     <Features />
+    <Team />
   </Page>
 </template>

@@ -10,9 +10,9 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 <template>
   <div class="mx-auto mt-12 max-w-240 flex flex-col flex-nowrap gap-4 px-4 lg:flex-row">
-    <div class="flex flex-1 flex-col items-center gap-4 rounded-lg bg-catppuccin-900 p-4">
+    <div class="flex flex-1 flex-col items-center gap-4 rounded-md bg-catppuccin-900 p-4">
       <Image
-        class-names="w-full rounded-lg"
+        class-names="w-full rounded-md"
         src="/detail-mods.webp"
         alt="Freesm Launcher's mods section"
       />
@@ -21,9 +21,9 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       </p>
     </div>
     <div class="flex flex-1 flex-col gap-4">
-      <div class="flex flex-1 flex-col items-center gap-4 rounded-lg bg-catppuccin-900 p-4">
+      <div class="flex flex-1 flex-col items-center gap-4 rounded-md bg-catppuccin-900 p-4">
         <Image
-          class-names="w-full rounded-lg"
+          class-names="w-full rounded-md"
           src="/detail-import.webp"
           alt="Freesm Launcher's instance section"
         />
@@ -31,9 +31,9 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           {{ translate("pages.home.details.modpack-importing.title", locale) }}
         </p>
       </div>
-      <div class="flex flex-1 flex-col items-center justify-between gap-4 rounded-lg bg-catppuccin-900 p-4">
+      <div class="flex flex-1 flex-col items-center justify-between gap-4 rounded-md bg-catppuccin-900 p-4">
         <Image
-          class-names="w-full rounded-lg"
+          class-names="w-full rounded-md"
           src="/detail-accounts.webp"
           alt="Freesm Launcher's accounts section"
         />
