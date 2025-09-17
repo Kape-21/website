@@ -28,7 +28,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
             :alt="`${member.Name}'s profile picture`"
           />
           <div class="flex flex-col gap-2">
-            <div class="flex flex-nowrap items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2 break-all">
               <p class="select-text text-xl text-mauve font-semibold transition-[color] group-hover:text-white">
                 {{ member.Name }}
               </p>
