@@ -109,7 +109,7 @@ function handleDoubleClick() {
         :class="[
           'w-full break-words text-center text-[10px] text-[#cdd6f4] sm:text-[13px]',
           currentInstance.Id === instance.Id
-            ? 'bg-[#a285c6]'
+            ? 'bg-[#886da9ff]'
             : 'bg-[#040407]',
         ]"
       >
