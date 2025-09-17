@@ -12,6 +12,17 @@ export function fetchUrl({
 
   term.writeBelow(`Fetching ${url}...`);
 
+  if (url.includes(".jpeg") || url.includes(".webp") || url.includes(".jpg") || url.includes(".png")) {
+    term.write(`
+An image:
+
+<img src="${url}" alt="fetched image">
+`);
+    term.clearBelow();
+
+    return;
+  }
+
   fetch(url)
     .then(response => response
       .text()
@@ -29,7 +40,7 @@ export function fetchUrl({
         term.write(`
 Fetched in ${t2 - t1} ms
 
-${typeof parsed === "object" ? JSON.stringify(data, null, 2) : parsed}
+${typeof parsed === "object" ? JSON.stringify(parsed, null, 2) : parsed}
 `);
         term.clearBelow();
       }))
