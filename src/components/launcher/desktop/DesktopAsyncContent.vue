@@ -51,6 +51,10 @@ const apps = ref<{
   "terminal": false,
 });
 
+const closeTerminal = ref<() => void>(() => {
+  apps.value.terminal = false;
+});
+
 onUnmounted(pause);
 onMounted(() => {
   const term = new WebTerm({
@@ -70,6 +74,14 @@ onMounted(() => {
         : 14,
     },
   });
+
+  closeTerminal.value = () => {
+    term.clearTerminal();
+    term.display.pushContent("Welcome to <span class='text-mauve_latte underline'>" +
+      "Freesm 1.0 LTS" +
+      "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help", true);
+    apps.value.terminal = false;
+  };
 
   term.on("tab", () => {
     term.insertText("    ");
@@ -120,7 +132,7 @@ onMounted(() => {
 
 provide<ContextLauncherType>(DesktopTerminalContextKey, {
   "maximized": ref<boolean>(false),
-  "close"    : () => apps.value.terminal = false,
+  "close"    : closeTerminal,
   "title"    : "Terminal",
   "maximize" : () => {},
   "minimize" : () => {},

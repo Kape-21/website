@@ -5,5 +5,5 @@ export type ContextLauncherType = {
   "maximized": Ref<boolean, boolean>;
   "maximize" : () => void;
   "minimize" : () => void;
-  "close"    : () => void;
+  "close"    : (Ref<() => void, () => void>) | (() => void);
 };
