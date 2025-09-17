@@ -8,7 +8,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <div class="mx-auto mt-12 max-w-240 flex flex-col flex-wrap select-text items-start justify-between gap-8 px-8 pb-4 lg:flex-row">
+  <div class="mx-auto my-12 max-w-240 flex flex-col flex-wrap select-text items-start justify-between gap-8 px-8 lg:flex-row">
     <div
       v-for="feature in FeaturesSection"
       :key="feature.Title"
