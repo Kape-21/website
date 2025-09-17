@@ -125,21 +125,10 @@ export function executeTerminalCommand({
       onEditor({
         "opened": true,
         "quit"  : () => {
-          onEditor({
-            "opened": false,
-            "quit"  : () => {},
-            "save"  : () => {},
-          });
           editor.emit("edit-cancel");
         },
         "save": () => {
-          onEditor({
-            "opened": false,
-            "quit"  : () => {},
-            "save"  : () => {},
-          });
-          onSave(editor.value);
-          editor.emit("edit-done", "");
+          editor.emit("edit-done", editor.value);
         },
       });
 
