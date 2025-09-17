@@ -149,7 +149,7 @@ export function executeTerminalCommand({
       const onSave = (result: string) => {
         const trimmed = result.trim();
         const pairs = trimmed.split("=");
-        const locale: string = pairs[1];
+        const locale: string = pairs?.[1];
 
         switch (locale) {
           /* govno code production */
@@ -157,6 +157,15 @@ export function executeTerminalCommand({
           case "ru":
           case "ua": {
             setLocale?.(locale);
+
+            break;
+          }
+          default: {
+            term.writeBelow("Invalid locale");
+
+            setTimeout(() => {
+              term.clearBelow();
+            }, 2000);
 
             break;
           }
