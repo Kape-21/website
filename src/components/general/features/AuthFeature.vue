@@ -6,7 +6,7 @@
     <div class="w-full flex flex-col gap-0">
       <div class="flex flex-wrap justify-between gap-2 bg-[#1c1c26]">
         <p class="select-text p-1">Username</p>
-        <p class="select-text min-w-14 p-1">Type</p>
+        <p class="min-w-14 select-text p-1">Type</p>
       </div>
       <button
         v-for="account in [
