@@ -7,6 +7,7 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import ProfileButton from "@/components/launcher/bars/ProfileButton.vue";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 import { onClickOutside } from "@vueuse/core";
+import type { TranslationsType } from "@/types/translations.type.ts";
 
 const { barStates, toggleNews, toggleStatus, toggleInstance } = defineProps<{
   "barStates": {
@@ -23,6 +24,11 @@ const contextActions: Record<string, () => void> = {
   "news"    : toggleNews,
   "status"  : toggleStatus,
   "instance": toggleInstance,
+};
+const contextTranslations: Record<string, TranslationsType> = {
+  "news"    : "launcher.news-toggle",
+  "status"  : "launcher.status-toggle",
+  "instance": "launcher.instance-toggle",
 };
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
@@ -86,7 +92,7 @@ function handleRightClick(event: MouseEvent): void {
           ]"
         />
         <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
-          {{ key }}
+          {{ translate(contextTranslations[key], locale) }}
         </span>
       </button>
     </div>

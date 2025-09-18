@@ -24,12 +24,12 @@ const maximized = ref<boolean>(false);
 const minimized = ref<boolean>(false);
 const barStates = ref<{
   "news"    : boolean;
-  "status"  : boolean;
   "instance": boolean;
+  "status"  : boolean;
 }>({
   "news"    : true,
-  "status"  : true,
   "instance": true,
+  "status"  : true,
 });
 
 const currentInstanceStore = useCurrentInstance();
