@@ -35,7 +35,7 @@ for (const locale of LocalesArray) {
 
 <template>
   <Page v-show="!hidden">
-    <div class="absolute left-[50%] top-[50%] max-w-225 w-full flex flex-col translate-x-[-50%] translate-y-[-50%] items-center justify-center gap-2 px-4 text-center text-balance text-white sm:px-6">
+    <div class="mx-auto max-w-225 min-h-[calc(100vh-112px)] w-full flex flex-col items-center justify-center gap-2 px-4 text-center text-balance text-white sm:px-6">
       <p class="select-text pb-2 text-6xl text-mauve font-black sm:pb-4 sm:text-9xl">
         {{ translate("pages.not-found.title", locale) }}
       </p>
