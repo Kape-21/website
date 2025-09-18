@@ -175,11 +175,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
             apps.kde ? 'before:visible' : 'before:invisible',
           ]"
         >
-          <Image
-            class-names="h-6 pointer-events-none"
-            src="/assets/simple-icons-kde-plasma.svg"
-            alt="KDE Plasma logo"
-          />
+          <span class="i-simple-icons-kdeplasma pointer-events-none block h-6 w-6" />
         </button>
         <button
           @click="() => apps.terminal = !apps.terminal"
