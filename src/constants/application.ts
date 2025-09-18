@@ -13,28 +13,27 @@ export const DesktopTerminalContextKey = Symbol();
 export const LocaleKey = "locale";
 
 export const FeaturesSection: Array<{
-  "Icon"       : string;
+  "Id"         : "auth" | "customization" | "other";
   "Title"      : TranslationsType;
   "Description": TranslationsType;
+  "Reverse"    : boolean;
 }> = [
   {
-    "Icon"       : "i-fluent-people-community-16-regular",
-    "Title"      : "pages.home.features.open-source.title",
-    "Description": "pages.home.features.open-source.description",
+    "Id"         : "auth",
+    "Title"      : "pages.home.features.more-auth-servers.title",
+    "Description": "pages.home.features.more-auth-servers.description",
+    "Reverse"    : false,
   },
   {
-    "Icon"       : "i-fluent-lock-open-16-regular",
-    "Title"      : "pages.home.features.drm-free.title",
-    "Description": "pages.home.features.drm-free.description",
-  },
-  {
-    "Icon"       : "i-fluent-flash-16-regular",
-    "Title"      : "pages.home.features.performance.title",
-    "Description": "pages.home.features.performance.description",
-  },
-  {
-    "Icon"       : "i-fluent-settings-16-regular",
+    "Id"         : "customization",
     "Title"      : "pages.home.features.customization.title",
     "Description": "pages.home.features.customization.description",
+    "Reverse"    : true,
+  },
+  {
+    "Id"         : "other",
+    "Title"      : "pages.home.features.other.title",
+    "Description": "pages.home.features.other.description",
+    "Reverse"    : false,
   },
 ];
