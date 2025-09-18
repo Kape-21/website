@@ -99,6 +99,13 @@ export const TeamSocials: {
       "Image": string;
     }>;
   };
+  "Special": {
+    "Key"  : TranslationsType;
+    "Entry": {
+      "Link" : string;
+      "Image": string;
+    };
+  };
 } = {
   "Maintainers": {
     "Key" : "pages.home.team.maintainers.title",
@@ -169,6 +176,13 @@ export const TeamSocials: {
         "Image": "/brainfluid.webp",
       },
     ],
+  },
+  "Special": {
+    "Key"  : "pages.home.team.special.title",
+    "Entry": {
+      "Link" : "https://elyprismlauncher.github.io/",
+      "Image": "https://elyprismlauncher.github.io/assets/svg/org.prismlauncher.PrismLauncher.svg",
+    },
   },
 };
 

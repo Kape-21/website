@@ -59,6 +59,19 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           />
         </a>
       </div>
+      <p class="select-text p-2 text-xl text-white font-semibold sm:text-3xl">
+        {{ translate(TeamSocials.Special.Key, locale) }}
+      </p>
+      <a
+        :href="TeamSocials.Special.Entry.Link"
+        class="w-fit p-2 transition-[filter] hover:grayscale-100"
+      >
+        <Image
+          class-names="h-12 w-12"
+          :src="TeamSocials.Special.Entry.Image"
+          alt="ElyPrismLauncher logo"
+        />
+      </a>
     </div>
   </div>
 </template>
