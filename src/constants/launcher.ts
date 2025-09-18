@@ -232,4 +232,8 @@ export const LauncherCatPacks: Array<{
     "Name" : "Minecraft",
     "Image": "/assets/banner-low-opacity.webp",
   },
+  {
+    "Name" : "Minecraft (Winter)",
+    "Image": "/assets/a-mod-pack-by-our-chat-member.webp",
+  },
 ];
