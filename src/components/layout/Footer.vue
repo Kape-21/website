@@ -23,11 +23,11 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
         <p class="select-text text-gray-400 max-sm:text-sm">
           {{ translate("footer.short-description", locale) }}
         </p>
-        <img
-          class="max-h-7 rounded-md"
+        <Image
+          class-names="max-h-7 rounded-md"
           src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Ffreesmlauncher.org%2F&label=Visits&icon=person-circle&color=%23cba6f7&message=&style=for-the-badge&tz=UTC"
           alt="Visits counter"
-        >
+        />
       </div>
       <div class="flex flex-col select-text gap-4 sm:flex-row">
         <div
