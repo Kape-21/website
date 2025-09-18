@@ -10,8 +10,13 @@
 name: ESLint
 
 on:
-  schedule:
-    - cron: "0 0 * * 0"
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+  workflow_dispatch:
 
 jobs:
   eslint:
