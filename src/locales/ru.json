@@ -48,6 +48,7 @@
   "launcher.help": "Помощь",
   "launcher.update": "Обновить",
   "launcher.no-default-account": "Нет учётной записи по умолчанию",
+  "launcher.accounts": "Учётные записи",
   "launcher.manage-accounts": "Управление учётными записями...",
   "launcher.more-news": "Все новости",
   "launcher.website-in-vue": "Этот сайт был написан на Vue <3",

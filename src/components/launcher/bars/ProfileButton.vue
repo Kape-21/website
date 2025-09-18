@@ -91,8 +91,15 @@ watchEffect(() => {
         :src="currentProfile?.Skin ?? '/skins/monochrome_steve.png'"
         :alt="`${currentProfile.Name}'s skin avatar`"
       />
-      <span class="block text-[10px] text-[#cdd6f4] sm:text-[13px]">
-        {{ translate(currentProfile.Name, locale) }}
+      <span class="block break-all text-[10px] text-[#cdd6f4] sm:text-[13px]">
+        {{
+          translate(
+            currentProfile.Name === "launcher.no-default-account"
+              ? "launcher.accounts"
+              : currentProfile.Name,
+            locale,
+          )
+        }}
       </span>
     </button>
   </div>

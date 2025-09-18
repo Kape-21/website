@@ -48,6 +48,7 @@
   "launcher.help": "Help",
   "launcher.update": "Update",
   "launcher.no-default-account": "No Default Account",
+  "launcher.accounts": "Accounts",
   "launcher.manage-accounts": "Manage Accounts...",
   "launcher.more-news": "More news",
   "launcher.website-in-vue": "This website was written in Vue <3",

@@ -48,6 +48,7 @@
   "launcher.help": "Допомога",
   "launcher.update": "Оновити",
   "launcher.no-default-account": "Немає облікового запису за замовчуванням",
+  "launcher.accounts": "Облікові записи",
   "launcher.manage-accounts": "Управління обліковими записами...",
   "launcher.more-news": "Усі новини",
   "launcher.website-in-vue": "Цей вебсайт був написаний на Vue <3",
