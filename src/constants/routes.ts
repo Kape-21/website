@@ -75,6 +75,7 @@ export const Socials = {
     "Issues"      : "https://github.com/FreesmTeam/FreesmLauncher/issues",
     "Contribute"  : "https://github.com/FreesmTeam/FreesmLauncher/blob/develop/CONTRIBUTING.md",
     "Organization": "https://github.com/FreesmTeam/",
+    "Website"     : "https://github.com/FreesmTeam/website",
   },
   "Telegram": {
     "Group": "https://t.me/freesmteam",
@@ -246,6 +247,10 @@ export const FooterLinks = [
       {
         "name": "footer.project.github-issues",
         "link": Socials.Github.Issues,
+      },
+      {
+        "name": "footer.project.website",
+        "link": Socials.Github.Website,
       },
     ],
   },
