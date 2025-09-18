@@ -51,8 +51,9 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
         'w-full flex flex-col gap-2 bg-[#0c0c13] p-4',
         barStates.instance || barStates.status ? 'rounded-bl-none' : 'rounded-bl-md',
         barStates.status ? 'rounded-br-none' : 'rounded-br-md',
-        catStore.enabled && 'bg-cover bg-center bg-no-repeat bg-[url(/assets/miside.webp)]',
+        catStore.enabled && 'bg-cover bg-center bg-no-repeat',
       ]"
+      :style="catStore.enabled ? { 'background-image': `url(${catStore.image})` } : {}"
     >
       <template
         v-for="group in Object.values(Groups)"
