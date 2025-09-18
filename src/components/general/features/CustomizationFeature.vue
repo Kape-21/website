@@ -50,14 +50,14 @@ function select(image: string) {
             @click="() => select(pack.Image)"
             v-for="pack in LauncherCatPacks"
             :key="pack.Name"
-            class="w-full flex flex-nowrap gap-2 px-2 py-1 hover:bg-[#745e94]"
+            class="w-full flex flex-wrap gap-2 px-2 py-1 lg:flex-nowrap hover:bg-[#745e94]"
           >
             <Image
               class-names="h-6 w-6 object-cover rounded-md"
               :src="pack.Image"
               :alt="`${pack.Name} cat pack`"
             />
-            <span class="block">
+            <span class="block text-start break-all">
               {{ pack.Name }}
             </span>
           </button>
