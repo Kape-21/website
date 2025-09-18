@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="w-full flex-1 lg:w-auto">
+  <div class="w-full flex flex-1 rounded-md bg-catppuccin-900 p-4 lg:w-auto">
     f
   </div>
 </template>

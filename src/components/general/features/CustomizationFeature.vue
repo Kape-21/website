@@ -1,8 +1,68 @@
 <script setup lang="ts">
+import { ref, useTemplateRef } from "vue";
+import { onClickOutside } from "@vueuse/core";
+import { LauncherCatPacks } from "@/constants/launcher.ts";
+import Image from "@/components/base/Image.vue";
+import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
+
+const opened = ref<boolean>(false);
+const target = useTemplateRef<HTMLElement>("target");
+const catPackStore = useCatPackState();
+
+onClickOutside(target, () => {
+  opened.value = false;
+});
+
+function select(image: string) {
+  opened.value = false;
+  catPackStore.image = image;
+}
 </script>
 
 <template>
-  <div class="w-full flex-1 lg:w-auto">
-    s
+  <div class="w-full flex flex-1 flex-col gap-2 rounded-md bg-catppuccin-900 p-4 lg:w-auto">
+    <p class="w-fit select-text border-b border-mauve px-2 pb-2 text-catppuccin-50">
+      Theme
+    </p>
+    <div class="flex flex-nowrap gap-0 rounded-md bg-[#16161f] p-2">
+      <div class="flex shrink-0 flex-col justify-between gap-2">
+        <p
+          v-for="item in ['Icons', 'Widgets', 'Cat']"
+          :key="item"
+          class="select-text p-2 text-catppuccin-50 leading-none"
+        >
+          {{ item }}
+        </p>
+      </div>
+      <div class="relative w-full flex flex-col justify-between gap-2">
+        <button
+          @click="() => opened = true"
+          v-for="item in ['Fluent Dark', 'Freesm Dark', 'Cat Pack']"
+          :key="item"
+          :disabled="item !== 'Cat Pack'"
+          class="w-full flex justify-between rounded-md bg-[#26262f] p-2 text-catppuccin-50 leading-none disabled:cursor-not-allowed hover:bg-[#2b2b33] disabled:opacity-70 disabled:hover:bg-[#26262f]"
+        >
+          <span class="block">{{ item }}</span>
+          <span v-if="item === 'Cat Pack'" class="i-lucide-chevron-down block" />
+        </button>
+        <div ref="target" v-if="opened" class="absolute bottom-0 w-full flex flex-col translate-y-[56px] gap-0 border border-catppuccin-600 bg-catppuccin-800 p-1">
+          <button
+            @click="() => select(pack.Image)"
+            v-for="pack in LauncherCatPacks"
+            :key="pack.Name"
+            class="w-full flex flex-nowrap gap-2 px-2 py-1 hover:bg-[#745e94]"
+          >
+            <Image
+              class-names="h-6 w-6 object-cover rounded-md"
+              :src="pack.Image"
+              :alt="`${pack.Name} cat pack`"
+            />
+            <span class="block">
+              {{ pack.Name }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

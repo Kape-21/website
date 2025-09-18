@@ -208,3 +208,28 @@ export const LauncherInstanceContextMenuItems = [
   },
   ...LauncherInstanceBarItems,
 ] as const;
+export const LauncherCatPacks: Array<{
+  "Name" : string;
+  "Image": string;
+}> = [
+  {
+    "Name" : "MiSide",
+    "Image": "/assets/miside.webp",
+  },
+  {
+    "Name" : "Ame-chan",
+    "Image": "/assets/ame-chan-low-opacity.webp",
+  },
+  {
+    "Name" : "Kita-chan (Animated)",
+    "Image": "/assets/kita-chan.webp",
+  },
+  {
+    "Name" : "Plasma 6",
+    "Image": "/assets/plasma-6-low-opacity.webp",
+  },
+  {
+    "Name" : "Minecraft",
+    "Image": "/assets/banner-low-opacity.webp",
+  },
+];

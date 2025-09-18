@@ -16,7 +16,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       v-for="feature in FeaturesSection"
       :key="feature.Id"
       :class="[
-        'w-full flex flex-col items-center gap-8 lg:items-start',
+        'w-full flex flex-col items-center gap-4 lg:gap-8 lg:items-start',
         feature.Reverse ? 'lg:flex-row-reverse' : 'lg:flex-row',
       ]"
     >
