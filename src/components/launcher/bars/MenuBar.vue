@@ -66,6 +66,8 @@ function handleRightClick(event: MouseEvent): void {
     class="h-fit w-full flex justify-between bg-catppuccin-900 p-[10px]"
   >
     <div
+      @contextmenu.stop
+      @contextmenu.prevent
       ref="target"
       id="__menu-bar-context-menu"
       :class="[
