@@ -92,5 +92,12 @@ watchEffect(() => {
       <slot />
     </div>
     <Footer />
+    <!-- To make footer's corners round even if footer is not fully visible -->
+    <div class="absolute bottom-87 left-0 z-5 h-4 w-4 bg-catppuccin-950 sm:bottom-54">
+      <div class="h-4 w-4 rounded-tl-lg bg-catppuccin-900" />
+    </div>
+    <div class="absolute bottom-87 right-0 z-5 h-4 w-4 bg-catppuccin-950 sm:bottom-54">
+      <div class="h-4 w-4 rounded-tr-lg bg-catppuccin-900" />
+    </div>
   </div>
 </template>

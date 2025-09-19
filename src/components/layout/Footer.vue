@@ -10,7 +10,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <div class="sticky bottom-0 left-0 right-0 z-0 h-91 flex justify-center bg-catppuccin-900 p-8 sm:h-58 sm:rounded-t-lg">
+  <div class="sticky bottom-0 left-0 right-0 z-0 h-91 flex justify-center bg-catppuccin-900 p-8 sm:h-58">
     <div class="max-w-320 w-full flex flex-col flex-nowrap gap-4 sm:flex-row sm:justify-between">
       <div class="flex flex-col items-center gap-2 sm:items-start">
         <RouterLink to="/">
