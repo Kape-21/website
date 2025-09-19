@@ -13,15 +13,15 @@ onClickOutside(target, () => {
   opened.value = false;
 });
 
-function select(image: string) {
+function select({ Image, Name }: { "Image": string; "Name": string }) {
   opened.value = false;
-  catPackStore.image = image;
+  catPackStore.change(Image, Name);
 }
 </script>
 
 <template>
   <div class="w-full flex flex-1 flex-col gap-2 rounded-md bg-catppuccin-900 p-4 lg:w-auto">
-    <p class="w-fit select-text border-b border-mauve px-2 pb-2 text-catppuccin-50">
+    <p class="w-fit border-b border-mauve px-2 pb-2 text-catppuccin-50">
       Theme
     </p>
     <div class="flex flex-nowrap gap-0 rounded-md bg-[#16161f] p-2">
@@ -29,7 +29,7 @@ function select(image: string) {
         <p
           v-for="item in ['Icons', 'Widgets', 'Cat']"
           :key="item"
-          class="select-text p-2 text-catppuccin-50 leading-none"
+          class="p-2 text-catppuccin-50 leading-none"
         >
           {{ item }}
         </p>
@@ -40,24 +40,39 @@ function select(image: string) {
           v-for="item in ['Fluent Dark', 'Freesm Dark', 'Cat Pack']"
           :key="item"
           :disabled="item !== 'Cat Pack'"
-          class="w-full flex justify-between rounded-md bg-[#26262f] p-2 text-catppuccin-50 leading-none disabled:cursor-not-allowed hover:bg-[#2b2b33] disabled:opacity-70 disabled:hover:bg-[#26262f]"
+          class="w-full flex justify-between rounded-md bg-[#26262f] p-1 text-catppuccin-50 leading-none disabled:cursor-not-allowed hover:bg-[#2b2b33] disabled:opacity-70 disabled:hover:bg-[#26262f]"
         >
-          <span class="block">{{ item }}</span>
+          <span v-if="item === 'Cat Pack'" class="block flex flex-wrap items-center gap-2">
+            <Image
+              class-names="h-6 w-6 object-cover rounded-md"
+              :src="catPackStore.image"
+              :alt="`${catPackStore.name} cat pack`"
+            />
+            <span class="block py-1 text-sm leading-none">
+              {{ catPackStore.name }}
+            </span>
+            <span class="block py-1 text-xs opacity-50">
+              check launcher
+            </span>
+          </span>
+          <span v-else class="block p-1 text-sm leading-none">
+            {{ item }}
+          </span>
           <span v-if="item === 'Cat Pack'" class="i-lucide-chevron-down block" />
         </button>
         <div ref="target" v-if="opened" class="absolute bottom-0 w-full flex flex-col translate-y-[56px] gap-0 border border-catppuccin-600 bg-catppuccin-800 p-1">
           <button
-            @click="() => select(pack.Image)"
+            @click="() => select(pack)"
             v-for="pack in LauncherCatPacks"
             :key="pack.Name"
-            class="w-full flex flex-wrap gap-2 px-2 py-1 lg:flex-nowrap hover:bg-[#745e94]"
+            class="w-full flex flex-wrap items-center gap-2 px-2 py-1 lg:flex-nowrap hover:bg-[#745e94]"
           >
             <Image
               class-names="h-6 w-6 object-cover rounded-md"
               :src="pack.Image"
               :alt="`${pack.Name} cat pack`"
             />
-            <span class="block text-start break-all">
+            <span class="block break-all text-start text-sm">
               {{ pack.Name }}
             </span>
           </button>
