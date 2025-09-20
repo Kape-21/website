@@ -11,13 +11,12 @@ export function pfetch({
   "engine"  : string;
   "battery"?: number;
 }): string {
-  return "\n" +
-    String.raw`      /\        ame@chan` +
-    String.raw`    //  \\\\      os      ${platform}` +
-    String.raw`   //    \\ \\    browser ${browser}` +
-    String.raw` / /     _) )   engine  ${engine}` +
-    String.raw`/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads` +
-    String.raw` /____--        ascii   endeavour os` +
-    String.raw`                de      plasma 6.4` +
-    String.raw`                ${battery ? getBatteryStatus(battery) : ""}`;
+  return "\n" + String.raw`      /\        ame@chan` +
+    "\n" + String.raw`    //  \\      os      ${platform}` +
+    "\n" + String.raw`   //    \ \    browser ${browser}` +
+    "\n" + String.raw` / /     _) )   engine  ${engine}` +
+    "\n" + String.raw`/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads` +
+    "\n" + String.raw` /____--        ascii   endeavour os` +
+    "\n" + String.raw`                de      plasma 6.4` +
+    "\n" + String.raw`                ${battery ? getBatteryStatus(battery) : ""}`;
 }
