@@ -11,7 +11,8 @@ export function pfetch({
   "engine"  : string;
   "battery"?: number;
 }): string {
-  return "\n" + String.raw`      /\        ame@chan` +
+  return "" +
+    "\n" + String.raw`      /\        ame@chan` +
     "\n" + String.raw`    //  \\      os      ${platform}` +
     "\n" + String.raw`   //    \ \    browser ${browser}` +
     "\n" + String.raw` / /     _) )   engine  ${engine}` +
