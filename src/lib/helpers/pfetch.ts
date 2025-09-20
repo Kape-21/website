@@ -1,3 +1,5 @@
+const getBatteryStatus = (battery: number) => `battery ${battery * 100}%`;
+
 export function pfetch({
   platform,
   browser,
@@ -9,17 +11,13 @@ export function pfetch({
   "engine"  : string;
   "battery"?: number;
 }): string {
-  return `
-      /\\        ame@chan
-    //  \\\\      os      ${platform}
-   //    \\ \\    browser ${browser}
- / /     _) )   engine  ${engine}
-/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads
- /____--        ascii   endeavour os
-                de      plasma 6.4
-` + (
-    battery
-      ? `                battery ${battery * 100}%`
-      : ""
-  );
+  return "\n" +
+    String.raw`      /\        ame@chan` +
+    String.raw`    //  \\\\      os      ${platform}` +
+    String.raw`   //    \\ \\    browser ${browser}` +
+    String.raw` / /     _) )   engine  ${engine}` +
+    String.raw`/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads` +
+    String.raw` /____--        ascii   endeavour os` +
+    String.raw`                de      plasma 6.4` +
+    String.raw`                ${battery ? getBatteryStatus(battery) : ""}`;
 }

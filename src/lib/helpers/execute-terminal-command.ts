@@ -156,17 +156,19 @@ export function executeTerminalCommand({
       break;
     }
     case "help": {
-      term.write(` help
- clear
- pfetch
- ls
- su
- exit
- lang
- locale
- eval    eval [javascript code]
- fetch   fetch [url]
- weather weather [city]`);
+      term.write(
+        " help\n" +
+        " clear\n" +
+        " pfetch\n" +
+        " ls\n" +
+        " su\n" +
+        " exit\n" +
+        " lang\n" +
+        " locale\n" +
+        " eval    eval [javascript code]\n" +
+        " fetch   fetch [url]\n" +
+        " weather weather [city]",
+      );
 
       break;
     }
@@ -231,6 +233,7 @@ export function executeTerminalCommand({
           });
       } catch {
         console.log("'getBattery' is not supported'");
+        term.write(pfetch({ platform, browser, engine }));
       }
 
       break;
