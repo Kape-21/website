@@ -192,6 +192,8 @@ export function executeTerminalCommand({
 
       break;
     }
+    case "asmfetch":
+    case "fastfetch":
     case "neofetch": {
       term.write("Command not found. Did you mean 'pfetch'?");
 
@@ -203,7 +205,7 @@ export function executeTerminalCommand({
     //  \\\\      os      ${platform}
    //    \\ \\    browser ${browser}
  / /     _) )   engine  ${engine}
-/_/___-- __-    plugins ${navigator?.plugins?.length ?? 0}
+/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads
  /____--        ascii   endeavour os
                 de      plasma 6.4
 `);
