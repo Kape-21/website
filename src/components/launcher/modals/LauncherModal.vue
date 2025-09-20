@@ -20,15 +20,15 @@ const { opened, contextKey, onlyCloseButton } = defineProps<{
   <Teleport to="body" :disabled="!maximized">
     <div
       :class="[
-      'select-none absolute z-7000 flex flex-col gap-0 rounded-md overflow-hidden',
-      'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
-      maximized
-        ? 'left-0 top-0 right-0 bottom-0 transition-none'
-        : 'left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
-      opened
-        ? 'visible opacity-100 scale-100'
-        : 'invisible opacity-0 scale-85',
-    ]"
+        'select-none absolute z-7000 flex flex-col gap-0 rounded-md overflow-hidden',
+        'bg-catppuccin-900 text-white transition-[opacity,transform] duration-300',
+        maximized
+          ? 'left-0 top-0 right-0 bottom-0 transition-none'
+          : 'left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%]',
+        opened
+          ? 'visible opacity-100 scale-100'
+          : 'invisible opacity-0 scale-95',
+      ]"
     >
       <WindowsHeader
         v-if="platform === 'Windows'"
