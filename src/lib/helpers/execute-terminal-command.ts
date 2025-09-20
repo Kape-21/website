@@ -2,6 +2,7 @@ import type { WebTerm } from "web-term-ui";
 import type { LocaleType } from "@/types/locale.type.ts";
 import { getWeather } from "@/lib/helpers/get-weather.ts";
 import { fetchUrl } from "@/lib/helpers/fetch-url.ts";
+import { pfetch } from "@/lib/helpers/pfetch.ts";
 
 export function executeTerminalCommand({
   command,
@@ -200,15 +201,37 @@ export function executeTerminalCommand({
       break;
     }
     case "pfetch": {
-      term.write(`
-      /\\        ame@chan
-    //  \\\\      os      ${platform}
-   //    \\ \\    browser ${browser}
- / /     _) )   engine  ${engine}
-/_/___-- __-    cpu     ${navigator?.hardwareConcurrency ?? 0} threads
- /____--        ascii   endeavour os
-                de      plasma 6.4
-`);
+      if (
+        !("getBattery" in navigator) ||
+        navigator.getBattery === null ||
+        typeof navigator.getBattery !== "function"
+      ) {
+        term.write(pfetch({ platform, browser, engine }));
+
+        break;
+      }
+
+      try {
+        navigator
+          .getBattery()
+          .then((batteryManager: unknown) => {
+            if (
+              typeof batteryManager === "object" &&
+              batteryManager !== null &&
+              "level" in batteryManager &&
+              batteryManager.level !== null &&
+              typeof batteryManager.level === "number"
+            ) {
+              const battery: number = batteryManager.level;
+
+              term.write(pfetch({ platform, browser, engine, battery }));
+            } else {
+              term.write(pfetch({ platform, browser, engine }));
+            }
+          });
+      } catch {
+        console.log("'getBattery' is not supported'");
+      }
 
       break;
     }
