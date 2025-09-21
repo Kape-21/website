@@ -72,7 +72,7 @@ const accentAnimationStore = useAccentAnimation();
         @click="accentAnimationStore.toggle"
         :class="[
           'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg rounded-3xl',
-          'transition-[background-color] hover:bg-catppuccin-600',
+          'transition-[background-color]',
           accentAnimationStore.enabled
             ? 'bg-catppuccin-600'
             : 'bg-catppuccin-800',
