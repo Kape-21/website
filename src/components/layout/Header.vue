@@ -37,7 +37,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
             {{ translate(route.Name, locale) }}
           </RouterLink>
         </nav>
-        <div className="w-[2px] h-8 bg-mauve" />
+        <div className="w-[2px] h-8 animated-accent-background transition-[background-color] duration-2000 ease-linear" />
         <a
           v-for="link in ExternalLinks"
           :key="link.Key"

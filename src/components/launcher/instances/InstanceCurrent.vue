@@ -104,7 +104,7 @@ const disableStates = computed((): Record<
       barStates.status ? 'rounded-bl-none' : 'rounded-bl-md',
     ]"
   >
-    <div class="h-[5px] w-full cursor-move rounded-full bg-mauve" />
+    <div class="animated-accent-background h-[5px] w-full cursor-move rounded-full transition-[background-color] duration-2000 ease-linear" />
     <div
       :class="[
         'grid place-items-center rounded-md transition-[background-color]',

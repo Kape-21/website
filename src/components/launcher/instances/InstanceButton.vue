@@ -107,13 +107,16 @@ function handleDoubleClick() {
       <span
         v-else
         :class="[
-          'w-full break-words text-center text-[10px] text-[#cdd6f4] sm:text-[13px]',
+          'w-full break-words text-center text-[10px] text-white sm:text-[13px] relative',
+          'animated-accent-before-background before:absolute before:opacity-60',
+          'before:left-0 before:top-0 before:right-0 before:bottom-0',
+          'before:transition-[background-color] before:duration-2000 before:ease-linear',
           currentInstance.Id === instance.Id
-            ? 'bg-[#745e94]'
+            ? 'before:content-empty'
             : 'bg-[#040407]',
         ]"
       >
-        {{ instance.Name }}
+        <span class="relative z-10">{{ instance.Name }}</span>
       </span>
     </button>
   </div>

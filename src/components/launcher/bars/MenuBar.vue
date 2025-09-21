@@ -99,7 +99,7 @@ function handleRightClick(event: MouseEvent): void {
       </button>
     </div>
     <div class="flex flex-wrap items-stretch gap-2">
-      <div class="w-[5px] cursor-move rounded-full bg-mauve" />
+      <div class="animated-accent-background w-[5px] cursor-move rounded-full transition-[background-color] duration-2000 ease-linear" />
       <button
         @click="catStore.toggle"
         v-for="tab in LauncherTabs"
