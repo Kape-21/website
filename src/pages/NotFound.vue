@@ -36,7 +36,7 @@ for (const locale of LocalesArray) {
 <template>
   <Page v-show="!hidden">
     <div class="mx-auto max-w-225 min-h-[calc(100vh-112px)] w-full flex flex-col items-center justify-center gap-2 px-4 text-center text-balance text-white sm:px-6">
-      <p class="select-text pb-2 text-6xl text-mauve font-black sm:pb-4 sm:text-9xl">
+      <p class="animated-accent-text select-text pb-2 text-6xl font-black transition-[color] duration-2000 ease-linear sm:pb-4 sm:text-9xl">
         {{ translate("pages.not-found.title", locale) }}
       </p>
       <p class="select-text text-xl font-bold sm:text-3xl">
@@ -45,7 +45,7 @@ for (const locale of LocalesArray) {
       <p class="select-text text-sm sm:text-lg">
         {{ translate("pages.not-found.description", locale) }}
       </p>
-      <RouterLink to="/" class="mt-2 rounded-md bg-mauve px-2 py-1 text-sm text-black font-bold transition-[background-color,color] sm:mt-4 hover:bg-mauve_latte sm:px-4 sm:py-3 sm:text-xl hover:text-white">
+      <RouterLink to="/" class="animated-accent-background mt-2 rounded-md px-2 py-1 text-sm text-black font-bold transition-[background-color,opacity] duration-[2000ms,150ms] ease-[linear,in-out] sm:mt-4 sm:px-4 sm:py-2 sm:text-xl hover:opacity-70">
         {{ translate("pages.not-found.go-to-home", locale) }}
       </RouterLink>
     </div>
