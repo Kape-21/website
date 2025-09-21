@@ -52,9 +52,10 @@ const accentAnimationStore = useAccentAnimation();
           <div :class="[link.Icon, 'size-5']" />
         </a>
         <button
-          aria-label="Toggle accent color animation"
           @click="accentAnimationStore.toggle"
           class="grid size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] active:cursor-default hover:bg-catppuccin-600"
+          title="Toggle accent color animation"
+          aria-label="Toggle accent color animation"
         >
           <span :class="[
             'i-lucide-palette block size-5',

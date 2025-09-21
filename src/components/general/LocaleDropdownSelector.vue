@@ -34,6 +34,8 @@ onClickOutside(target, event => {
       id="__locale-selector"
       @mousedown="toggleMenu"
       class="grid size-8 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] active:cursor-default hover:bg-catppuccin-600"
+      title="Change a website locale"
+      aria-label="Change a website locale"
     >
       {{ Locales.find(({ Code }) => Code === currentLocale)?.Flag }}
     </button>
