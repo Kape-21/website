@@ -49,9 +49,9 @@ const accentAnimationStore = useAccentAnimation();
   <Modal
     :shown="shown"
     :toggle="toggle"
-    class-names="left-[calc(50%-96px)] top-[calc(50%-179px-40px)]"
+    class-names="left-[calc(50%-128px)] top-[calc(50%-179px-40px)]"
   >
-    <div class="h-fit w-48 flex flex-col select-none gap-4 p-4">
+    <div class="h-fit w-64 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
           {{ translate("general.locale", currentLocale) }}
@@ -80,7 +80,7 @@ const accentAnimationStore = useAccentAnimation();
       >
         <span class="i-lucide-palette block size-5 shrink-0" />
         <span class="max-sm:w-full max-sm:text-center">
-          Animations
+          Color Animation
         </span>
       </button>
     </div>
