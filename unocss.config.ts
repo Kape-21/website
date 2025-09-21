@@ -20,6 +20,15 @@ export default defineConfig({
         "50" : "#a6adc8",
       },
     },
+    "breakpoints": {
+      "sm" : "640px",
+      "md" : "768px",
+      "lg" : "1024px",
+      "xl" : "1280px",
+      // 'xle' - xl extra, extracts firefox's scrollbar width (well, maybe firefox's)
+      "xle": "1316px",
+      "2xl": "1536px",
+    },
   },
   "presets": [
 
