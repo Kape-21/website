@@ -53,7 +53,7 @@ provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
         <div
           :class="[
             'relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden',
-            'scroll-gutter-stable-both',
+            'scroll-gutter-stable-both sm:pt-20 sm:min-h-svh',
             scrollLocked && 'overflow-y-hidden',
           ]"
         >

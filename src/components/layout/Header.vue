@@ -13,7 +13,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 hidden h-20 w-full shrink-0 justify-center bg-catppuccin-950 sm:flex">
+  <header class="pointer-events-none fixed top-0 z-50 hidden h-20 w-full shrink-0 justify-center bg-transparent sm:flex">
     <!-- 'scrollbar-gutter: stable both-edges' is needed to make sure header is aligned with footer -->
     <div class="h-full max-w-320 w-full flex items-center justify-between gap-0 rounded-b-lg bg-catppuccin-925 px-4 md:gap-4">
       <RouterLink to="/" class="shrink-0">
