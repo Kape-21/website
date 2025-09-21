@@ -46,7 +46,8 @@ const colors: Record<string, string> = {
   "#cba6f7": "#89b4fa",
   "#89b4fa": "#89dceb",
   "#89dceb": "#f5c2e7",
-  "#f5c2e7": "#cba6f7",
+  "#f5c2e7": "#b4befe",
+  "#b4befe": "#cba6f7",
 };
 
 useIntervalFn(() => {
@@ -56,7 +57,7 @@ useIntervalFn(() => {
   console.log(currentColor);
 
   root.style.setProperty("--animated-accent", colors[currentColor]);
-}, 2100);
+}, 2050);
 </script>
 
 <template>
