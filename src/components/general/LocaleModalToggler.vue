@@ -43,7 +43,7 @@ const accentAnimationStore = useAccentAnimation();
       <World :active="shown" />
     </span>
     <span class="block pb-1 text-center text-sm leading-none transition-[color] duration-200">
-      {{ translate("general.locale", currentLocale) }}
+      {{ translate("general.other", currentLocale) }}
     </span>
   </button>
   <Modal
@@ -54,7 +54,7 @@ const accentAnimationStore = useAccentAnimation();
     <div class="h-fit w-64 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
-          {{ translate("general.locale", currentLocale) }}
+          {{ translate("general.other", currentLocale) }}
         </p>
         <button
           @click="toggle"
