@@ -20,21 +20,21 @@ export const FeaturesSection: Array<{
   "Reverse"    : boolean;
 }> = [
   {
+    "Id"         : "prism",
+    "Title"      : "pages.home.features.prism.title",
+    "Description": "pages.home.features.prism.description",
+    "Reverse"    : false,
+  },
+  {
     "Id"         : "auth",
     "Title"      : "pages.home.features.more-auth-servers.title",
     "Description": "pages.home.features.more-auth-servers.description",
-    "Reverse"    : false,
+    "Reverse"    : true,
   },
   {
     "Id"         : "customization",
     "Title"      : "pages.home.features.customization.title",
     "Description": "pages.home.features.customization.description",
-    "Reverse"    : true,
-  },
-  {
-    "Id"         : "prism",
-    "Title"      : "pages.home.features.prism.title",
-    "Description": "pages.home.features.prism.description",
     "Reverse"    : false,
   },
   {

@@ -44,7 +44,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
         >
           <span v-if="item === 'Cat Pack'" class="flex flex-wrap items-center gap-2">
             <Image
-              class-names="h-5 w-5 sm:h-6 sm:w-6 object-cover rounded-md"
+              class-names="h-5 w-5 ml-[2px] object-cover rounded-md sm:h-6 sm:w-6 sm:ml-0"
               :src="catPackStore.image"
               :alt="`${catPackStore.name} cat pack`"
             />
