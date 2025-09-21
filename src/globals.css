@@ -1,4 +1,8 @@
 /* Global */
+:root {
+  color-scheme: dark;
+}
+
 button span {
   pointer-events: none; /* fixes buttons not firing when click target is the 'span' child */
 }
