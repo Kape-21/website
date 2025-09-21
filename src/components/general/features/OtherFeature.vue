@@ -65,7 +65,7 @@ function toggle() {
               FreesmLauncher
             </p>
             <p class="select-text sm:text-lg">
-              Minecraft {{ currentInstance.Version }}
+              {{ `Minecraft ${currentInstance.Version}`?.trim?.() }}
             </p>
           </div>
           <div class="flex flex-nowrap items-center gap-2">
