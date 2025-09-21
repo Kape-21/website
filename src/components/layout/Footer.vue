@@ -25,7 +25,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
         </p>
         <Image
           class-names="max-h-7 rounded-md"
-          src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Ffreesmlauncher.org%2F&label=Visits&icon=person-circle&color=%23cba6f7&message=&style=for-the-badge&tz=UTC"
+          src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Ffreesmlauncher.org%2F&label=Visits&icon=person-circle&color=%23ffffff&message=&style=for-the-badge&tz=UTC"
           alt="Visits counter"
         />
       </div>

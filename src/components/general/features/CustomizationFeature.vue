@@ -21,7 +21,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
 
 <template>
   <div class="w-full flex flex-1 flex-col gap-2 rounded-md bg-catppuccin-900 p-4 lg:w-auto">
-    <p class="w-fit border-b border-mauve px-2 pb-2 text-catppuccin-50">
+    <p class="w-fit border-b border-mauve px-2 pb-2 text-catppuccin-50 max-sm:text-sm">
       Theme
     </p>
     <div class="flex flex-nowrap gap-0 rounded-md bg-[#16161f] p-2">
@@ -29,7 +29,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
         <p
           v-for="item in ['Icons', 'Widgets', 'Cat']"
           :key="item"
-          class="p-2 text-catppuccin-50 leading-none"
+          class="p-2 text-catppuccin-50 leading-none max-sm:text-sm"
         >
           {{ item }}
         </p>
@@ -40,22 +40,22 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
           v-for="item in ['Fluent Dark', 'Freesm Dark', 'Cat Pack']"
           :key="item"
           :disabled="item !== 'Cat Pack'"
-          class="w-full flex justify-between rounded-md bg-[#26262f] p-1 text-catppuccin-50 leading-none disabled:cursor-not-allowed hover:bg-[#2b2b33] disabled:opacity-70 disabled:hover:bg-[#26262f]"
+          class="w-full flex items-center justify-between rounded-md bg-[#26262f] p-1 text-catppuccin-50 leading-none disabled:cursor-not-allowed hover:bg-[#2b2b33] disabled:opacity-70 disabled:hover:bg-[#26262f]"
         >
-          <span v-if="item === 'Cat Pack'" class="block flex flex-wrap items-center gap-2">
+          <span v-if="item === 'Cat Pack'" class="flex flex-wrap items-center gap-2">
             <Image
-              class-names="h-6 w-6 object-cover rounded-md"
+              class-names="h-5 w-5 sm:h-6 sm:w-6 object-cover rounded-md"
               :src="catPackStore.image"
               :alt="`${catPackStore.name} cat pack`"
             />
-            <span class="block py-1 text-sm leading-none">
+            <span class="block py-1 text-sm leading-none max-sm:text-xs">
               {{ catPackStore.name }}
             </span>
-            <span class="block py-1 text-xs opacity-50">
+            <span class="block py-1 text-xs opacity-50 max-sm:text-[10px]">
               check launcher
             </span>
           </span>
-          <span v-else class="block p-1 text-sm leading-none">
+          <span v-else class="block p-1 text-sm leading-none max-sm:text-xs">
             {{ item }}
           </span>
           <span v-if="item === 'Cat Pack'" class="i-lucide-chevron-down block" />
