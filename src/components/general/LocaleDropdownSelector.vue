@@ -38,7 +38,7 @@ onClickOutside(target, event => {
       {{ Locales.find(({ Code }) => Code === currentLocale)?.Flag }}
     </button>
     <Transition name="slide-fade">
-      <div ref="target" v-show="opened" class="absolute right-0 top-10 flex flex-col items-start gap-1 border border-catppuccin-600 rounded-md bg-catppuccin-900 p-1">
+      <div ref="target" v-show="opened" class="absolute right-0 top-10 flex flex-col items-start gap-1 rounded-md bg-catppuccin-900 p-1">
         <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
       </div>
     </Transition>
