@@ -7,9 +7,12 @@ import { inject } from "vue";
 import { LocaleContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 
 const currentRoute = useRoute();
 const locale = inject<ContextLocaleType>(LocaleContextKey);
+
+const accentAnimationStore = useAccentAnimation();
 </script>
 
 <template>
@@ -44,10 +47,21 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           :href="link.Link"
           :aria-label="`A link to our ${link.Key}`"
           target="_blank"
-          class="grid size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] hover:bg-catppuccin-600"
+          class="hidden size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] md:grid hover:bg-catppuccin-600"
         >
           <div :class="[link.Icon, 'size-5']" />
         </a>
+        <button
+          aria-label="Toggle accent color animation"
+          @click="accentAnimationStore.toggle"
+          class="grid size-8 shrink-0 place-items-center rounded-full bg-catppuccin-800 transition-[background-color] active:cursor-default hover:bg-catppuccin-600"
+        >
+          <span :class="[
+            'i-lucide-palette block size-5',
+            'animated-accent-text transition-[color,filter] duration-[2000ms,150ms] ease-linear',
+            accentAnimationStore.enabled ? 'brightness-100' : 'brightness-200',
+          ]" />
+        </button>
         <LocaleDropdownSelector />
       </div>
     </div>

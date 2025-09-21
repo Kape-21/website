@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import Layout from "@/components/layout/Layout.vue";
 import { RouterView } from "@kitbag/router";
-import { provide, readonly, type Ref, ref } from "vue";
+import { provide, readonly, type Ref, ref, watchEffect } from "vue";
 import {
   LocaleKey,
   LocaleContextKey,
-  LocaleSelectorContextKey, PageWrapperContextKey,
+  LocaleSelectorContextKey,
+  PageWrapperContextKey,
 } from "@/constants/application.ts";
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import { useIntervalFn } from "@vueuse/core";
+import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
 const locale = ref<LocaleType>(DefaultLocale);
@@ -42,6 +44,8 @@ provide<(state: boolean) => void>(PageWrapperContextKey, lockScroll);
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
 
+const accentAnimationStore = useAccentAnimation();
+
 const colors: Record<string, string> = {
   "#cba6f7": "#89b4fa",
   "#89b4fa": "#89dceb",
@@ -50,14 +54,22 @@ const colors: Record<string, string> = {
   "#b4befe": "#cba6f7",
 };
 
-useIntervalFn(() => {
+const { pause, resume } = useIntervalFn(() => {
   const root = document.documentElement;
   const currentColor: string = getComputedStyle(root).getPropertyValue("--animated-accent");
 
-  console.log(currentColor);
-
   root.style.setProperty("--animated-accent", colors[currentColor]);
 }, 2050);
+
+watchEffect(() => {
+  if (accentAnimationStore.enabled) {
+    resume();
+
+    return;
+  }
+
+  pause();
+});
 </script>
 
 <template>
