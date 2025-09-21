@@ -3,6 +3,11 @@ button span {
   pointer-events: none; /* fixes buttons not firing when click target is the 'span' child */
 }
 
+/* Utilities */
+.scroll-gutter-stable-both {
+  scrollbar-gutter: stable both-edges;
+}
+
 /* Properties */
 @property --border-angle {
   inherits: false;
