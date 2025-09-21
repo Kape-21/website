@@ -13,7 +13,7 @@ export const DesktopTerminalContextKey = Symbol();
 export const LocaleKey = "locale";
 
 export const FeaturesSection: Array<{
-  "Id"         : "auth" | "customization" | "other";
+  "Id"         : "auth" | "customization" | "prism" | "other";
   "Title"      : TranslationsType;
   "Description": TranslationsType;
   "Reverse"    : boolean;
@@ -31,9 +31,15 @@ export const FeaturesSection: Array<{
     "Reverse"    : true,
   },
   {
+    "Id"         : "prism",
+    "Title"      : "pages.home.features.prism.title",
+    "Description": "pages.home.features.prism.description",
+    "Reverse"    : false,
+  },
+  {
     "Id"         : "other",
     "Title"      : "pages.home.features.other.title",
     "Description": "pages.home.features.other.description",
-    "Reverse"    : false,
+    "Reverse"    : true,
   },
 ];

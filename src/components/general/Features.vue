@@ -6,12 +6,13 @@ import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import AuthFeature from "@/components/general/features/AuthFeature.vue";
 import CustomizationFeature from "@/components/general/features/CustomizationFeature.vue";
 import OtherFeature from "@/components/general/features/OtherFeature.vue";
+import PrismFeatures from "@/components/general/features/PrismFeatures.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 </script>
 
 <template>
-  <div class="mx-auto mt-12 max-w-240 flex flex-col flex-wrap items-start justify-between gap-8 px-4 lg:flex-row">
+  <div class="mx-auto mt-12 max-w-240 flex flex-col flex-wrap items-start justify-between gap-12 px-4 lg:flex-row lg:gap-8">
     <div
       v-for="feature in FeaturesSection"
       :key="feature.Id"
@@ -22,6 +23,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
     >
       <AuthFeature v-if="feature.Id === 'auth'" />
       <CustomizationFeature v-else-if="feature.Id === 'customization'" />
+      <PrismFeatures v-else-if="feature.Id === 'prism'" />
       <OtherFeature v-else />
       <div class="flex flex-1 flex-col gap-2">
         <p class="select-text text-justify text-xl text-white font-semibold sm:text-2xl">

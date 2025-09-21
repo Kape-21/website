@@ -15,6 +15,8 @@
   "pages.home.features.more-auth-servers.description": "Use offline accounts without any restrictions, or Ely.by and other custom authentication servers to play Minecraft.",
   "pages.home.features.customization.title": "Customization",
   "pages.home.features.customization.description": "Freesm Launcher has its own theme with catppuccin colors and Microsoft Fluent icons. It also allows you to set animated cat packs with background cropping support.",
+  "pages.home.features.prism.title": "Prism-based",
+  "pages.home.features.prism.description": "Freesm is based on Prism Launcher's code base, so you can expect it to have all features from Prism.",
   "pages.home.features.other.title": "Other Features",
   "pages.home.features.other.description": "Automatically copy in-game screenshots to your buffer history, show your current instance on Discord, play with Ely.by skins on servers, and more!",
   "pages.home.team.maintainers.title": "Maintainers",
