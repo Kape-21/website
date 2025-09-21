@@ -20,7 +20,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           v-for="member of TeamSocials.Maintainers.List"
           :key="member.Name"
           :href="member.Link"
-          class="group w-full flex flex-nowrap gap-4 border border-transparent rounded-md p-2 transition-[background-color,border-color] lg:max-w-112 hover:border-mauve hover:bg-[theme(colors.mauve/.4)]"
+          class="w-full flex flex-nowrap gap-4 rounded-md p-2 transition-[background-color] lg:max-w-112 hover:bg-[theme(colors.white/.1)]"
         >
           <Image
             class-names="h-20 w-20 rounded-md"
@@ -29,7 +29,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           />
           <div class="flex flex-col gap-2">
             <div class="flex flex-wrap items-center gap-2 break-all">
-              <p class="select-text text-xl text-mauve font-semibold transition-[color] group-hover:text-white">
+              <p class="animated-accent-text select-text text-xl font-semibold transition-[color] duration-2000 ease-linear">
                 {{ member.Name }}
               </p>
               <div class="select-text rounded-md bg-catppuccin-800 px-2 py-1 text-sm text-catppuccin-200 leading-none">
@@ -50,7 +50,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           v-for="contributor in TeamSocials.Contributors.List"
           :key="contributor.Link"
           :href="contributor.Link"
-          class="transition-[filter] hover:grayscale-100"
+          class="transition-[filter] hover:brightness-70"
         >
           <Image
             class-names="h-12 w-12 rounded-md"
@@ -64,7 +64,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       </p>
       <a
         :href="TeamSocials.Special.Entry.Link"
-        class="w-fit p-2 transition-[filter] hover:grayscale-100"
+        class="w-fit p-2 transition-[filter] hover:brightness-70"
       >
         <Image
           class-names="h-12 w-12"

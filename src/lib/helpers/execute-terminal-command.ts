@@ -188,7 +188,10 @@ export function executeTerminalCommand({
       close();
       setTimeout(() => {
         term.clearTerminal();
-        term.display.pushContent("Welcome to <span class='text-mauve_latte underline'>" +
+        term.display.pushContent("Welcome to " +
+          "<span class='" +
+          "animated-accent-text transition-[color] duration-2000 ease-linear brightness-70 underline" +
+          "'>" +
           "Freesm 1.0 LTS" +
           "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help", true);
       }, 300);

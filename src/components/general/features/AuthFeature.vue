@@ -18,7 +18,9 @@
         class="group flex flex-wrap justify-between gap-2"
       >
         <span class="flex flex-nowrap items-center gap-4 p-1">
-          <span class="block h-4 min-w-4 border border-[#606060] rounded-md bg-transparent sm:h-[18px] sm:min-w-[18px] group-focus:border-transparent group-focus:bg-mauve" />
+          <span class="h-4 min-w-4 flex border border-[#606060] rounded-md sm:h-[18px] sm:min-w-[18px] group-focus:border-transparent">
+            <span class="animated-accent-background hidden h-full w-full rounded-md transition-[background-color] duration-2000 ease-linear group-focus:block" />
+          </span>
           <span class="block leading-none max-sm:text-sm">{{ account.user }}</span>
         </span>
         <span class="block min-w-14 p-1 text-start max-sm:text-sm">{{ account.type }}</span>

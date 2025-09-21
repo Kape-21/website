@@ -58,7 +58,10 @@ const closeTerminal = ref<() => void>(() => {
 onUnmounted(pause);
 onMounted(() => {
   const term = new WebTerm({
-    "title": "Welcome to <span class='text-mauve_latte underline'>" +
+    "title": "Welcome to " +
+      "<span class='" +
+      "animated-accent-text transition-[color] duration-2000 ease-linear brightness-70 underline" +
+      "'>" +
       "Freesm 1.0 LTS" +
       "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help",
     "titleHtml": true,
@@ -79,7 +82,10 @@ onMounted(() => {
     apps.value.terminal = false;
     setTimeout(() => {
       term.clearTerminal();
-      term.display.pushContent("Welcome to <span class='text-mauve_latte underline'>" +
+      term.display.pushContent("Welcome to " +
+        "<span class='" +
+        "animated-accent-text transition-[color] duration-2000 ease-linear brightness-70 underline" +
+        "'>" +
         "Freesm 1.0 LTS" +
         "</span> (GNU/Linux 6.8.0-36-generic x86_64)\n* help", true);
     }, 300);
@@ -151,7 +157,7 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
     <button
       aria-label="Open Freesm Launcher"
       @dblclick="open"
-      class="absolute left-2 top-2 h-24 w-24 flex flex-col items-center justify-center gap-2 border border-transparent rounded-md focus:border-mauve focus:bg-[theme(colors.mauve/.4)]"
+      class="absolute left-2 top-2 h-24 w-24 flex flex-col items-center justify-center gap-2 border border-transparent rounded-md focus:border-white focus:bg-[theme(colors.white/.4)]"
     >
       <Image
         class-names="h-12 w-12 drop-shadow-md"
@@ -171,7 +177,9 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
           :class="[
             'relative grid h-12 w-14 place-items-center',
             'before:absolute before:left-[25%] before:top-0',
-            'before:h-1 before:w-[50%] before:bg-mauve before:content-empty',
+            'before:h-1 before:w-[50%] before:content-empty',
+            'animated-accent-before-background before:ease-[linear,in-out]',
+            'before:transition-[background-color,width] before:duration-[2000ms,300ms]',
             apps.kde ? 'before:visible' : 'before:invisible',
           ]"
         >
@@ -182,7 +190,9 @@ provide<ContextLauncherType>(DesktopTerminalContextKey, {
           :class="[
             'relative grid h-12 w-14 place-items-center',
             'before:absolute before:left-[25%] before:top-0',
-            'before:h-1 before:w-[50%] before:bg-mauve before:content-empty',
+            'before:h-1 before:w-[50%] before:content-empty',
+            'animated-accent-before-background before:ease-[linear,in-out]',
+            'before:transition-[background-color,width] before:duration-[2000ms,300ms]',
             apps.terminal ? 'before:visible' : 'before:invisible',
           ]"
         >

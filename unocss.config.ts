@@ -3,9 +3,8 @@ import { defineConfig, presetIcons, presetWind3 } from "unocss";
 export default defineConfig({
   "theme": {
     "colors": {
-      "mauve"      : "#cba6f7",
-      "mauve_latte": "#8839ef",
-      "catppuccin" : {
+      "mauve"     : "#cba6f7",
+      "catppuccin": {
         "950": "#09090e",
         "925": "#0c0c14",
         "900": "#11111b",

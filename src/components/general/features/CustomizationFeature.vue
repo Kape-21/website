@@ -21,7 +21,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
 
 <template>
   <div class="w-full flex flex-1 flex-col gap-2 rounded-md bg-catppuccin-900 p-4 lg:w-auto">
-    <p class="w-fit border-b border-mauve px-2 pb-2 text-catppuccin-50 max-sm:text-sm">
+    <p class="animated-accent-border w-fit border-b px-2 pb-2 text-catppuccin-50 transition-[border-color] duration-2000 ease-linear max-sm:text-sm">
       Theme
     </p>
     <div class="flex flex-nowrap gap-0 rounded-md bg-[#16161f] p-2">
@@ -65,16 +65,17 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
             @click="() => select(pack)"
             v-for="pack in LauncherCatPacks"
             :key="pack.Name"
-            class="w-full flex flex-wrap items-center gap-2 px-2 py-1 lg:flex-nowrap hover:bg-[#745e94]"
+            class="group relative w-full flex flex-wrap items-center gap-2 px-2 py-1 lg:flex-nowrap"
           >
             <Image
-              class-names="h-6 w-6 object-cover rounded-md"
+              class-names="relative z-10 h-6 w-6 object-cover rounded-md"
               :src="pack.Image"
               :alt="`${pack.Name} cat pack`"
             />
-            <span class="block break-all text-start text-sm">
+            <span class="relative z-10 block break-all text-start text-sm">
               {{ pack.Name }}
             </span>
+            <span class="animated-accent-background absolute bottom-0 left-0 right-0 top-0 hidden opacity-60 transition-[background-color] duration-2000 ease-linear group-hover:block" />
           </button>
         </div>
       </div>

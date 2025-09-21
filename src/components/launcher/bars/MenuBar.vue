@@ -87,12 +87,12 @@ function handleRightClick(event: MouseEvent): void {
       >
         <span
           :class="[
-            'block h-4 min-w-4 rounded-md sm:h-[18px] sm:min-w-[18px]',
-            value
-            ? 'bg-mauve'
-            : 'bg-transparent border border-[#606060]',
+            'h-4 min-w-4 flex border border-[#606060] rounded-md sm:h-[18px] sm:min-w-[18px]',
+            value && 'border-transparent',
           ]"
-        />
+        >
+          <span v-show="value" class="animated-accent-background block h-full w-full rounded-md transition-[background-color] duration-2000 ease-linear" />
+          </span>
         <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
           {{ translate(contextTranslations[key], locale) }}
         </span>

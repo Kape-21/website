@@ -101,7 +101,7 @@ function handleDoubleClick() {
         @keydown="handleTextareaKeys"
         :placeholder="instance.Name"
         v-model="renamingValue"
-        class="w-25 resize-none border border-mauve bg-[#0c0c13] px-[2px] text-center text-[10px] text-white outline-none sm:text-[13px] focus:outline-none"
+        class="animated-accent-border w-25 resize-none border bg-[#0c0c13] px-[2px] text-center text-[10px] text-white outline-none transition-[border-color] duration-2000 ease-linear sm:text-[13px] focus:outline-none"
         autofocus
       />
       <span

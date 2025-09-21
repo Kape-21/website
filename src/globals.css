@@ -66,6 +66,7 @@ button span {
 }
 .animated-accent-text { color: var(--animated-accent) }
 .animated-accent-background { background-color: var(--animated-accent) }
+.animated-accent-border { border-color: var(--animated-accent) }
 .animated-accent-before-background:before { background-color: var(--animated-accent) }
 
 /* Keyframes */
