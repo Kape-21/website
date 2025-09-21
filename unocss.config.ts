@@ -7,6 +7,7 @@ export default defineConfig({
       "mauve_latte": "#8839ef",
       "catppuccin" : {
         "950": "#09090e",
+        "925": "#0c0c14",
         "900": "#11111b",
         "800": "#181825",
         "700": "#1e1e2e",

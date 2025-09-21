@@ -21,7 +21,7 @@ function onNavigate() {
 </script>
 
 <template>
-  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto bg-catppuccin-900 sm:hidden">
+  <div class="fixed bottom-0 z-1000 h-20 w-full flex flex-nowrap overflow-x-auto bg-catppuccin-925 sm:hidden">
     <RouterLink
       @click="onNavigate"
       v-for="route in RoutesArray"
