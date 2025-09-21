@@ -35,7 +35,9 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
     <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
       <span>{{ translate("pages.home.hero.title", locale) }}</span>
       {{ " " }}
-      <span class="animate-text-chroma">{{ platform }}</span>
+      <span class="animated-accent-text transition-[color] duration-2000">
+        {{ platform }}
+      </span>
     </p>
     <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
       {{ translate("pages.home.hero.description", locale) }}
@@ -43,7 +45,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
     <div class="flex justify-center gap-2">
       <RouterLink
         :to="Routes.Downloads.Path"
-        class="animate-bg-chroma flex items-center gap-2 rounded-md px-4 py-2 text-center text-balance text-[18px] text-black font-bold transition-[opacity] hover:opacity-80"
+        class="animated-accent-background flex items-center gap-2 rounded-md px-4 py-2 text-center text-balance text-[18px] text-black font-bold transition-[background-color,opacity] duration-[2000ms,150ms] hover:opacity-80"
       >
         <div class="grid min-h-6 min-w-6 place-items-center">
           <div :class="['w-6 h-6', icon]" />

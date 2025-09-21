@@ -10,6 +10,7 @@ import {
 import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import { useIntervalFn } from "@vueuse/core";
 
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
 const locale = ref<LocaleType>(DefaultLocale);
@@ -40,11 +41,27 @@ function lockScroll(state: boolean): void {
 provide<(state: boolean) => void>(PageWrapperContextKey, lockScroll);
 provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
 provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
+
+const colors: Record<string, string> = {
+  "#cba6f7": "#89b4fa",
+  "#89b4fa": "#89dceb",
+  "#89dceb": "#f5c2e7",
+  "#f5c2e7": "#cba6f7",
+};
+
+useIntervalFn(() => {
+  const root = document.documentElement;
+  const currentColor: string = getComputedStyle(root).getPropertyValue("--animated-accent");
+
+  console.log(currentColor);
+
+  root.style.setProperty("--animated-accent", colors[currentColor]);
+}, 2100);
 </script>
 
 <template>
   <div v-show="false">
-    <!-- This block contains UnoCSS icons that somehow are not included in the bundle -->
+    <!-- This block contains UnoCSS classes that are not included in the bundle -->
     <span class="i-mdi-github i-mdi-telegram i-fluent-add-square-24-regular i-fluent-folder-24-regular i-fluent-settings-24-regular i-fluent-chat-help-24-regular i-fluent-phone-update-24-regular i-fluent-animal-cat-24-regular i-fluent-people-16-regular i-fluent-edit-16-regular i-fluent-triangle-right-16-regular i-fluent-dismiss-circle-16-regular i-fluent-settings-16-regular i-fluent-tag-16-regular i-fluent-folder-16-regular i-fluent-folder-arrow-right-16-regular i-fluent-copy-arrow-right-16-regular i-fluent-delete-16-regular i-fluent-link-16-regular text-red-500" />
   </div>
   <Layout>

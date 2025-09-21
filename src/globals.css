@@ -1,6 +1,7 @@
 /* Global */
 :root {
-  color-scheme: dark;
+  color-scheme: dark; /* make browser's scrollbar dark themed */
+  --animated-accent: #cba6f7;
 }
 
 button span {
@@ -57,26 +58,15 @@ button span {
    */
   animation-delay: 100ms;
 }
-.animate-text-chroma {
-  animation-name: text-chroma;
-  animation-duration: 10000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-direction: alternate;
-}
-.animate-bg-chroma {
-  animation-name: bg-chroma;
-  animation-duration: 10000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-direction: alternate;
-}
 .animate-border {
-  animation: border 8s linear infinite;;
+  animation: border 8000ms linear infinite;;
 }
 .animate-shake {
-  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shake 820ms cubic-bezier(.36,.07,.19,.97) both;
 }
+.animated-accent-text { color: var(--animated-accent) }
+.animated-accent-background { background-color: var(--animated-accent) }
+.animated-accent-before-background:before { background-color: var(--animated-accent) }
 
 /* Keyframes */
 @keyframes progress-bar {
@@ -90,20 +80,6 @@ button span {
     /* Override initial opacity value */
     opacity: 1;
   }
-}
-@keyframes text-chroma {
-  0% { color: #cba6f7 }
-  25% { color: #89b4fa }
-  50% { color: #94e2d5 }
-  75% { color: #f9e2af }
-  100% { color: #f38ba8 }
-}
-@keyframes bg-chroma {
-  0% { background-color: #cba6f7 }
-  25% { background-color: #89b4fa }
-  50% { background-color: #94e2d5 }
-  75% { background-color: #f9e2af }
-  100% { background-color: #f38ba8 }
 }
 @keyframes border {
   to { --border-angle: 360deg }

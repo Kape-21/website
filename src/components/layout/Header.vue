@@ -26,9 +26,10 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
             :key="route.Key"
             :to="route.Path"
             :class="[
-              'relative p-1 md:p-2 font-semibold before:absolute before:bottom-0 before:h-[2px] before:w-0',
-              'before:bg-mauve before:transition-[width] before:duration-300 before:content-empty',
-              'hover:before:!w-[calc(100%-8px)] md:hover:before:!w-[calc(100%-16px)]',
+              'relative p-1 md:p-2 font-semibold animated-accent-before-background',
+              'before:absolute before:bottom-0 before:h-[2px] before:w-0',
+              'before:transition-[background-color,width] before:duration-[2000ms,300ms]',
+              'before:content-empty hover:before:!w-[calc(100%-8px)] md:hover:before:!w-[calc(100%-16px)]',
               route.Path === currentRoute?.matched?.path
                 && 'before:!w-[calc(100%-8px)] md:before:!w-[calc(100%-16px)]',
             ]"
