@@ -14,6 +14,11 @@ export const Locales = [
     "Name": "Українська",
     "Flag": "\uD83C\uDDFA\uD83C\uDDE6",
   },
+  {
+    "Code": "pl",
+    "Name": "Polski",
+    "Flag": "\uD83C\uDDF5\uD83C\uDDF1",
+  },
 ] as const;
 export const LocalesArray = Locales.map(({ Code }) => Code);
 export const DefaultLocale = Locales[0].Code;
