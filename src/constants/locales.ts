@@ -6,7 +6,7 @@ export const Locales = [
   },
  {
     "Code": "fa",
-    "Name": "Farsi",
+    "Name": "فارسی",
     "Flag": "\ud83c\uddee\ud83c\uddf7",
   }, 
  {
