@@ -4,11 +4,16 @@ export const Locales = [
     "Name": "English",
     "Flag": "\uD83C\uDDEC\uD83C\uDDE7",
   },
-  {
+ {
+    "Code": "fa",
+    "Name": "Farsi",
+    "Flag": "\ud83c\uddee\ud83c\uddf7",
+  }, 
+ {
     "Code": "ru",
     "Name": "Русский",
     "Flag": "\uD83C\uDDF7\uD83C\uDDFA",
-  },
+ },
   {
     "Code": "ua",
     "Name": "Українська",
