@@ -3,6 +3,7 @@ import type { LocaleType } from "@/types/locale.type.ts";
 import { getWeather } from "@/lib/helpers/get-weather.ts";
 import { fetchUrl } from "@/lib/helpers/fetch-url.ts";
 import { pfetch } from "@/lib/helpers/pfetch.ts";
+import { Locales } from "@/constants/locales.ts";
 
 export function executeTerminalCommand({
   command,
@@ -102,24 +103,23 @@ export function executeTerminalCommand({
         const pairs = trimmed.split("=");
         const locale: string = pairs?.[1];
 
-        switch (locale) {
-          /* govno code production */
-          case "en":
-          case "ru":
-          case "ua": {
-            setLocale?.(locale);
+        let selectedValidLocale: LocaleType | null = null;
+        const validLocales: Array<LocaleType> = Locales.map(({ Code }) => Code);
 
-            break;
+        for (const validLocale of validLocales) {
+          if (validLocale === locale) {
+            selectedValidLocale = validLocale;
           }
-          default: {
-            term.writeBelow(`locale: invalid string '${result}'`);
+        }
 
-            setTimeout(() => {
-              term.clearBelow();
-            }, 2000);
+        if (selectedValidLocale === null) {
+          term.writeBelow(`locale: invalid string '${result}'`);
 
-            break;
-          }
+          setTimeout(() => {
+            term.clearBelow();
+          }, 2000);
+        } else {
+          setLocale?.(selectedValidLocale);
         }
       };
 
