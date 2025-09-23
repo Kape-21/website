@@ -9,14 +9,28 @@ const opened = ref<boolean>(false);
 const target = useTemplateRef<HTMLElement>("target");
 const catPackStore = useCatPackState();
 
-onClickOutside(target, () => {
-  opened.value = false;
-});
-
 function select({ Image, Name }: { "Image": string; "Name": string }) {
   opened.value = false;
   catPackStore.change(Image, Name);
 }
+
+const mouseDownTime = ref<number>(0);
+
+function onMouseDown(): void {
+  opened.value = true;
+  mouseDownTime.value = Date.now();
+}
+function onMouseUp(catPack: { "Name": string; "Image": string }): void {
+  const difference: number = Date.now() - mouseDownTime.value;
+
+  if (difference > 750) {
+    select(catPack);
+  }
+}
+
+onClickOutside(target, () => {
+  opened.value = false;
+});
 </script>
 
 <template>
@@ -37,6 +51,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
       <div class="relative w-full flex flex-col justify-between gap-2">
         <button
           @click="() => opened = true"
+          @mousedown="onMouseDown"
           v-for="item in ['Fluent Dark', 'Freesm Dark', 'Cat Pack']"
           :key="item"
           :disabled="item !== 'Cat Pack'"
@@ -63,6 +78,7 @@ function select({ Image, Name }: { "Image": string; "Name": string }) {
         <div ref="target" v-if="opened" class="absolute bottom-0 w-full flex flex-col translate-y-[56px] gap-0 border border-catppuccin-600 bg-catppuccin-800 p-1">
           <button
             @click="() => select(pack)"
+            @mouseup="() => onMouseUp(pack)"
             v-for="pack in LauncherCatPacks"
             :key="pack.Name"
             class="group relative w-full flex flex-wrap items-center gap-2 px-2 py-1 lg:flex-nowrap"
