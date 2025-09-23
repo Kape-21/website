@@ -79,7 +79,7 @@ const themeStyle = "/* Freesm's theme elements usage */\n" +
 
 <template>
   <Page>
-    <div class="flex gap-4 flex-nowrap">
+    <div class="flex flex-nowrap gap-4">
       <TextSyntax language="css" label="themeStyle.css">
         {{ themeStyle }}
       </TextSyntax>

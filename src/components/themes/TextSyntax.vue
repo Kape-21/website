@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-expect-error no type definitions for this library
 import SshPre from "simple-syntax-highlighter";
 import "simple-syntax-highlighter/dist/sshpre.css";
 
