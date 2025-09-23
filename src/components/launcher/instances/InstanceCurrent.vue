@@ -133,7 +133,7 @@ const disableStates = computed((): Record<
       :key="item.Name"
       @click="actionStates[item.Name]"
       :disabled="disableStates[item.Name]"
-      class="flex items-start gap-1 rounded-md px-1 py-[2px] text-[#cdd6f4] transition-[background-color] sm:items-center disabled:bg-transparent hover:bg-[#1b1825] disabled:text-[#9298b6] disabled:transition-none"
+      class="flex items-start gap-1 rounded-md px-1 py-[2px] text-[#cdd6f4] transition-[background-color] disabled:pointer-events-none sm:items-center disabled:bg-transparent hover:bg-[#1b1825] disabled:text-[#9298b6] disabled:transition-none"
     >
       <span
         :class="[
