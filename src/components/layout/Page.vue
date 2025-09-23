@@ -5,11 +5,14 @@ import { useRoute, useRouter } from "@kitbag/router";
 import { Redirects, Routes } from "@/constants/routes.ts";
 import Footer from "@/components/layout/Footer.vue";
 import { PageWrapperContextKey } from "@/constants/application.ts";
+import { useMobileSwipes } from "@/lib/stores/misc/mobile-swipes.ts";
 
 const lockScroll = inject<(state: boolean) => void>(PageWrapperContextKey);
 
 const currentRoute = useRoute();
 const router = useRouter();
+
+const mobileSwipesStore = useMobileSwipes();
 
 const element = useTemplateRef<EventTarget>("element");
 
@@ -22,7 +25,8 @@ const isReallySwiping = ref<boolean>(false);
 
 watch(isSwiping, (state: boolean) => {
   const isSwipingToX: boolean = state &&
-    (direction.value === "left" || direction.value === "right");
+    (direction.value === "left" || direction.value === "right") &&
+    mobileSwipesStore.enabled;
 
   isReallySwiping.value = isSwipingToX;
   lockScroll?.(isSwipingToX);

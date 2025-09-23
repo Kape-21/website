@@ -8,6 +8,7 @@ import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
+import { useMobileSwipes } from "@/lib/stores/misc/mobile-swipes.ts";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
 const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
@@ -18,6 +19,7 @@ const { shown, toggle } = defineProps<{
 }>();
 
 const accentAnimationStore = useAccentAnimation();
+const mobileSwipesStore = useMobileSwipes();
 </script>
 
 <template>
@@ -49,7 +51,7 @@ const accentAnimationStore = useAccentAnimation();
   <Modal
     :shown="shown"
     :toggle="toggle"
-    class-names="left-[calc(50%-128px)] top-[calc(50%-179px-40px)]"
+    class-names="left-[calc(50%-128px)] top-[calc(50%-239px-40px)]"
   >
     <div class="h-fit w-64 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
@@ -64,25 +66,44 @@ const accentAnimationStore = useAccentAnimation();
         </button>
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
-      <div class="flex flex-col gap-2">
+      <div class="max-h-58 flex flex-col gap-2 overflow-y-auto">
         <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
-      <button
-        @click="accentAnimationStore.toggle"
-        :class="[
-          'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg rounded-3xl',
+      <div class="flex flex-col gap-2">
+        <button
+          @click="accentAnimationStore.toggle"
+          :class="[
+          'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
+          'rounded-t-3xl rounded-b-lg',
           'transition-[background-color]',
           accentAnimationStore.enabled
             ? 'bg-catppuccin-600'
             : 'bg-catppuccin-800',
         ]"
-      >
-        <span class="i-lucide-palette block size-5 shrink-0" />
-        <span class="max-sm:w-full max-sm:text-center">
+        >
+          <span class="i-lucide-palette block size-5 shrink-0" />
+          <span class="max-sm:w-full max-sm:text-center">
           Color Animation
         </span>
-      </button>
+        </button>
+        <button
+          @click="mobileSwipesStore.toggle"
+          :class="[
+          'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
+          'rounded-t-lg rounded-b-3xl',
+          'transition-[background-color]',
+          mobileSwipesStore.enabled
+            ? 'bg-catppuccin-600'
+            : 'bg-catppuccin-800',
+        ]"
+        >
+          <span class="i-lucide-gallery-horizontal block size-5 shrink-0" />
+          <span class="max-sm:w-full max-sm:text-center">
+          Swipes
+        </span>
+        </button>
+      </div>
     </div>
   </Modal>
 </template>

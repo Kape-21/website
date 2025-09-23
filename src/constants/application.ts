@@ -12,6 +12,7 @@ export const DesktopTerminalContextKey = Symbol();
 
 export const LocaleKey = "locale";
 export const AccentAnimationKey = "accent-animation";
+export const MobileSwipesKey = "mobile-swipes";
 
 export const FeaturesSection: Array<{
   "Id"         : "auth" | "customization" | "prism" | "other";
