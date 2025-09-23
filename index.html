@@ -31,6 +31,9 @@
         }
       }
       @media (width < 768px) {
+        .__initial-header-nav__link {
+          display: none !important;
+        }
         #__initial-header-row {
           gap: 8px !important;
         }
@@ -142,8 +145,8 @@
                 <p id="__initial-header-nav__last-item" style="font-weight:600;padding-right:8px">Themes</p>
               </div>
               <div style="width:2px;height:32px;background:#cba6f7"></div>
-              <div style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
-              <div style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
+              <div class="__initial-header-nav__link" style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
+              <div class="__initial-header-nav__link" style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
               <div style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
               <div style="width:32px;height:32px;background:#11111b;border-radius:100%;margin-right:16px"></div>
             </div>
@@ -168,7 +171,7 @@
           </div>
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Locale</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Other</p>
           </div>
         </div>
       </div>
