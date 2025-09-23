@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
+import TextSyntax from "@/components/themes/TextSyntax.vue";
 
 document.title = "Themes - Freesm Launcher";
 document
@@ -8,15 +9,83 @@ document
     "content",
     "Easily create and preview your Freesm Launcher theme in real-time.",
   );
+
+const themeJson = JSON.stringify({
+  "colors": {
+    "AlternateBase"  : "#9e7372",
+    "Base"           : "#bfa85e",
+    "BrightText"     : "#e0e031",
+    "Button"         : "#94e031",
+    "ButtonText"     : "#2c4709",
+    "Highlight"      : "#5805ff",
+    "HighlightedText": "#98f5f5",
+    "Link"           : "#9e98f5",
+    "Text"           : "#110b66",
+    "ToolTipBase"    : "#521087",
+    "ToolTipText"    : "#cbace3",
+    "Window"         : "#d620c7",
+    "WindowText"     : "#d62081",
+    "fadeAmount"     : 0.1,
+    "fadeColor"      : "#400000",
+  },
+  "name"   : "Test 1",
+  "widgets": "Fusion",
+}, null, 2);
+const themeStyle = "/* Freesm's theme elements usage */\n" +
+  "QAbstractScrollArea{background-color: red;}\n" +
+  "QCheckBox{background-color: red;}\n" +
+  "QColumnView{background-color: red;}\n" +
+  "QComboBox{background-color: red;}\n" +
+  "/* QDateEdit */\n" +
+  "QDateTimeEdit{background-color: red;}\n" +
+  "QDialog{background-color: red;}\n" +
+  "/* QDialogButtonBox */\n" +
+  "QDockWidget{background-color: red;}\n" +
+  "QDoubleSpinBox{background-color: red;}\n" +
+  "/* QFrame */\n" +
+  "QGroupBox{background-color: red;}\n" +
+  "QHeaderView{background-color: red;}\n" +
+  "QLabel{background-color: red;}\n" +
+  "QLineEdit{background-color: red;}\n" +
+  "QListView{background-color: red;}\n" +
+  "/* QListWidget */\n" +
+  "QMainWindow{background-color: red;}\n" +
+  "QMenu{background-color: red;}\n" +
+  "QMenuBar{background-color: red;}\n" +
+  "/* QMessageBox */\n" +
+  "QProgressBar{background-color: red;}\n" +
+  "QPushButton{background-color: red;}\n" +
+  "QRadioButton{background-color: red;}\n" +
+  "/* QScrollBar */\n" +
+  "QSizeGrip{background-color: red;}\n" +
+  "QSlider{background-color: red;}\n" +
+  "QSpinBox{background-color: red;}\n" +
+  "/* QSplitter */\n" +
+  "QStatusBar{background-color: red;}\n" +
+  "QTabBar{background-color: red;}\n" +
+  "QTabWidget{background-color: red;}\n" +
+  "QTableView{background-color: red;}\n" +
+  "/* QTableWidget */\n" +
+  "QTextEdit{background-color: red;}\n" +
+  "/* QTimeEdit */\n" +
+  "QToolBar{background-color: red;}\n" +
+  "/* QToolBox */\n" +
+  "QToolButton{background-color: red;}\n" +
+  "QToolTip{background-color: red;}\n" +
+  "QTreeView{background-color: red;}\n" +
+  "/* QTreeWidget */\n" +
+  "QWidget{background-color: red;}";
 </script>
 
 <template>
   <Page>
-    <div
-      v-for="(_, index) in Array.from({ length: 30 })"
-      :key="index"
-    >
-      Themes {{ index + 1 }}
+    <div class="flex gap-4 flex-nowrap">
+      <TextSyntax language="css" label="themeStyle.css">
+        {{ themeStyle }}
+      </TextSyntax>
+      <TextSyntax language="json" label="theme.json">
+        {{ themeJson }}
+      </TextSyntax>
     </div>
   </Page>
 </template>

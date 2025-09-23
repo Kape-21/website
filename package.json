@@ -17,6 +17,7 @@
     "css-simple-minifier": "^2.0.1",
     "css-simple-parser": "^3.0.2",
     "pinia": "^3.0.3",
+    "simple-syntax-highlighter": "^3.1.1",
     "ua-parser-js": "^2.0.5",
     "vue": "^3.5.18",
     "web-term-ui": "^0.0.14"
