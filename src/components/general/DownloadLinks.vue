@@ -1,10 +1,22 @@
 <script setup lang="ts">
 import { DownloadLinks } from "@/constants/routes.ts";
+import { UAParser } from "ua-parser-js";
+import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
+import { computed } from "vue";
+
+const { os } = UAParser(navigator.userAgent);
+const platform = getPlatformName(os?.name);
+
+const sortedDownloadLinks = computed(() => {
+  return DownloadLinks
+    // make user's platform a first element in the array
+    .sort((_, current) => (current.Title === platform ? 1 : 0));
+});
 </script>
 
 <template>
   <div class="mx-auto mt-12 max-w-240 flex flex-col gap-4 px-4">
-    <template v-for="downloads in DownloadLinks" :key="downloads.Title">
+    <template v-for="downloads in sortedDownloadLinks" :key="downloads.Title">
       <p class="select-text text-xl text-white font-semibold sm:text-3xl">
         {{ downloads.Title }}
       </p>

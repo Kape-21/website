@@ -45,6 +45,7 @@ export default defineConfigWithVueTs(
       "unicorn/prefer-global-this"        : ["off"], // no need for this rule because app is CSR and Web Workers will not be used
       "unicorn/prefer-top-level-await"    : ["off"], // broken
       "unicorn/prefer-query-selector"     : ["off"],
+      "unicorn/no-array-sort"             : ["off"], // the recommended 'toSorted()' function was added only in 2023
       "@stylistic/no-multi-spaces"        : ["off"], // conflict with eslint@stylistic/key-spacing
       "@stylistic/line-comment-position"  : ["off"],
       "@stylistic/linebreak-style"        : ["off"],

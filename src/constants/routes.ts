@@ -5,6 +5,7 @@ import Book from "@/components/icons/Book.vue";
 import Downloading from "@/components/icons/Downloading.vue";
 import Blocks from "@/components/icons/Blocks.vue";
 import type { TranslationsType } from "@/types/translations.type.ts";
+import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 
 export const Routes = {
   "Home": {
@@ -218,7 +219,7 @@ export const RuntimeDownloadLink = {
   "Qt6Linux"  : "runtime-qt6-linux",
 } as const;
 export const DownloadLinks: Array<{
-  "Title": string;
+  "Title": ReturnType<typeof getPlatformName>;
   "Links": Array<{
     "Icon" : string;
     "Name" : string;
