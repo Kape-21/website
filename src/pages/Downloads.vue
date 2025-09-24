@@ -15,11 +15,7 @@ document
   <Page>
     <div class="mx-auto max-w-240 flex flex-col gap-8 px-4 pt-12">
       <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
-        <span>Download Freesm Launcher for</span>
-        {{ " " }}
-        <span class="animated-accent-text transition-[color] duration-2000 ease-linear">
-          Windows
-        </span>
+        Downloads
       </p>
     </div>
   </Page>
