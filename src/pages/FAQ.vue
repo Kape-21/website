@@ -1,7 +1,12 @@
 <!-- eslint-disable unicorn/filename-case -->
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
-import Image from "@/components/base/Image.vue";
+import { translate } from "@/lib/translations/translate.ts";
+import { inject } from "vue";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 document.title = "FAQ - Freesm Launcher";
 document
@@ -14,11 +19,10 @@ document
 
 <template>
   <Page>
-    <div class="pointer-events-none grid cols-2 gap-4">
-      <Image src="/photo_2025-08-29_18-35-38.jpg" alt="temp" />
-      <Image src="/photo_2025-09-03_00-46-19.jpg" alt="temp" />
-      <Image src="/assets/ame-chan.webp" alt="temp" />
-      <Image src="/bocchi-tired.jpg" alt="temp" />
+    <div class="mx-auto max-w-240 flex flex-col gap-8 px-4 pt-12">
+      <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
+        {{ translate("pages.faq.title", locale) }}
+      </p>
     </div>
   </Page>
 </template>
