@@ -176,6 +176,14 @@ export const TeamSocials: {
         "Link" : "https://t.me/chaoticbraincat",
         "Image": "/brainfluid.webp",
       },
+      {
+        "Link" : "https://github.com/Azarakash",
+        "Image": "https://avatars.githubusercontent.com/u/228034665?v=4",
+      },
+      {
+        "Link" : "https://github.com/mqsla",
+        "Image": "https://avatars.githubusercontent.com/u/85938576?v=4",
+      },
     ],
   },
   "Special": {
@@ -201,6 +209,91 @@ export const ExternalLinks = [
     "Link": Socials.Telegram.Group,
   },
 ] as const;
+
+export const RuntimeDownloadLink = {
+  "FlatpakARM": "runtime-flatpak-arm",
+  "FlatpakX86": "runtime-flatpak-x86",
+  "AppImage"  : "runtime-app-image",
+  "Qt5Linux"  : "runtime-qt5-linux",
+  "Qt6Linux"  : "runtime-qt6-linux",
+} as const;
+export const DownloadLinks: Array<{
+  "Title": string;
+  "Links": Array<{
+    "Icon" : string;
+    "Name" : string;
+    "Link" : string;
+    "Extra": string;
+  }>;
+}> = [
+  {
+    "Title": "Windows",
+    "Links": [],
+  },
+  {
+    "Title": "Linux",
+    "Links": [
+      {
+        "Icon" : "i-simple-icons-nixos",
+        "Name" : "Nix",
+        "Link" : "https://github.com/FreesmTeam/FreesmLauncher/blob/develop/flake.nix",
+        "Extra": "Flake",
+      },
+      {
+        "Icon" : "i-simple-icons-archlinux",
+        "Name" : "Arch",
+        "Link" : "https://aur.archlinux.org/packages/freesmlauncher",
+        "Extra": "AUR",
+      },
+      {
+        "Icon" : "i-simple-icons-debian",
+        "Name" : "Debian",
+        "Link" : "https://github.com/FreesmTeam/freesm-deb-pkgbuild",
+        "Extra": ".deb",
+      },
+      {
+        "Icon" : "i-simple-icons-flatpak",
+        "Name" : "Flatpak aarch64",
+        "Link" : RuntimeDownloadLink.FlatpakARM,
+        "Extra": ".zip",
+      },
+      {
+        "Icon" : "i-simple-icons-flatpak",
+        "Name" : "Flatpak x86_64",
+        "Link" : RuntimeDownloadLink.FlatpakX86,
+        "Extra": ".zip",
+      },
+      {
+        "Icon" : "i-simple-icons-linux",
+        "Name" : "Portable Qt5",
+        "Link" : RuntimeDownloadLink.Qt5Linux,
+        "Extra": ".tar.gz",
+      },
+      {
+        "Icon" : "i-simple-icons-linux",
+        "Name" : "Portable Qt6",
+        "Link" : RuntimeDownloadLink.Qt6Linux,
+        "Extra": ".tar.gz",
+      },
+      {
+        "Icon" : "i-simple-icons-linux",
+        "Name" : "Portable",
+        "Link" : RuntimeDownloadLink.AppImage,
+        "Extra": ".AppImage",
+      },
+      {
+        "Icon" : "i-simple-icons-gentoo",
+        "Name" : "Gentoo",
+        "Link" : "https://github.com/FreesmTeam/freesmlauncher-overlay",
+        "Extra": "EBuild Overlay (archived)",
+      },
+    ],
+  },
+  {
+    "Title": "macOS",
+    "Links": [],
+  },
+];
 
 export const FooterLinks = [
   {

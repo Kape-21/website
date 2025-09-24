@@ -26,6 +26,8 @@
   "pages.home.team.maintainers.list.windstone.description": "Svelte/Vue.js & Elysia.js <3",
   "pages.home.team.contributors.title": "Внесли вклад",
   "pages.home.team.special.title": "Особая благодарность",
+  "pages.downloads.title": "Downloads",
+  "pages.downloads.description": "Download Freesm Launcher for your specific platform.",
   "pages.faq.title": "Frequently Asked Questions",
   "footer.short-description": "Играйте в Майнкрафт без ограничений.",
   "footer.about.title": "О лаунчере",
