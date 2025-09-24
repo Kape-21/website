@@ -17,7 +17,7 @@ const platform = getPlatformName(os?.name);
 const sortedDownloadLinks = computed(() => {
   return DownloadLinks
     // make user's platform a first element in the array
-    .sort((_, current) => (current.Title === platform ? 1 : 0));
+    .sort((_, current) => (current.Title === platform ? 1 : -1));
 });
 
 function getActualLink(input: GithubReleaseLinkType | `https://${string}`): string | undefined {
