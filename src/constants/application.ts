@@ -1,4 +1,5 @@
 import type { TranslationsType } from "@/types/translations.type.ts";
+import type { GithubReleasesType } from "@/types/github-releases.type.ts";
 
 export const ApplicationName = "Freesm Launcher";
 
@@ -45,3 +46,14 @@ export const FeaturesSection: Array<{
     "Reverse"    : true,
   },
 ];
+
+export const FallbackLauncherData: GithubReleasesType = {
+  "Name"     : "Freesm Launcher Sequoia 1.4.2",
+  "Downloads": {
+    "runtime-flatpak-arm": "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Linux-6d80511-Flatpak-aarch64.flatpak.zip",
+    "runtime-flatpak-x86": "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Linux-6d80511-Flatpak-x86_64.flatpak.zip",
+    "runtime-qt5-linux"  : "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Linux-Qt5-Portable-sequoia-1.4.2.tar.gz",
+    "runtime-qt6-linux"  : "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Linux-Qt6-Portable-sequoia-1.4.2.tar.gz",
+    "runtime-app-image"  : "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Linux-x86_64.AppImage",
+  },
+};

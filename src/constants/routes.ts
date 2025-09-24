@@ -6,6 +6,7 @@ import Downloading from "@/components/icons/Downloading.vue";
 import Blocks from "@/components/icons/Blocks.vue";
 import type { TranslationsType } from "@/types/translations.type.ts";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
+import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
 
 export const Routes = {
   "Home": {
@@ -223,7 +224,7 @@ export const DownloadLinks: Array<{
   "Links": Array<{
     "Icon" : string;
     "Name" : string;
-    "Link" : string;
+    "Link" : GithubReleaseLinkType | `https://${string}`;
     "Extra": string;
   }>;
 }> = [

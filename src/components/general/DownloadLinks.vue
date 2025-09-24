@@ -3,6 +3,13 @@ import { DownloadLinks } from "@/constants/routes.ts";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import { computed } from "vue";
+import type { GithubReleasesType } from "@/types/github-releases.type.ts";
+import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
+
+const { data, isPending } = defineProps<{
+  "data"     : GithubReleasesType | undefined;
+  "isPending": boolean;
+}>();
 
 const { os } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -12,6 +19,14 @@ const sortedDownloadLinks = computed(() => {
     // make user's platform a first element in the array
     .sort((_, current) => (current.Title === platform ? 1 : 0));
 });
+
+function getActualLink(input: GithubReleaseLinkType | `https://${string}`): string {
+  if (data === undefined || isPending || input.startsWith("https://")) {
+    return input;
+  }
+
+  return data.Downloads[input as GithubReleaseLinkType];
+}
 </script>
 
 <template>
@@ -24,9 +39,15 @@ const sortedDownloadLinks = computed(() => {
         <a
           v-for="link in downloads.Links"
           :key="link.Link"
-          :href="link.Link"
+          :href="getActualLink(link.Link)"
+          :class="[
+            'flex flex-nowrap items-center gap-4',
+            'rounded-md bg-catppuccin-900 p-4 transition-[opacity,background-color]',
+            getActualLink(link.Link).startsWith('runtime')
+              ? 'opacity-60 cursor-default'
+              : 'hover:bg-catppuccin-800',
+          ]"
           target="_blank"
-          class="flex flex-nowrap items-center gap-4 rounded-md bg-catppuccin-900 p-4 transition-[background-color] hover:bg-catppuccin-800"
         >
           <div class="grid size-16 place-items-center rounded-md bg-catppuccin-800">
             <div :class="['size-8', link.Icon]" />
