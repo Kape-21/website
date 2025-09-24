@@ -20,7 +20,11 @@ const sortedDownloadLinks = computed(() => {
     .sort((_, current) => (current.Title === platform ? 1 : 0));
 });
 
-function getActualLink(input: GithubReleaseLinkType | `https://${string}`): string {
+function getActualLink(input: GithubReleaseLinkType | `https://${string}`): string | undefined {
+  if (isPending && input.startsWith("runtime")) {
+    return undefined;
+  }
+
   if (data === undefined || isPending || input.startsWith("https://")) {
     return input;
   }
@@ -43,8 +47,8 @@ function getActualLink(input: GithubReleaseLinkType | `https://${string}`): stri
           :class="[
             'flex flex-nowrap items-center gap-4',
             'rounded-md bg-catppuccin-900 p-4 transition-[opacity,background-color]',
-            getActualLink(link.Link).startsWith('runtime')
-              ? 'opacity-60 cursor-default'
+            getActualLink(link.Link) === undefined || getActualLink(link.Link)?.startsWith?.('runtime')
+              ? 'opacity-60 cursor-progress'
               : 'hover:bg-catppuccin-800',
           ]"
           target="_blank"

@@ -7,6 +7,8 @@ import { FallbackLauncherData, LocaleContextKey } from "@/constants/application.
 import DownloadLinks from "@/components/general/DownloadLinks.vue";
 import { useQuery } from "@tanstack/vue-query";
 import type { GithubReleasesType } from "@/types/github-releases.type.ts";
+import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
+import { RuntimeDownloadLink } from "@/constants/routes.ts";
 
 document.title = "Downloads - Freesm Launcher";
 document
@@ -36,17 +38,42 @@ const { data, isPending } = useQuery({
       return FallbackLauncherData;
     }
 
-    for (const artifact of repository?.assets) {}
+    const actualDownloads: Record<GithubReleaseLinkType, string> = {
+      ...FallbackLauncherData.Downloads,
+    };
+    const artifactChecks = [
+      // first argument is an object field to assign, and the second is a string to look for in artifact's name
+      [RuntimeDownloadLink.FlatpakARM, "flatpak-aarch64"],
+      [RuntimeDownloadLink.FlatpakX86, "flatpak-x86_64"],
+      [RuntimeDownloadLink.AppImage, ".appimage"],
+      [RuntimeDownloadLink.Qt5Linux, "linux-qt5"],
+      [RuntimeDownloadLink.Qt6Linux, "linux-qt6"],
+      [RuntimeDownloadLink.macOS, "macos-sequoia"],
+      [RuntimeDownloadLink.SetupMSVCX86, "msvc-setup"],
+      [RuntimeDownloadLink.SetupMinGW, "mingw-w64-setup"],
+      [RuntimeDownloadLink.SetupMSVCARM, "msvc-arm64-setup"],
+      [RuntimeDownloadLink.PortableMSVCX86, "msvc-portable"],
+      [RuntimeDownloadLink.PortableMinGW, "mingw-w64-portable"],
+      [RuntimeDownloadLink.PortableMSVCARM, "msvc-arm64-portable"],
+    ] as const;
+
+    for (const artifact of repository?.assets) {
+      const artifactName: string = artifact?.name?.toLowerCase?.() ?? "";
+      // artifact link should always be defined, but show a placeholder if it's not the case
+      const artifactLink: string = artifact?.["browser_download_url"] ?? RuntimeDownloadLink.FlatpakARM;
+
+      for (const [fieldToAssign, namePart] of artifactChecks) {
+        if (artifactName.includes(namePart) && !artifactName.endsWith(".zsync")) {
+          actualDownloads[fieldToAssign] = artifactLink;
+
+          break;
+        }
+      }
+    }
 
     return {
       "Name"     : repository?.name,
-      "Downloads": {
-        "runtime-flatpak-arm": "",
-        "runtime-flatpak-x86": "",
-        "runtime-qt5-linux"  : "",
-        "runtime-qt6-linux"  : "",
-        "runtime-app-image"  : "",
-      },
+      "Downloads": actualDownloads,
     };
   },
 });

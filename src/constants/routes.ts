@@ -213,11 +213,18 @@ export const ExternalLinks = [
 ] as const;
 
 export const RuntimeDownloadLink = {
-  "FlatpakARM": "runtime-flatpak-arm",
-  "FlatpakX86": "runtime-flatpak-x86",
-  "AppImage"  : "runtime-app-image",
-  "Qt5Linux"  : "runtime-qt5-linux",
-  "Qt6Linux"  : "runtime-qt6-linux",
+  "FlatpakARM"     : "runtime-flatpak-arm",
+  "FlatpakX86"     : "runtime-flatpak-x86",
+  "AppImage"       : "runtime-app-image",
+  "Qt5Linux"       : "runtime-qt5-linux",
+  "Qt6Linux"       : "runtime-qt6-linux",
+  "macOS"          : "runtime-macos",
+  "PortableMSVCARM": "runtime-portable-msvc-arm",
+  "PortableMSVCX86": "runtime-portable-msvc-x86",
+  "PortableMinGW"  : "runtime-portable-mingw",
+  "SetupMSVCARM"   : "runtime-setup-msvc-arm",
+  "SetupMSVCX86"   : "runtime-setup-msvc-x86",
+  "SetupMinGW"     : "runtime-setup-mingw",
 } as const;
 export const DownloadLinks: Array<{
   "Title": ReturnType<typeof getPlatformName>;
@@ -230,7 +237,44 @@ export const DownloadLinks: Array<{
 }> = [
   {
     "Title": "Windows",
-    "Links": [],
+    "Links": [
+      {
+        "Icon" : "i-mdi-microsoft-windows",
+        "Name" : "Setup MSVC",
+        "Link" : RuntimeDownloadLink.SetupMSVCX86,
+        "Extra": ".exe",
+      },
+      {
+        "Icon" : "i-mdi-microsoft-windows",
+        "Name" : "Setup MinGW",
+        "Link" : RuntimeDownloadLink.SetupMinGW,
+        "Extra": ".exe",
+      },
+      {
+        "Icon" : "i-simple-icons-arm",
+        "Name" : "Setup MSVC",
+        "Link" : RuntimeDownloadLink.SetupMSVCARM,
+        "Extra": ".exe, aarch64",
+      },
+      {
+        "Icon" : "i-mdi-microsoft-windows",
+        "Name" : "Portable MSVC",
+        "Link" : RuntimeDownloadLink.PortableMSVCX86,
+        "Extra": ".zip",
+      },
+      {
+        "Icon" : "i-mdi-microsoft-windows",
+        "Name" : "Portable MinGW",
+        "Link" : RuntimeDownloadLink.PortableMinGW,
+        "Extra": ".zip",
+      },
+      {
+        "Icon" : "i-simple-icons-arm",
+        "Name" : "Portable MSVC",
+        "Link" : RuntimeDownloadLink.PortableMSVCARM,
+        "Extra": ".zip, aarch64",
+      },
+    ],
   },
   {
     "Title": "Linux",
@@ -255,15 +299,15 @@ export const DownloadLinks: Array<{
       },
       {
         "Icon" : "i-simple-icons-flatpak",
-        "Name" : "Flatpak aarch64",
+        "Name" : "Flatpak",
         "Link" : RuntimeDownloadLink.FlatpakARM,
-        "Extra": ".zip",
+        "Extra": ".zip, aarch64",
       },
       {
         "Icon" : "i-simple-icons-flatpak",
-        "Name" : "Flatpak x86_64",
+        "Name" : "Flatpak",
         "Link" : RuntimeDownloadLink.FlatpakX86,
-        "Extra": ".zip",
+        "Extra": ".zip, x86_64",
       },
       {
         "Icon" : "i-simple-icons-linux",
@@ -293,7 +337,14 @@ export const DownloadLinks: Array<{
   },
   {
     "Title": "macOS",
-    "Links": [],
+    "Links": [
+      {
+        "Icon" : "i-simple-icons-apple",
+        "Name" : "Portable",
+        "Link" : RuntimeDownloadLink.macOS,
+        "Extra": ".zip",
+      },
+    ],
   },
 ];
 
