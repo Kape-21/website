@@ -20,20 +20,20 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           v-for="member of TeamSocials.Maintainers.List"
           :key="member.Name"
           :href="member.Link"
-          class="w-full rounded-md bg-catppuccin-900 p-4 transition-[background-color] lg:max-w-112 hover:bg-catppuccin-800"
+          class="w-full rounded-md bg-catppuccin-900 p-4 transition-[background-color] lg:max-w-114 hover:bg-catppuccin-800"
         >
           <Image
-            class-names="h-20 w-20 mr-4 float-left rounded-md"
+            class-names="h-18 w-18 mr-4 float-left rounded-md sm:h-20 sm:w-20"
             :src="member.Image"
             :alt="`${member.Name}'s profile picture`"
           />
-          <div class="flex flex-wrap items-center gap-2 break-all">
-            <p class="select-text text-xl font-semibold">
+          <div>
+            <span class="mr-2 select-text break-all align-middle text-lg font-semibold sm:text-xl">
               {{ member.Name }}
-            </p>
-            <div class="select-text rounded-md bg-catppuccin-800 px-2 py-1 text-sm text-catppuccin-200 leading-none">
+            </span>
+            <span class="inline-block w-fit select-text rounded-md bg-catppuccin-800 px-2 py-1 align-middle text-xs text-catppuccin-50 leading-none sm:text-sm">
               {{ member.Badge }}
-            </div>
+            </span >
           </div>
           <p class="select-text pt-2 text-sm text-gray-300">
             {{ translate(member.Description, locale) }}
