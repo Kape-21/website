@@ -34,7 +34,7 @@ function getActualLink(input: GithubReleaseLinkType | `https://${string}`): stri
 </script>
 
 <template>
-  <div class="mx-auto mt-12 max-w-240 flex flex-col gap-4 px-4">
+  <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
     <template v-for="downloads in sortedDownloadLinks" :key="downloads.Title">
       <p class="select-text text-xl text-white font-semibold sm:text-3xl">
         {{ downloads.Title }}
