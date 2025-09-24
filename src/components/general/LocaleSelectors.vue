@@ -22,7 +22,7 @@ function applyLocale(selected: LocaleType): void {
     :key="locale.Code"
     :class="[
       'w-full flex flex-nowrap gap-4 px-4 py-3 text-lg',
-      'first:rounded-t-3xl first:rounded-b-lg last:rounded-t-lg last:rounded-b-3xl rounded-lg',
+      'first:rounded-t-3xl first:rounded-b-md last:rounded-t-md last:rounded-b-3xl rounded-md',
       'bg-catppuccin-800 sm:bg-transparent sm:gap-2 sm:!rounded-md sm:px-2 sm:py-1',
       'transition-[background-color] hover:bg-catppuccin-600',
       current === locale.Code && '!bg-catppuccin-600 sm:!bg-catppuccin-800 sm:hover:bg-catppuccin-800',

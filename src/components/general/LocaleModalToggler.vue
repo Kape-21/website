@@ -87,7 +87,7 @@ function toggleSwipes() {
           @click="toggleAnimations"
           :class="[
           'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
-          'rounded-t-3xl rounded-b-lg',
+          'rounded-t-3xl rounded-b-md',
           'transition-[background-color]',
           accentAnimationStore.enabled
             ? 'bg-catppuccin-600'
@@ -103,7 +103,7 @@ function toggleSwipes() {
           @click="toggleSwipes"
           :class="[
           'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
-          'rounded-t-lg rounded-b-3xl',
+          'rounded-t-md rounded-b-3xl',
           'transition-[background-color]',
           mobileSwipesStore.enabled
             ? 'bg-catppuccin-600'

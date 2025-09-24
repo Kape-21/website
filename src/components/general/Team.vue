@@ -11,16 +11,16 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 <template>
   <div class="mx-auto my-12 max-w-240 px-4">
-    <div class="w-full flex flex-col gap-4 rounded-md bg-catppuccin-900 p-2">
+    <div class="w-full flex flex-col gap-4 rounded-md p-2">
       <p class="select-text p-2 text-xl text-white font-semibold sm:text-3xl">
         {{ translate(TeamSocials.Maintainers.Key, locale) }}
       </p>
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 bg-catppuccin-900">
         <a
           v-for="member of TeamSocials.Maintainers.List"
           :key="member.Name"
           :href="member.Link"
-          class="w-full flex flex-nowrap gap-4 rounded-md p-2 transition-[background-color] lg:max-w-112 hover:bg-[theme(colors.white/.1)]"
+          class="w-full flex flex-nowrap gap-4 rounded-md p-2 transition-[background-color] lg:max-w-112 hover:bg-catppuccin-800"
         >
           <Image
             class-names="h-20 w-20 rounded-md"
@@ -29,14 +29,14 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           />
           <div class="flex flex-col gap-2">
             <div class="flex flex-wrap items-center gap-2 break-all">
-              <p class="animated-accent-text select-text text-xl font-semibold transition-[color] duration-2000 ease-linear">
+              <p class="select-text text-xl font-semibold">
                 {{ member.Name }}
               </p>
               <div class="select-text rounded-md bg-catppuccin-800 px-2 py-1 text-sm text-catppuccin-200 leading-none">
                 {{ member.Badge }}
               </div>
             </div>
-            <p class="select-text text-sm text-white">
+            <p class="select-text text-sm text-gray-300">
               {{ translate(member.Description, locale) }}
             </p>
           </div>

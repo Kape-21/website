@@ -26,9 +26,9 @@ const sortedDownloadLinks = computed(() => {
           :key="link.Link"
           :href="link.Link"
           target="_blank"
-          class="flex flex-nowrap items-center gap-4 rounded-lg bg-catppuccin-900 p-4 transition-[background-color] hover:bg-catppuccin-800"
+          class="flex flex-nowrap items-center gap-4 rounded-md bg-catppuccin-900 p-4 transition-[background-color] hover:bg-catppuccin-800"
         >
-          <div class="grid size-16 place-items-center rounded-lg bg-catppuccin-800">
+          <div class="grid size-16 place-items-center rounded-md bg-catppuccin-800">
             <div :class="['size-8', link.Icon]" />
           </div>
           <div class="flex flex-col gap-2">

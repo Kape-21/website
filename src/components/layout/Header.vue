@@ -18,7 +18,7 @@ const accentAnimationStore = useAccentAnimation();
 <template>
   <header class="sticky top-0 z-50 hidden h-20 max-w-320 w-full shrink-0 justify-center bg-transparent xle:fixed xle:left-[50%] sm:flex xle:translate-x-[-50%]">
     <!-- 'scrollbar-gutter: stable both-edges' is needed to make sure header is aligned with footer -->
-    <div class="h-full w-full flex items-center justify-between gap-0 rounded-b-lg bg-catppuccin-925 px-4 md:gap-4">
+    <div class="h-full w-full flex items-center justify-between gap-0 rounded-b-md bg-catppuccin-925 px-4 md:gap-4">
       <RouterLink to="/" class="shrink-0">
         <Image src="/freesm-launcher-logo.webp" alt="Freesm Launcher logo" class-names="h-12" />
       </RouterLink>
