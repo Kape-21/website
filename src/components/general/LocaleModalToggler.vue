@@ -9,6 +9,7 @@ import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 import { useMobileSwipes } from "@/lib/stores/misc/mobile-swipes.ts";
+import { useVibrate } from "@vueuse/core";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
 const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
@@ -18,8 +19,19 @@ const { shown, toggle } = defineProps<{
   "toggle": () => void;
 }>();
 
+const { vibrate } = useVibrate({ "pattern": [15] });
+
 const accentAnimationStore = useAccentAnimation();
 const mobileSwipesStore = useMobileSwipes();
+
+function toggleAnimations() {
+  accentAnimationStore.toggle();
+  vibrate();
+}
+function toggleSwipes() {
+  mobileSwipesStore.toggle();
+  vibrate();
+}
 </script>
 
 <template>
@@ -51,7 +63,7 @@ const mobileSwipesStore = useMobileSwipes();
   <Modal
     :shown="shown"
     :toggle="toggle"
-    class-names="left-[calc(50%-128px)] top-[calc(50%-239px-40px)]"
+    class-names="left-[calc(50%-128px)] top-[calc(50%-228px-40px)]"
   >
     <div class="h-fit w-64 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
@@ -66,13 +78,13 @@ const mobileSwipesStore = useMobileSwipes();
         </button>
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
-      <div class="max-h-58 flex flex-col gap-2 overflow-y-auto">
+      <div class="max-h-52 flex flex-col gap-2 overflow-y-auto">
         <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-2">
         <button
-          @click="accentAnimationStore.toggle"
+          @click="toggleAnimations"
           :class="[
           'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
           'rounded-t-3xl rounded-b-lg',
@@ -88,7 +100,7 @@ const mobileSwipesStore = useMobileSwipes();
         </span>
         </button>
         <button
-          @click="mobileSwipesStore.toggle"
+          @click="toggleSwipes"
           :class="[
           'w-full flex flex-nowrap items-center gap-4 px-4 py-3 text-lg',
           'rounded-t-lg rounded-b-3xl',
