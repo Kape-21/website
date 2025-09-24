@@ -6,8 +6,6 @@ import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
 import DownloadLinks from "@/components/general/DownloadLinks.vue";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
-
 document.title = "Downloads - Freesm Launcher";
 document
   ?.querySelector?.("meta[name=\"description\"]")
@@ -16,6 +14,10 @@ document
     "Download Freesm Launcher for your platform for free, no ads, no viruses, no SMS" +
     ", no registration, no calls, no glowies. Or don't do it, it's up to you!",
   );
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
+
+const currentVersion = "1.4.2";
 </script>
 
 <template>
@@ -25,7 +27,7 @@ document
         {{ translate("pages.downloads.title", locale) }}
       </p>
       <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
-        {{ translate("pages.downloads.description", locale) }}
+        {{ translate("pages.downloads.description", locale).replace("%s", currentVersion) }}
       </p>
     </div>
     <DownloadLinks />
