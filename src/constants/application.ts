@@ -67,12 +67,11 @@ export const FallbackLauncherData: GithubReleasesType = {
 
 export const FreesmIssues: Array<{
   "Name"       : string;
-  "Image"      : string;
+  "Image"     ?: string;
   "Description": string;
 }> = [
   {
     "Name"       : "How to install OptiFine without launching the original Minecraft Launcher?",
-    "Image"      : "",
     "Description": "refer to https://www.reddit.com/r/Optifine/comments/jekh7u/comment/ipjqm5o/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button",
   },
   {
@@ -93,7 +92,12 @@ export const FreesmIssues: Array<{
   {
     "Name"       : "My instance takes so long to launch",
     "Image"      : "",
-    "Description": "Probably java issues",
+    "Description": "Try enabling or disabling your VPN or zapret. If it didn't work, try changing your Java vendor or version in settings.",
+  },
+  {
+    "Name"       : "'Java checker could not be found. Please check your installation'",
+    "Image"      : "",
+    "Description": "Unzip your portable version of launcher",
   },
   {
     "Name"       : "Other issues",

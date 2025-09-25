@@ -19,7 +19,7 @@ export const Deleted = {
 
 export const LauncherTabs: Array<{
   "Icon"     : string;
-  "Name"?    : TranslationsType;
+  "Name"    ?: TranslationsType;
   "Disabled"?: boolean;
 }> = [
   {

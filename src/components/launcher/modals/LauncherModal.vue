@@ -12,7 +12,7 @@ const { opened, contextKey, onlyCloseButton } = defineProps<{
   "opened"          : boolean;
   "contextKey"      : symbol;
   "onlyCloseButton"?: boolean;
-  "maximized"?      : boolean;
+  "maximized"      ?: boolean;
 }>();
 </script>
 
