@@ -2,9 +2,14 @@
 import { DownloadLinks } from "@/constants/routes.ts";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import type { GithubReleasesType } from "@/types/github-releases.type.ts";
 import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
+import { translate } from "@/lib/translations/translate.ts";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const { data, isPending } = defineProps<{
   "data"     : GithubReleasesType | undefined;
@@ -39,7 +44,7 @@ const recommendedLink = "runtime-setup-msvc-x86";
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
     <template v-if="platform === 'Windows'">
       <p class="select-text text-xl text-white font-semibold sm:text-3xl">
-        Recommended
+        {{ translate("pages.downloads.recommended", locale) }}
       </p>
       <div class="grid cols-1 gap-4 lg:cols-3 sm:cols-2">
         <a
