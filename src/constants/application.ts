@@ -66,42 +66,51 @@ export const FallbackLauncherData: GithubReleasesType = {
 };
 
 export const FreesmIssues: Array<{
-  "Name"       : string;
-  "Image"     ?: string;
-  "Description": string;
+  "Name"  : TranslationsType;
+  "Images": Array<{
+    "Link": string;
+    "Text": string;
+  }>;
+  "Description": TranslationsType;
 }> = [
   {
-    "Name"       : "How to install OptiFine without launching the original Minecraft Launcher?",
-    "Description": "refer to https://www.reddit.com/r/Optifine/comments/jekh7u/comment/ipjqm5o/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button",
+    "Name"       : "pages.faq.issues.long-launch.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.long-launch.description",
   },
   {
-    "Name"       : "How to set your skin?",
-    "Image"      : "",
-    "Description": "",
+    "Name"       : "pages.faq.issues.portable-zip.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.portable-zip.description",
   },
   {
-    "Name"       : "https://t.me/freesmsupport/184",
-    "Image"      : "",
-    "Description": "your microsoft account doesn't have a bought minecraft. you need to use an 'Offline' option in account settings",
+    "Name"       : "pages.faq.issues.optifine.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.optifine.description",
   },
   {
-    "Name"       : "Why is there only an english language in the launcher?",
-    "Image"      : "",
-    "Description": "Try enabling or disabling your VPN or zapret",
+    "Name"       : "pages.faq.issues.skins.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.skins.description",
   },
   {
-    "Name"       : "My instance takes so long to launch",
-    "Image"      : "",
-    "Description": "Try enabling or disabling your VPN or zapret. If it didn't work, try changing your Java vendor or version in settings.",
+    "Name"       : "pages.faq.issues.microsoft-invalid-login.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.microsoft-invalid-login.description",
   },
   {
-    "Name"       : "'Java checker could not be found. Please check your installation'",
-    "Image"      : "",
-    "Description": "Unzip your portable version of launcher",
+    "Name"       : "pages.faq.issues.no-languages.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.no-languages.description",
   },
   {
-    "Name"       : "Other issues",
-    "Image"      : "",
-    "Description": "Try contacting us at discord or telegram",
+    "Name"       : "pages.faq.issues.cat-pack-quality.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.cat-pack-quality.description",
+  },
+  {
+    "Name"       : "pages.faq.issues.other.title",
+    "Images"     : [],
+    "Description": "pages.faq.issues.other.description",
   },
 ];

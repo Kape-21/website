@@ -25,7 +25,7 @@ document
         {{ translate("pages.faq.title", locale) }}
       </p>
       <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
-        Huh
+        {{ translate("pages.faq.description", locale) }}
       </p>
     </div>
     <CommonIssues />
