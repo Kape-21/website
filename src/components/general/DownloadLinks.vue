@@ -31,10 +31,43 @@ function getActualLink(input: GithubReleaseLinkType | `https://${string}`): stri
 
   return data.Downloads[input as GithubReleaseLinkType];
 }
+
+const recommendedLink = "runtime-setup-msvc-x86";
 </script>
 
 <template>
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
+    <template v-if="platform === 'Windows'">
+      <p class="select-text text-xl text-white font-semibold sm:text-3xl">
+        Recommended
+      </p>
+      <div class="grid cols-1 gap-4 lg:cols-3 sm:cols-2">
+        <a
+          :href="getActualLink(recommendedLink)"
+          :class="[
+            'flex flex-nowrap items-center gap-4',
+            'rounded-md bg-catppuccin-900 p-4 transition-[opacity,background-color]',
+            getActualLink(recommendedLink) === undefined ||
+            getActualLink(recommendedLink)?.startsWith?.('runtime')
+              ? 'opacity-60 cursor-progress'
+              : 'hover:bg-catppuccin-800',
+          ]"
+          target="_blank"
+        >
+          <div class="grid size-16 place-items-center rounded-md bg-catppuccin-800">
+            <div class="i-mdi-microsoft-windows size-8" />
+          </div>
+          <div class="flex flex-col gap-2">
+            <p class="select-text text-sm text-gray-300 leading-none">
+              .exe, x86_64
+            </p>
+            <p class="select-text text-xl font-semibold leading-none">
+              Setup MSVC
+            </p>
+          </div>
+        </a>
+      </div>
+    </template>
     <template v-for="downloads in sortedDownloadLinks" :key="downloads.Title">
       <p class="select-text text-xl text-white font-semibold sm:text-3xl">
         {{ downloads.Title }}

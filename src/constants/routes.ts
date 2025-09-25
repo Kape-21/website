@@ -242,13 +242,13 @@ export const DownloadLinks: Array<{
         "Icon" : "i-mdi-microsoft-windows",
         "Name" : "Setup MSVC",
         "Link" : RuntimeDownloadLink.SetupMSVCX86,
-        "Extra": ".exe",
+        "Extra": ".exe, x86_64",
       },
       {
         "Icon" : "i-mdi-microsoft-windows",
         "Name" : "Setup MinGW",
         "Link" : RuntimeDownloadLink.SetupMinGW,
-        "Extra": ".exe",
+        "Extra": ".exe, x86_64",
       },
       {
         "Icon" : "i-simple-icons-arm",
@@ -260,13 +260,13 @@ export const DownloadLinks: Array<{
         "Icon" : "i-mdi-microsoft-windows",
         "Name" : "Portable MSVC",
         "Link" : RuntimeDownloadLink.PortableMSVCX86,
-        "Extra": ".zip",
+        "Extra": ".zip, x86_64",
       },
       {
         "Icon" : "i-mdi-microsoft-windows",
         "Name" : "Portable MinGW",
         "Link" : RuntimeDownloadLink.PortableMinGW,
-        "Extra": ".zip",
+        "Extra": ".zip, x86_64",
       },
       {
         "Icon" : "i-simple-icons-arm",
