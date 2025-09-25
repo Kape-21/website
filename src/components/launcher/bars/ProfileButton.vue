@@ -87,7 +87,7 @@ watchEffect(() => {
     </div>
     <button id="__profile-selector" @click="toggleDropdown" class="h-full w-full flex flex flex-wrap items-center justify-center gap-2 rounded-md px-2 transition-[background-color] sm:flex-nowrap sm:justify-normal focus:bg-[#171721] hover:bg-[#211e2f]">
       <Image
-        class-names="h-9 sm:h-6"
+        class-names="h-8 sm:h-6"
         :src="currentProfile?.Skin ?? '/skins/monochrome_steve.png'"
         :alt="`${currentProfile.Name}'s skin avatar`"
       />
