@@ -74,8 +74,17 @@ export const FreesmIssues: Array<{
   "Description": TranslationsType;
 }> = [
   {
-    "Name"       : "pages.faq.issues.long-launch.title",
-    "Images"     : [],
+    "Name"  : "pages.faq.issues.long-launch.title",
+    "Images": [
+      {
+        "Link": "/issues/freesm-long-launch.webp",
+        "Text": "temporary",
+      },
+      {
+        "Link": "/banner.webp",
+        "Text": "temporary 2",
+      },
+    ],
     "Description": "pages.faq.issues.long-launch.description",
   },
   {
