@@ -64,3 +64,40 @@ export const FallbackLauncherData: GithubReleasesType = {
     "runtime-portable-msvc-arm": "https://github.com/FreesmTeam/FreesmLauncher/releases/download/sequoia-1.4.2/FreesmLauncher-Windows-MSVC-arm64-Portable-sequoia-1.4.2.zip",
   },
 };
+
+export const FreesmIssues: Array<{
+  "Name"       : string;
+  "Image"      : string;
+  "Description": string;
+}> = [
+  {
+    "Name"       : "How to install OptiFine without launching the original Minecraft Launcher?",
+    "Image"      : "",
+    "Description": "refer to https://www.reddit.com/r/Optifine/comments/jekh7u/comment/ipjqm5o/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button",
+  },
+  {
+    "Name"       : "How to set your skin?",
+    "Image"      : "",
+    "Description": "",
+  },
+  {
+    "Name"       : "https://t.me/freesmsupport/184",
+    "Image"      : "",
+    "Description": "your microsoft account doesn't have a bought minecraft. you need to use an 'Offline' option in account settings",
+  },
+  {
+    "Name"       : "Why is there only an english language in the launcher?",
+    "Image"      : "",
+    "Description": "Try enabling or disabling your VPN or zapret",
+  },
+  {
+    "Name"       : "My instance takes so long to launch",
+    "Image"      : "",
+    "Description": "Probably java issues",
+  },
+  {
+    "Name"       : "Other issues",
+    "Image"      : "",
+    "Description": "Try contacting us at discord or telegram",
+  },
+];

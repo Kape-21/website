@@ -5,6 +5,7 @@ import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
+import CommonIssues from "@/components/general/CommonIssues.vue";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
@@ -23,6 +24,10 @@ document
       <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
         {{ translate("pages.faq.title", locale) }}
       </p>
+      <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
+        Huh
+      </p>
     </div>
+    <CommonIssues />
   </Page>
 </template>
