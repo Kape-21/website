@@ -94,8 +94,13 @@ export const FreesmIssues: Array<{
     "Description": "pages.faq.issues.no-versions-available.description",
   },
   {
-    "Name"       : "pages.faq.issues.portable-zip.title",
-    "Images"     : [],
+    "Name"  : "pages.faq.issues.portable-zip.title",
+    "Images": [
+      {
+        "Link": "/issues/freesm-java-checker.webp",
+        "Text": "Java checker problem",
+      },
+    ],
     "Description": "pages.faq.issues.portable-zip.description",
   },
   {
