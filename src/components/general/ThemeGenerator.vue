@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { CustomizationTabs } from "@/constants/customization.ts";
 
-const selected = ref<typeof CustomizationTabs[number]["Key"]>();
+const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
 </script>
 
 <template>
@@ -31,7 +31,30 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>();
             hi
           </button>
         </div>
-        <div class="h-full w-full rounded-md"></div>
+        <div class="h-full w-full flex flex-col rounded-md">
+          <div class="flex flex-nowrap"></div>
+          <div class="flex flex-nowrap"></div>
+          <div class="flex flex-nowrap justify-between border-t border-[#7a7a7a] bg-[#313131] p-1">
+            <div class="flex flex-nowrap items-center gap-1">
+              <div class="i-fluent-news-16-regular" />
+              <p class="select-text text-sm">
+                Freesm Launcher Release Sequoia 1.3.0, now available
+              </p>
+            </div>
+            <div class="flex flex-nowrap items-center gap-1">
+              <div class="i-fluent-news-16-regular" />
+              <p class="select-text pr-4 text-sm">
+                More news
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-nowrap justify-between border-t border-[#7a7a7a] bg-[#313131] pt-1">
+            <p class="select-text px-1 text-sm">
+              No instance selected
+            </p>
+            <textarea disabled class="max-h-6 min-h-6 w-33 bg-transparent text-sm">Total playtime: 0s</textarea>
+          </div>
+        </div>
       </div>
     </div>
   </div>
