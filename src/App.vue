@@ -75,7 +75,7 @@ watchEffect(() => {
 <template>
   <div v-show="false">
     <!-- This block contains UnoCSS classes that are not included in the bundle -->
-    <span class="i-mdi-github i-mdi-telegram i-fluent-add-square-24-regular i-fluent-folder-24-regular i-fluent-settings-24-regular i-fluent-chat-help-24-regular i-fluent-phone-update-24-regular i-fluent-animal-cat-24-regular i-fluent-people-16-regular i-fluent-edit-16-regular i-fluent-triangle-right-16-regular i-fluent-dismiss-circle-16-regular i-fluent-settings-16-regular i-fluent-tag-16-regular i-fluent-folder-16-regular i-fluent-folder-arrow-right-16-regular i-fluent-copy-arrow-right-16-regular i-fluent-delete-16-regular i-fluent-link-16-regular i-simple-icons-nixos i-simple-icons-archlinux i-simple-icons-debian i-simple-icons-flatpak i-simple-icons-linux i-simple-icons-gentoo i-mdi-microsoft-windows i-simple-icons-arm i-simple-icons-apple text-red-500" />
+    <span class="i-mdi-github i-mdi-telegram i-fluent-add-square-24-regular i-fluent-folder-24-regular i-fluent-settings-24-regular i-fluent-chat-help-24-regular i-fluent-phone-update-24-regular i-fluent-animal-cat-24-regular i-fluent-people-16-regular i-fluent-edit-16-regular i-fluent-triangle-right-16-regular i-fluent-dismiss-circle-16-regular i-fluent-settings-16-regular i-fluent-tag-16-regular i-fluent-folder-16-regular i-fluent-folder-arrow-right-16-regular i-fluent-copy-arrow-right-16-regular i-fluent-delete-16-regular i-fluent-link-16-regular i-simple-icons-nixos i-simple-icons-archlinux i-simple-icons-debian i-simple-icons-flatpak i-simple-icons-linux i-simple-icons-gentoo i-mdi-microsoft-windows i-simple-icons-arm i-simple-icons-apple text-red-500 underline" />
   </div>
   <Layout>
     <RouterView>

@@ -29,12 +29,13 @@ const maximized = ref<{
           :key="image.Text"
           :src="image.Link"
           :alt="image.Text"
-          class-names="h-full object-cover rounded-md cursor-pointer !transition-[opacity,filter] hover:brightness-70"
+          class-names="h-full object-cover rounded-md cursor-zoom-in !transition-[opacity,filter] hover:brightness-70"
         />
       </div>
-      <p class="select-text text-justify text-lg text-gray-300 sm:text-xl">
-        {{ translate(issue.Description, locale) }}
-      </p>
+      <div
+        v-html="translate(issue.Description, locale)"
+        class="select-text whitespace-pre-wrap pb-4 text-justify text-gray-300 sm:text-lg"
+      ></div>
     </template>
     <Teleport to="body">
       <div
@@ -43,7 +44,7 @@ const maximized = ref<{
         class="fixed bottom-0 left-0 right-0 top-0 z-60000 flex items-center justify-center p-8 bg-[theme(colors.black/.7)]"
       >
         <Image
-          class-names="rounded-md max-h-full"
+          class-names="select-none max-h-full cursor-zoom-out"
           :src="maximized?.Link"
           :alt="maximized?.Text"
         />

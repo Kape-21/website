@@ -78,14 +78,20 @@ export const FreesmIssues: Array<{
     "Images": [
       {
         "Link": "/issues/freesm-long-launch.webp",
-        "Text": "temporary",
-      },
-      {
-        "Link": "/banner.webp",
-        "Text": "temporary 2",
+        "Text": "Long instance launch problem",
       },
     ],
     "Description": "pages.faq.issues.long-launch.description",
+  },
+  {
+    "Name"  : "pages.faq.issues.no-versions-available.title",
+    "Images": [
+      {
+        "Link": "/issues/freesm-no-available-versions.webp",
+        "Text": "No available versions problem",
+      },
+    ],
+    "Description": "pages.faq.issues.no-versions-available.description",
   },
   {
     "Name"       : "pages.faq.issues.portable-zip.title",
@@ -103,8 +109,13 @@ export const FreesmIssues: Array<{
     "Description": "pages.faq.issues.skins.description",
   },
   {
-    "Name"       : "pages.faq.issues.microsoft-invalid-login.title",
-    "Images"     : [],
+    "Name"  : "pages.faq.issues.microsoft-invalid-login.title",
+    "Images": [
+      {
+        "Link": "/issues/freesm-not-entitled.webp",
+        "Text": "Not entitled account problem",
+      },
+    ],
     "Description": "pages.faq.issues.microsoft-invalid-login.description",
   },
   {

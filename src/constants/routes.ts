@@ -73,11 +73,13 @@ export const RoutesConfiguration = Object
 
 export const Socials = {
   "Github": {
-    "Home"        : "https://github.com/FreesmTeam/FreesmLauncher",
-    "Issues"      : "https://github.com/FreesmTeam/FreesmLauncher/issues",
-    "Contribute"  : "https://github.com/FreesmTeam/FreesmLauncher/blob/develop/CONTRIBUTING.md",
-    "Organization": "https://github.com/FreesmTeam/",
-    "Website"     : "https://github.com/FreesmTeam/website",
+    "Home"      : "https://github.com/FreesmTeam/FreesmLauncher",
+    "Issues"    : "https://github.com/FreesmTeam/FreesmLauncher/issues",
+    "Contribute": "https://github.com/FreesmTeam/FreesmLauncher/blob/develop/CONTRIBUTING.md",
+    "Website"   : "https://github.com/FreesmTeam/website",
+  },
+  "Discord": {
+    "Group": "https://discord.com/invite/6jjw4gjy4w",
   },
   "Telegram": {
     "Group": "https://t.me/freesmteam",
@@ -378,8 +380,8 @@ export const FooterLinks = [
         "link": Socials.Telegram.Chat,
       },
       {
-        "name": "footer.community.link.follow-on-github",
-        "link": Socials.Github.Organization,
+        "name": "footer.community.link.discord",
+        "link": Socials.Discord.Group,
       },
     ],
   },
