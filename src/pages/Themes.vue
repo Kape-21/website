@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
-import TextSyntax from "@/components/themes/TextSyntax.vue";
 import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
+import ThemeGenerator from "@/components/general/ThemeGenerator.vue";
 
 document.title = "Themes - Freesm Launcher";
 document
@@ -81,6 +81,8 @@ const themeStyle = "/* Freesm's theme elements usage */\n" +
   "QTreeView{background-color: red;}\n" +
   "/* QTreeWidget */\n" +
   "QWidget{background-color: red;}";
+
+console.log(themeJson, themeStyle);
 </script>
 
 <template>
@@ -93,13 +95,6 @@ const themeStyle = "/* Freesm's theme elements usage */\n" +
         {{ translate("pages.themes.description", locale) }}
       </p>
     </div>
-    <div class="flex flex-nowrap gap-4">
-      <TextSyntax language="css" label="themeStyle.css">
-        {{ themeStyle }}
-      </TextSyntax>
-      <TextSyntax language="json" label="theme.json">
-        {{ themeJson }}
-      </TextSyntax>
-    </div>
+    <ThemeGenerator />
   </Page>
 </template>
