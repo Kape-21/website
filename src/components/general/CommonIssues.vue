@@ -40,10 +40,10 @@ const maximized = ref<{
       <div
         @click="maximized = undefined"
         v-if="maximized !== undefined"
-        class="fixed bottom-0 left-0 right-0 top-0 z-60000 p-4 bg-[theme(colors.black/.7)]"
+        class="fixed bottom-0 left-0 right-0 top-0 z-60000 flex items-center justify-center p-8 bg-[theme(colors.black/.7)]"
       >
         <Image
-          class-names="mx-auto rounded-md h-full max-w-full"
+          class-names="rounded-md max-h-full"
           :src="maximized?.Link"
           :alt="maximized?.Text"
         />
