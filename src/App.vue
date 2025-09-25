@@ -8,7 +8,7 @@ import {
   LocaleSelectorContextKey,
   PageWrapperContextKey,
 } from "@/constants/application.ts";
-import { DefaultLocale, LocalesArray } from "@/constants/locales.ts";
+import { DefaultLocale, Locales, LocalesArray } from "@/constants/locales.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import { useIntervalFn } from "@vueuse/core";
@@ -69,6 +69,18 @@ watchEffect(() => {
   }
 
   pause();
+});
+watchEffect(() => {
+  const shouldBeRTL: boolean = Locales
+    .find(({ Code }) => Code === locale.value)?.RTL ?? false;
+
+  if (shouldBeRTL) {
+    document.body.dataset.rtl = "yes";
+
+    return;
+  }
+
+  delete document.body.dataset.rtl;
 });
 </script>
 

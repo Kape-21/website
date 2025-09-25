@@ -35,7 +35,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
               {{ member.Badge }}
             </span >
           </div>
-          <p class="select-text pt-2 text-sm text-gray-300">
+          <p class="text-right-to-left select-text pt-2 text-sm text-gray-300">
             {{ translate(member.Description, locale) }}
           </p>
         </a>

@@ -12,6 +12,11 @@ button span {
 .scroll-gutter-stable-both {
   scrollbar-gutter: stable both-edges;
 }
+body[data-rtl] {
+  .text-right-to-left {
+    direction: rtl
+  }
+}
 
 /* Properties */
 @property --border-angle {

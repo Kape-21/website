@@ -29,7 +29,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
         <p class="select-text text-justify text-xl text-white font-semibold sm:text-2xl">
           {{ translate(feature.Title, locale) }}
         </p>
-        <p class="select-text text-justify text-gray-300 sm:text-lg">
+        <p class="text-right-to-left select-text text-justify text-gray-300 sm:text-lg">
           {{ translate(feature.Description, locale) }}
         </p>
       </div>
