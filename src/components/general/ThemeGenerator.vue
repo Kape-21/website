@@ -1,6 +1,11 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import { CustomizationTabs } from "@/constants/customization.ts";
+import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { LocaleContextKey } from "@/constants/application.ts";
+import { translate } from "@/lib/translations/translate.ts";
+
+const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
 </script>
@@ -28,7 +33,7 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
       <div class="w-full flex flex-col gap-4">
         <div class="w-full flex flex-wrap">
           <button>
-            hi
+            {{ translate("pages.home.hero.title", locale) }}
           </button>
         </div>
         <div class="h-full w-full flex flex-col rounded-md">
