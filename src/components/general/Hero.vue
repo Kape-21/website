@@ -32,7 +32,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 <template>
   <div class="mx-auto max-w-240 flex flex-col gap-8 px-4 pt-12">
-    <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
+    <p class="text-right-to-left select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
       <span>{{ translate("pages.home.hero.title", locale) }}</span>
       {{ " " }}
       <span class="animated-accent-text transition-[color] duration-2000 ease-linear">
