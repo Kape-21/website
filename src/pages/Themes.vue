@@ -4,7 +4,7 @@ import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey } from "@/constants/application.ts";
-import ThemeGenerator from "@/components/general/ThemeGenerator.vue";
+import ThemeGenerator from "@/components/themes/ThemeGenerator.vue";
 
 document.title = "Themes - Freesm Launcher";
 document
