@@ -21,11 +21,11 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
           :aria-label="tab.Name"
           :title="tab.Name"
           :class="[
-          'grid size-10 place-items-center rounded-md transition-[background-color]',
-          selected === tab.Key
-           ? 'bg-catppuccin-800'
-           : 'bg-catppuccin-900',
-        ]"
+            'grid size-10 place-items-center rounded-md transition-[background-color]',
+            selected === tab.Key
+              ? 'bg-catppuccin-800'
+              : 'bg-catppuccin-900',
+          ]"
         >
           <span :class="['block size-6', tab.Icon]" />
         </button>
