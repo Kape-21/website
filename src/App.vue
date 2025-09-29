@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Layout from "@/components/layout/Layout.vue";
-import { RouterView } from "@kitbag/router";
-import { provide, readonly, type Ref, ref, watchEffect } from "vue";
+import { onAfterRouteLeave, RouterView } from "@kitbag/router";
+import { provide, readonly, type Ref, ref, useTemplateRef, watchEffect } from "vue";
 import {
   LocaleKey,
   LocaleContextKey,
@@ -14,9 +14,12 @@ import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
 import { useIntervalFn } from "@vueuse/core";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 
+const scrollLocked = ref<boolean>(false);
+const scrollTarget = useTemplateRef("scrollTarget");
+
 const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
 const locale = ref<LocaleType>(DefaultLocale);
-const scrollLocked = ref<boolean>(false);
+
 let isValid: boolean = false;
 
 for (const validLocale of LocalesArray) {
@@ -82,6 +85,16 @@ watchEffect(() => {
 
   delete document.body.dataset.rtl;
 });
+
+onAfterRouteLeave(() => {
+  // this is so messy
+  setTimeout(() => {
+    scrollTarget.value?.scrollTo?.({
+      "top"     : 0,
+      "behavior": "smooth",
+    });
+  }, 150);
+});
 </script>
 
 <template>
@@ -93,6 +106,7 @@ watchEffect(() => {
     <RouterView>
       <template #default="{ component }">
         <div
+          ref="scrollTarget"
           :class="[
             'relative min-h-[calc(100svh-80px)] w-full flex justify-center overflow-x-hidden',
             'scroll-gutter-stable-both xle:pt-20 xle:min-h-svh',
