@@ -89,21 +89,27 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
                 </div>
                 <div class="ml-1 h-[2px] w-full bg-[#2d2d2d]" />
               </div>
-              <div class="w-fit flex flex-col items-center gap-2">
-                <Image
-                  class-names="size-12"
-                  src="/assets/grass.svg"
-                  alt="Grass SVG icon"
-                />
-                <div class="grid w-24 place-items-center bg-[#96db59] py-[5px] text-xs text-black leading-none">
-                  1.21.8
+              <div class="flex flex-wrap gap-2">
+                <div
+                  v-for="version in ['1.16.5', '1.21.8']"
+                  :key="version"
+                  class="group w-fit flex flex-col items-center gap-2"
+                >
+                  <Image
+                    class-names="size-12"
+                    src="/assets/grass.svg"
+                    alt="Grass SVG icon"
+                  />
+                  <div class="grid w-24 place-items-center bg-[#2c2c2c] py-[5px] text-xs text-white leading-none group-first:bg-[#96db59] group-first:text-black">
+                    {{ version }}
+                  </div>
                 </div>
               </div>
             </div>
             <div class="h-full w-39 flex flex-col items-center border-l border-[#7a7a7a] bg-[#323232]">
               <Image class-names="size-20 mt-2" src="/assets/grass.svg" alt="Grass SVG icon" />
               <div class="py-2 text-xs leading-none">
-                1.21.8
+                1.16.5
               </div>
               <div
                 v-for="button in buttons.instance"
