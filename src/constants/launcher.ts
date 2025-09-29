@@ -1,4 +1,4 @@
-import type { TranslationsType } from "@/types/translations.type.ts";
+import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
 
 export const EaglerCraftID = "eagler";
@@ -19,7 +19,7 @@ export const Deleted = {
 
 export const LauncherTabs: Array<{
   "Icon"     : string;
-  "Name"    ?: TranslationsType;
+  "Name"    ?: TranslationsKeyType;
   "Disabled"?: boolean;
 }> = [
   {
@@ -52,10 +52,10 @@ export const LauncherTabs: Array<{
   },
 ];
 export const LauncherMenuBarProfiles: Array<{
-  "Name"  : TranslationsType;
+  "Name"  : TranslationsKeyType;
   "Icon"? : string;
   "Image"?: string;
-  "Note"? : TranslationsType;
+  "Note"? : TranslationsKeyType;
 }> = [
   {
     "Name" : "users.windstone_",

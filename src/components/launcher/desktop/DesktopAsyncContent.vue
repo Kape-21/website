@@ -16,14 +16,14 @@ import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import { executeTerminalCommand } from "@/lib/helpers/execute-terminal-command.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { DefaultLocale } from "@/constants/locales.ts";
-import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 
 const { open } = defineProps<{
   "open": () => void;
 }>();
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
+const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
 
 const { os, browser, engine } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);

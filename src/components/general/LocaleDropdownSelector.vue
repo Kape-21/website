@@ -3,14 +3,14 @@ import { inject, ref, useTemplateRef } from "vue";
 import { Locales } from "@/constants/locales.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
-import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 import { onClickOutside } from "@vueuse/core";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 
 const opened = ref<boolean>(false);
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
+const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
 
 function toggleMenu() {
   opened.value = !opened.value;

@@ -1,51 +1,51 @@
 <script setup lang="ts">
 import Layout from "@/components/layout/Layout.vue";
 import { onAfterRouteLeave, RouterView } from "@kitbag/router";
-import { provide, readonly, type Ref, ref, useTemplateRef, watchEffect } from "vue";
+import { provide, readonly, type Ref, ref, shallowRef, useTemplateRef, watchEffect } from "vue";
 import {
-  LocaleKey,
-  LocaleContextKey,
+  TranslationsKey,
   LocaleSelectorContextKey,
-  PageWrapperContextKey,
+  PageWrapperContextKey, TranslationsContextKey,
 } from "@/constants/application.ts";
-import { DefaultLocale, Locales, LocalesArray } from "@/constants/locales.ts";
-import type { LocaleType } from "@/types/locale.type.ts";
-import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 import { useIntervalFn } from "@vueuse/core";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
+import English from "@/locales/en.json";
+import { shallowValidateTranslations } from "@/lib/translations/shallow-validate-translations.ts";
+import type { TranslationsType } from "@/types/translations.type.ts";
 
 const scrollLocked = ref<boolean>(false);
 const scrollTarget = useTemplateRef("scrollTarget");
 
-const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
-const locale = ref<LocaleType>(DefaultLocale);
+const storedTranslations = localStorage.getItem(TranslationsKey)
+  ?? JSON.stringify(English);
+// const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
+let parsedTranslations: unknown;
 
-let isValid: boolean = false;
-
-for (const validLocale of LocalesArray) {
-  if (validLocale === storedLocale) {
-    locale.value = validLocale;
-    isValid = true;
-  }
+try {
+  parsedTranslations = JSON.parse(storedTranslations);
+} catch (error: unknown) {
+  console.error("Couldn't parse stored translations", error);
+  parsedTranslations = English;
 }
 
-if (!isValid) {
-  localStorage.setItem(LocaleKey, DefaultLocale);
-}
+const translations = shallowRef<TranslationsType>(
+  shallowValidateTranslations(parsedTranslations),
+);
 
-document.getElementById("__html-tag")?.setAttribute?.("lang", locale.value);
+document.getElementById("__html-tag")?.setAttribute?.("lang", translations.value.Info.Code);
 
-function selectLocale(selected: LocaleType): void {
-  locale.value = selected;
-  localStorage.setItem(LocaleKey, selected);
+function selectTranslations(selected: TranslationsType): void {
+  translations.value = selected;
+  localStorage.setItem(TranslationsKey, JSON.stringify(selected));
 }
 function lockScroll(state: boolean): void {
   scrollLocked.value = state;
 }
 
 provide<(state: boolean) => void>(PageWrapperContextKey, lockScroll);
-provide<Ref<LocaleType, LocaleType>>(LocaleContextKey, readonly(locale));
-provide<LocaleSelectorType>(LocaleSelectorContextKey, selectLocale);
+provide<Ref<TranslationsType, TranslationsType>>(TranslationsContextKey, readonly(translations));
+provide<TranslationsSelectorType>(LocaleSelectorContextKey, selectTranslations);
 
 const accentAnimationStore = useAccentAnimation();
 
@@ -74,10 +74,7 @@ watchEffect(() => {
   pause();
 });
 watchEffect(() => {
-  const shouldBeRTL: boolean = Locales
-    .find(({ Code }) => Code === locale.value)?.RTL ?? false;
-
-  if (shouldBeRTL) {
+  if (translations.value.Info.RTL) {
     document.body.dataset.rtl = "yes";
 
     return;

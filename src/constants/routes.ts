@@ -4,7 +4,7 @@ import Compass from "@/components/icons/Compass.vue";
 import Book from "@/components/icons/Book.vue";
 import Downloading from "@/components/icons/Downloading.vue";
 import Blocks from "@/components/icons/Blocks.vue";
-import type { TranslationsType } from "@/types/translations.type.ts";
+import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
 
@@ -36,7 +36,7 @@ export const Routes = {
 } as const;
 export const RoutesArray: Array<{
   "Key" : string;
-  "Name": TranslationsType;
+  "Name": TranslationsKeyType;
   "Icon": typeof Routes["Home"]["Icon"];
   "Path": `/${string}`;
 }> = Object.values(Routes);
@@ -88,24 +88,24 @@ export const Socials = {
 };
 export const TeamSocials: {
   "Maintainers": {
-    "Key" : TranslationsType;
+    "Key" : TranslationsKeyType;
     "List": Array<{
       "Name"       : string;
       "Link"       : string;
       "Badge"      : string;
       "Image"      : string;
-      "Description": TranslationsType;
+      "Description": TranslationsKeyType;
     }>;
   };
   "Contributors": {
-    "Key" : TranslationsType;
+    "Key" : TranslationsKeyType;
     "List": Array<{
       "Link" : string;
       "Image": string;
     }>;
   };
   "Special": {
-    "Key"  : TranslationsType;
+    "Key"  : TranslationsKeyType;
     "Entry": {
       "Link" : string;
       "Image": string;

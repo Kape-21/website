@@ -1,9 +1,9 @@
-import type { TranslationsType } from "@/types/translations.type.ts";
+import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
 import type { GithubReleasesType } from "@/types/github-releases.type.ts";
 
 export const ApplicationName = "Freesm Launcher";
 
-export const LocaleContextKey = Symbol();
+export const TranslationsContextKey = Symbol();
 export const LocaleSelectorContextKey = Symbol();
 export const LauncherContextKey = Symbol();
 export const LauncherModalContextKey = Symbol();
@@ -11,14 +11,14 @@ export const LauncherModalEmbedContextKey = Symbol();
 export const PageWrapperContextKey = Symbol();
 export const DesktopTerminalContextKey = Symbol();
 
-export const LocaleKey = "locale";
+export const TranslationsKey = "translations";
 export const AccentAnimationKey = "accent-animation";
 export const MobileSwipesKey = "mobile-swipes";
 
 export const FeaturesSection: Array<{
   "Id"         : "auth" | "customization" | "prism" | "other";
-  "Title"      : TranslationsType;
-  "Description": TranslationsType;
+  "Title"      : TranslationsKeyType;
+  "Description": TranslationsKeyType;
   "Reverse"    : boolean;
 }> = [
   {
@@ -66,12 +66,12 @@ export const FallbackLauncherData: GithubReleasesType = {
 };
 
 export const FreesmIssues: Array<{
-  "Name"  : TranslationsType;
+  "Name"  : TranslationsKeyType;
   "Images": Array<{
     "Link": string;
     "Text": string;
   }>;
-  "Description": TranslationsType;
+  "Description": TranslationsKeyType;
 }> = [
   {
     "Name"  : "pages.faq.issues.long-launch.title",

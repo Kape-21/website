@@ -7,7 +7,7 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import ProfileButton from "@/components/launcher/bars/ProfileButton.vue";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 import { onClickOutside } from "@vueuse/core";
-import type { TranslationsType } from "@/types/translations.type.ts";
+import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
 
 const { barStates, toggleNews, toggleStatus, toggleInstance } = defineProps<{
   "barStates": {
@@ -25,7 +25,7 @@ const contextActions: Record<string, () => void> = {
   "status"  : toggleStatus,
   "instance": toggleInstance,
 };
-const contextTranslations: Record<string, TranslationsType> = {
+const contextTranslations: Record<string, TranslationsKeyType> = {
   "news"    : "launcher.news-toggle",
   "status"  : "launcher.status-toggle",
   "instance": "launcher.instance-toggle",

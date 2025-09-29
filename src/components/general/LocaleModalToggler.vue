@@ -5,14 +5,14 @@ import { inject } from "vue";
 import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
 import { translate } from "@/lib/translations/translate.ts";
 import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import type { LocaleSelectorType } from "@/types/locale-selector.type.ts";
+import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 import { useMobileSwipes } from "@/lib/stores/misc/mobile-swipes.ts";
 import { useVibrate } from "@vueuse/core";
 
 const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<LocaleSelectorType>(LocaleSelectorContextKey);
+const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
 
 const { shown, toggle } = defineProps<{
   "shown" : boolean;

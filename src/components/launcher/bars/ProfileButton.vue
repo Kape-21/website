@@ -6,12 +6,12 @@ import { LocaleContextKey } from "@/constants/application.ts";
 import { LauncherMenuBarProfiles } from "@/constants/launcher.ts";
 import { onClickOutside, useMagicKeys } from "@vueuse/core";
 import Image from "@/components/base/Image.vue";
-import type { TranslationsType } from "@/types/translations.type.ts";
+import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
 
 const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const opened = ref<boolean>(false);
-const currentProfile = ref<{ "Name": TranslationsType; "Skin"?: string }>({
+const currentProfile = ref<{ "Name": TranslationsKeyType; "Skin"?: string }>({
   "Name": LauncherMenuBarProfiles[0].Name,
   "Skin": LauncherMenuBarProfiles[0]?.Image,
 });
@@ -23,7 +23,7 @@ const keys = useMagicKeys();
 function toggleDropdown():void {
   opened.value = !opened.value;
 }
-function select(profile: { "Name": TranslationsType; "Image"?: string }): void {
+function select(profile: { "Name": TranslationsKeyType; "Image"?: string }): void {
   currentProfile.value = {
     "Name": profile.Name,
     "Skin": profile?.Image,
