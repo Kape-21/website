@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { inject, ref, useTemplateRef } from "vue";
-import { Locales } from "@/constants/locales.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
 import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 import { onClickOutside } from "@vueuse/core";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey, TranslationsSelectorContextKey } from "@/constants/application.ts";
 
 const opened = ref<boolean>(false);
 
-const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
+const selectTranslations = inject<TranslationsSelectorType>(TranslationsSelectorContextKey);
 
 function toggleMenu() {
   opened.value = !opened.value;
@@ -37,11 +36,11 @@ onClickOutside(target, event => {
       title="Change a website locale"
       aria-label="Change a website locale"
     >
-      {{ Locales.find(({ Code }) => Code === currentLocale)?.Flag }}
+      {{ translations?.Info?.Flag }}
     </button>
     <Transition name="slide-fade">
       <div ref="target" v-show="opened" class="absolute right-0 top-10 flex flex-col items-start gap-1 rounded-md bg-catppuccin-900 p-1">
-        <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
+        <LocaleSelectors :apply="selectTranslations" :current="translations" />
       </div>
     </Transition>
   </div>

@@ -41,7 +41,7 @@ try {
     ? English
     : JSON.parse(storedTranslations);
 } catch (error: unknown) {
-  console.error("Couldn't parse stored translations", error);
+  console.error("Couldn't parse stored translations:", error);
   parsedTranslations = English;
 }
 
