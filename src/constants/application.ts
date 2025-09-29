@@ -4,7 +4,7 @@ import type { GithubReleasesType } from "@/types/github-releases.type.ts";
 export const ApplicationName = "Freesm Launcher";
 
 export const TranslationsContextKey = Symbol();
-export const LocaleSelectorContextKey = Symbol();
+export const TranslationsSelectorContextKey = Symbol();
 export const LauncherContextKey = Symbol();
 export const LauncherModalContextKey = Symbol();
 export const LauncherModalEmbedContextKey = Symbol();

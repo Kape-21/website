@@ -12,7 +12,7 @@ export function shallowValidateTranslations(parsed: unknown): TranslationsType {
     typeof parsed?.Messages !== "object" ||
     parsed?.Messages === null
   ) {
-    return Translations;
+    return Translations as TranslationsType;
   }
 
   return parsed as TranslationsType;

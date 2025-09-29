@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import Layout from "@/components/layout/Layout.vue";
 import { onAfterRouteLeave, RouterView } from "@kitbag/router";
-import { provide, readonly, type Ref, ref, shallowRef, useTemplateRef, watchEffect } from "vue";
+import { provide, readonly, ref, shallowRef, useTemplateRef, watchEffect } from "vue";
 import {
   TranslationsKey,
-  LocaleSelectorContextKey,
+  TranslationsSelectorContextKey,
   PageWrapperContextKey, TranslationsContextKey,
 } from "@/constants/application.ts";
 import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
@@ -13,17 +13,33 @@ import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 import English from "@/locales/en.json";
 import { shallowValidateTranslations } from "@/lib/translations/shallow-validate-translations.ts";
 import type { TranslationsType } from "@/types/translations.type.ts";
+import { Locales } from "@/constants/locales.ts";
+import type { LocaleType } from "@/types/locale.type.ts";
+import FetchTranslations from "@/components/general/FetchTranslations.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
 const scrollLocked = ref<boolean>(false);
 const scrollTarget = useTemplateRef("scrollTarget");
 
-const storedTranslations = localStorage.getItem(TranslationsKey)
-  ?? JSON.stringify(English);
-// const storedLocale: string = localStorage.getItem(LocaleKey) ?? navigator.language.slice(0, 2);
+const shouldFetchTranslations = ref<boolean>(false);
+
+const navigatorLocale: string = navigator.language.slice(0, 2);
+const storedTranslations: string | null = localStorage.getItem(TranslationsKey);
 let parsedTranslations: unknown;
 
+if (storedTranslations === null && navigatorLocale !== "en") {
+  const doesUserLocaleExist = Locales
+    .includes(navigatorLocale as LocaleType);
+
+  if (doesUserLocaleExist) {
+    shouldFetchTranslations.value = true;
+  }
+}
+
 try {
-  parsedTranslations = JSON.parse(storedTranslations);
+  parsedTranslations = storedTranslations === null
+    ? English
+    : JSON.parse(storedTranslations);
 } catch (error: unknown) {
   console.error("Couldn't parse stored translations", error);
   parsedTranslations = English;
@@ -32,8 +48,6 @@ try {
 const translations = shallowRef<TranslationsType>(
   shallowValidateTranslations(parsedTranslations),
 );
-
-document.getElementById("__html-tag")?.setAttribute?.("lang", translations.value.Info.Code);
 
 function selectTranslations(selected: TranslationsType): void {
   translations.value = selected;
@@ -44,8 +58,8 @@ function lockScroll(state: boolean): void {
 }
 
 provide<(state: boolean) => void>(PageWrapperContextKey, lockScroll);
-provide<Ref<TranslationsType, TranslationsType>>(TranslationsContextKey, readonly(translations));
-provide<TranslationsSelectorType>(LocaleSelectorContextKey, selectTranslations);
+provide<TranslationsReferenceType>(TranslationsContextKey, readonly(translations));
+provide<TranslationsSelectorType>(TranslationsSelectorContextKey, selectTranslations);
 
 const accentAnimationStore = useAccentAnimation();
 
@@ -74,6 +88,8 @@ watchEffect(() => {
   pause();
 });
 watchEffect(() => {
+  document.getElementById("__html-tag")?.setAttribute?.("lang", translations.value.Info.Code);
+
   if (translations.value.Info.RTL) {
     document.body.dataset.rtl = "yes";
 
@@ -95,6 +111,7 @@ onAfterRouteLeave(() => {
 </script>
 
 <template>
+  <FetchTranslations v-if="shouldFetchTranslations" />
   <div v-show="false">
     <!-- This block contains UnoCSS classes that are not included in the bundle -->
     <span class="i-mdi-github i-mdi-telegram i-fluent-add-square-24-regular i-fluent-folder-24-regular i-fluent-settings-24-regular i-fluent-chat-help-24-regular i-fluent-phone-update-24-regular i-fluent-animal-cat-24-regular i-fluent-people-16-regular i-fluent-edit-16-regular i-fluent-triangle-right-16-regular i-fluent-dismiss-circle-16-regular i-fluent-settings-16-regular i-fluent-tag-16-regular i-fluent-folder-16-regular i-fluent-folder-arrow-right-16-regular i-fluent-copy-arrow-right-16-regular i-fluent-delete-16-regular i-fluent-link-16-regular i-simple-icons-nixos i-simple-icons-archlinux i-simple-icons-debian i-simple-icons-flatpak i-simple-icons-linux i-simple-icons-gentoo i-mdi-microsoft-windows i-simple-icons-arm i-simple-icons-apple i-lucide-bolt i-lucide-square-mouse-pointer i-lucide-text-cursor-input i-lucide-ellipsis text-red-500 underline" />

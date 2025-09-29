@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
-import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
 import ThemeGenerator from "@/components/themes/ThemeGenerator.vue";
+import { TranslationsContextKey } from "@/constants/application.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
 document.title = "Themes - Freesm Launcher";
 document
@@ -14,7 +13,7 @@ document
     "Easily create and preview your Freesm Launcher theme in real-time.",
   );
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const themeJson = JSON.stringify({
   "colors": {
@@ -89,10 +88,10 @@ console.log(themeJson, themeStyle);
   <Page>
     <div class="mx-auto max-w-240 flex flex-col gap-8 px-4 pt-12">
       <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
-        {{ translate("pages.themes.title", locale) }}
+        {{ translations?.Messages?.["pages.themes.title"] }}
       </p>
       <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
-        {{ translate("pages.themes.description", locale) }}
+        {{ translations?.Messages?.["pages.themes.description"] }}
       </p>
     </div>
     <ThemeGenerator />
