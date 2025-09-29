@@ -30,31 +30,36 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
 
 <template>
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
-    <div class="w-full flex flex-nowrap gap-4 rounded-md bg-catppuccin-900 p-4">
-      <div class="flex shrink-0 flex-col gap-4">
+    <div class="w-full flex flex-nowrap gap-0 rounded-md bg-catppuccin-900">
+      <div class="flex shrink-0 flex-col gap-0">
         <button
           @click="selected = tab.Key"
           v-for="tab in CustomizationTabs"
           :key="tab.Key"
           :aria-label="tab.Name"
           :title="tab.Name"
-          :class="[
-            'grid size-10 place-items-center rounded-md transition-[background-color]',
-            selected === tab.Key
-              ? 'bg-catppuccin-800'
-              : 'bg-catppuccin-900',
-          ]"
+          class="group px-4 py-2 first:pt-4"
         >
-          <span :class="['block size-6', tab.Icon]" />
+          <span
+            :class="[
+              'grid size-10 place-items-center rounded-md transition-[background-color]',
+              'group-hover:bg-catppuccin-800',
+              selected === tab.Key
+                ? 'bg-catppuccin-800'
+                : 'bg-catppuccin-900',
+            ]"
+          >
+            <span :class="['block size-6', tab.Icon]" />
+          </span>
         </button>
       </div>
-      <div class="w-full flex flex-col gap-4">
+      <div class="w-full flex flex-col gap-4 py-4 pr-4">
         <div class="w-full flex flex-wrap">
           <button>
             {{ translate("pages.home.hero.title", locale) }}
           </button>
         </div>
-        <div class="h-full w-full flex flex-col rounded-md">
+        <div class="h-full w-full flex flex-col border-x border-[#7a7a7a]">
           <div class="flex flex-nowrap items-center justify-between border-t border-[#7a7a7a] bg-[#313131] p-1">
             <div class="flex flex-nowrap items-center gap-2">
               <div
@@ -130,7 +135,7 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
               </p>
             </div>
           </div>
-          <div class="flex flex-nowrap justify-between border-t border-[#7a7a7a] bg-[#313131] pt-1">
+          <div class="flex flex-nowrap justify-between border-y border-[#7a7a7a] bg-[#313131] pt-1">
             <p class="select-text px-1 text-sm">
               No instance selected
             </p>
