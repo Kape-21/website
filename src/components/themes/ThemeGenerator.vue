@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import { CustomizationTabs } from "@/constants/customization.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
 import Image from "@/components/base/Image.vue";
+import ColorGenerator from "@/components/themes/ColorGenerator.vue";
+import GeneralStyler from "@/components/themes/GeneralStyler.vue";
+import ButtonsStyler from "@/components/themes/ButtonsStyler.vue";
+import InputsStyler from "@/components/themes/InputsStyler.vue";
+import OthersStyler from "@/components/themes/OthersStyler.vue";
 
 const buttons = {
   "instance": [
@@ -22,8 +24,6 @@ const buttons = {
     { "name": "Update", "icon": "i-lucide-cloud" },
   ],
 };
-
-const locale = inject<ContextLocaleType>(LocaleContextKey);
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
 </script>
@@ -54,11 +54,11 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
         </button>
       </div>
       <div class="w-full flex flex-col gap-4 py-4 pr-4">
-        <div class="w-full flex flex-wrap">
-          <button>
-            {{ translate("pages.home.hero.title", locale) }}
-          </button>
-        </div>
+        <ColorGenerator v-if="selected === 'colors'" />
+        <GeneralStyler v-else-if="selected === 'general'" />
+        <ButtonsStyler v-else-if="selected === 'buttons'" />
+        <InputsStyler v-else-if="selected === 'inputs'" />
+        <OthersStyler v-else />
         <div class="h-full w-full flex flex-col border-x border-[#7a7a7a]">
           <div class="flex flex-nowrap items-center justify-between border-t border-[#7a7a7a] bg-[#313131] p-1">
             <div class="flex flex-nowrap items-center gap-2">
