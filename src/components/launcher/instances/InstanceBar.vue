@@ -2,15 +2,14 @@
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { inject, ref } from "vue";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
-import { LauncherContextKey, LocaleContextKey } from "@/constants/application.ts";
+import { LauncherContextKey, TranslationsContextKey } from "@/constants/application.ts";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 import { Groups, Deleted as DeletedResponses } from "@/constants/launcher.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import InstanceButton from "@/components/launcher/instances/InstanceButton.vue";
 import InstanceCurrent from "@/components/launcher/instances/InstanceCurrent.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const { barStates } = defineProps<{
   "barStates": {
@@ -72,7 +71,7 @@ const { maximized } = inject<ContextLauncherType>(LauncherContextKey) ?? {
             />
           </span>
           <span class="block shrink-0 font-bold">
-            {{ translate(group, locale) }}
+            {{ translations?.Messages?.[group] }}
           </span>
           <span class="block h-[2px] w-full bg-[#15161e]" />
         </button>

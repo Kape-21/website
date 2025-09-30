@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { FreesmIssues, LocaleContextKey } from "@/constants/application.ts";
+import { FreesmIssues, TranslationsContextKey } from "@/constants/application.ts";
 import { inject, ref } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { translate } from "@/lib/translations/translate.ts";
 import Image from "@/components/base/Image.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const maximized = ref<{
   "Link": string;
@@ -17,7 +16,7 @@ const maximized = ref<{
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
     <template v-for="issue in FreesmIssues" :key="issue.Name">
       <p class="select-text text-xl text-white font-semibold sm:text-3xl">
-        {{ translate(issue.Name, locale) }}
+        {{ translations?.Messages?.[issue.Name] }}
       </p>
       <div
         v-if="issue.Images.length > 0"
@@ -33,7 +32,7 @@ const maximized = ref<{
         />
       </div>
       <div
-        v-html="translate(issue.Description, locale)"
+        v-html="translations?.Messages?.[issue.Description]"
         class="select-text whitespace-pre-wrap pb-4 text-justify text-gray-300 sm:text-lg"
       ></div>
     </template>

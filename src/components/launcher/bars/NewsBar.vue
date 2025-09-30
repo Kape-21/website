@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 </script>
 
 <template>
@@ -13,13 +12,13 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
     <div class="w-full flex flex-nowrap items-center gap-1 rounded-md px-1 text-nowrap text-[10px] text-[#cdd6f4] transition-[background-color] hover:bg-[#1a1723] sm:text-[13px]">
       <div class="i-fluent-news-16-regular w-4 shrink-0" />
       <p class="w-fit text-nowrap">
-        {{ translate("launcher.website-in-vue", locale) }}
+        {{ translations?.Messages?.["launcher.website-in-vue"] }}
       </p>
     </div>
     <div class="w-fit flex flex-nowrap items-center gap-1 rounded-md px-1 text-nowrap text-[10px] text-[#cdd6f4] transition-[background-color] hover:bg-[#1a1723] sm:text-[13px]">
       <div class="i-fluent-news-16-regular w-4 shrink-0" />
       <p class="min-w-20 text-nowrap">
-        {{ translate("launcher.more-news", locale) }}
+        {{ translations?.Messages?.["launcher.more-news"] }}
       </p>
     </div>
   </div>

@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import Page from "@/components/layout/Page.vue";
-import { translate } from "@/lib/translations/translate.ts";
 import { computed, inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { FallbackLauncherData, LocaleContextKey } from "@/constants/application.ts";
+import { FallbackLauncherData, TranslationsContextKey } from "@/constants/application.ts";
 import DownloadLinks from "@/components/general/DownloadLinks.vue";
 import { useQuery } from "@tanstack/vue-query";
 import type { GithubReleasesType } from "@/types/github-releases.type.ts";
 import type { GithubReleaseLinkType } from "@/types/github-release-link.type.ts";
 import { RuntimeDownloadLink } from "@/constants/routes.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
 document.title = "Downloads - Freesm Launcher";
 document
@@ -19,7 +18,7 @@ document
     ", no registration, no calls, no glowies. Or don't do it, it's up to you!",
   );
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const { data, isPending } = useQuery({
   "queryKey": ["github", "repository", "freesmlauncher"],
@@ -93,10 +92,10 @@ const releases = computed((): GithubReleasesType => {
   <Page>
     <div class="mx-auto max-w-240 flex flex-col gap-8 px-4 pt-12">
       <p class="select-text text-center text-balance text-5xl text-white font-bold sm:text-7xl">
-        {{ translate("pages.downloads.title", locale) }}
+        {{ translations?.Messages?.["pages.downloads.title"] }}
       </p>
       <p class="select-text text-center text-balance text-lg text-gray-400 sm:text-2xl">
-        {{ translate("pages.downloads.description", locale).replace("%s", releases.Name) }}
+        {{ translations?.Messages?.["pages.downloads.description"]?.replace?.("%s", releases.Name) }}
       </p>
     </div>
     <DownloadLinks :data="data" :is-pending="isPending" />

@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { FeaturesSection, LocaleContextKey } from "@/constants/application.js";
-import { translate } from "@/lib/translations/translate.ts";
+import { FeaturesSection, TranslationsContextKey } from "@/constants/application.js";
 import { inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import AuthFeature from "@/components/general/features/AuthFeature.vue";
 import CustomizationFeature from "@/components/general/features/CustomizationFeature.vue";
 import OtherFeature from "@/components/general/features/OtherFeature.vue";
 import PrismFeatures from "@/components/general/features/PrismFeatures.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 </script>
 
 <template>
@@ -27,10 +26,10 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
       <OtherFeature v-else />
       <div class="flex flex-1 flex-col gap-2">
         <p class="select-text text-justify text-xl text-white font-semibold sm:text-2xl">
-          {{ translate(feature.Title, locale) }}
+          {{ translations?.Messages?.[feature.Title] }}
         </p>
         <p class="text-right-to-left select-text text-justify text-gray-300 sm:text-lg">
-          {{ translate(feature.Description, locale) }}
+          {{ translations?.Messages?.[feature.Description] }}
         </p>
       </div>
     </div>

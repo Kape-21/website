@@ -1,19 +1,18 @@
 <script setup lang="ts">
 import Image from "@/components/base/Image.vue";
 import { TeamSocials } from "@/constants/routes.ts";
-import { translate } from "@/lib/translations/translate.ts";
 import { inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 </script>
 
 <template>
   <div class="mx-auto my-12 max-w-240 px-4">
     <div class="w-full flex flex-col gap-4 rounded-md">
       <p class="select-text py-2 text-xl text-white font-semibold sm:text-3xl">
-        {{ translate(TeamSocials.Maintainers.Key, locale) }}
+        {{ translations?.Messages?.[TeamSocials.Maintainers.Key] }}
       </p>
       <div class="flex flex-wrap gap-4">
         <a
@@ -36,12 +35,12 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
             </span >
           </div>
           <p class="text-right-to-left select-text pt-2 text-sm text-gray-300">
-            {{ translate(member.Description, locale) }}
+            {{ translations?.Messages?.[member.Description] }}
           </p>
         </a>
       </div>
       <p class="select-text py-2 text-xl text-white font-semibold sm:text-3xl">
-        {{ translate(TeamSocials.Contributors.Key, locale) }}
+        {{ translations?.Messages?.[TeamSocials.Contributors.Key] }}
       </p>
       <div class="flex flex-wrap gap-4">
         <a
@@ -58,7 +57,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
         </a>
       </div>
       <p class="select-text py-2 text-xl text-white font-semibold sm:text-3xl">
-        {{ translate(TeamSocials.Special.Key, locale) }}
+        {{ translations?.Messages?.[TeamSocials.Special.Key] }}
       </p>
       <a
         :href="TeamSocials.Special.Entry.Link"

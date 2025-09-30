@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { LauncherTabs } from "@/constants/launcher.ts";
-import { translate } from "@/lib/translations/translate.ts";
 import { inject, shallowRef, useTemplateRef } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
 import ProfileButton from "@/components/launcher/bars/ProfileButton.vue";
 import { useCatPackState } from "@/lib/stores/launcher/cat-pack-state.ts";
 import { onClickOutside } from "@vueuse/core";
 import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
+
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const { barStates, toggleNews, toggleStatus, toggleInstance } = defineProps<{
   "barStates": {
@@ -31,7 +32,6 @@ const contextTranslations: Record<string, TranslationsKeyType> = {
   "instance": "launcher.instance-toggle",
 };
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
 const catStore = useCatPackState();
 const contextMenu = shallowRef<{
   "opened": boolean;
@@ -94,7 +94,7 @@ function handleRightClick(event: MouseEvent): void {
           <span v-show="value" class="animated-accent-background block h-full w-full rounded-md transition-[background-color] duration-2000 ease-linear" />
           </span>
         <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
-          {{ translate(contextTranslations[key], locale) }}
+          {{ translations?.Messages?.[contextTranslations[key]] }}
         </span>
       </button>
     </div>
@@ -125,7 +125,7 @@ function handleRightClick(event: MouseEvent): void {
           v-if="tab?.Name"
           class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px] group-disabled:text-[#9298b6]"
         >
-            {{ translate(tab.Name, locale) }}
+            {{ translations?.Messages?.[tab.Name] }}
           </span>
       </button>
     </div>

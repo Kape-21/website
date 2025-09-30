@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { inject, ref, useTemplateRef, watchEffect } from "vue";
-import { translate } from "@/lib/translations/translate.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 import { LauncherMenuBarProfiles } from "@/constants/launcher.ts";
 import { onClickOutside, useMagicKeys } from "@vueuse/core";
 import Image from "@/components/base/Image.vue";
 import type { TranslationsKeyType } from "@/types/translations-key.type.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const opened = ref<boolean>(false);
 const currentProfile = ref<{ "Name": TranslationsKeyType; "Skin"?: string }>({
@@ -77,10 +76,10 @@ watchEffect(() => {
         />
         <span class="block w-80 flex items-center justify-between gap-2">
           <span class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px] group-disabled:text-[#939ab8]">
-            {{ translate(profile.Name, locale) }}
+            {{ translations?.Messages?.[profile.Name] }}
           </span>
           <span v-if="profile?.Note" class="block text-nowrap text-[10px] text-[#cdd6f4] sm:text-[13px]">
-            {{ translate(profile.Note, locale) }}
+            {{ translations?.Messages?.[profile.Note] }}
           </span>
         </span>
       </button>
@@ -89,16 +88,15 @@ watchEffect(() => {
       <Image
         class-names="h-5 sm:h-6"
         :src="currentProfile?.Skin ?? '/skins/monochrome_steve.png'"
-        :alt="`${translate(currentProfile.Name, locale)}'s skin avatar`"
+        :alt="`${translations?.Messages?.[currentProfile.Name]}'s skin avatar`"
       />
       <span class="block break-all text-[10px] text-[#cdd6f4] sm:text-[13px]">
         {{
-          translate(
+          translations?.Messages?.[
             currentProfile.Name === "launcher.no-default-account"
               ? "launcher.accounts"
-              : currentProfile.Name,
-            locale,
-          )
+              : currentProfile.Name
+          ]
         }}
       </span>
     </button>

@@ -3,13 +3,12 @@ import { computed, inject, ref, watchEffect } from "vue";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useIntervalFn } from "@vueuse/core";
 import { Deleted, LauncherInstances, UnknownInstance } from "@/constants/launcher.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const allInstances = useAllInstances();
 const currentInstanceStore = useCurrentInstance();
@@ -43,33 +42,33 @@ const playtimeText = computed((): {
 
   return {
     "instance": currentInstance.value.Id === UnknownInstance.Id
-      ? translate("launcher.no-instance-selection", locale?.value)
+      ? (translations?.value?.Messages?.["launcher.no-instance-selection"] ?? "")
       :
       "Minecraft" +
       " " +
       currentInstance.value.Version +
       ", " +
-      translate("launcher.specific-time-played", locale?.value) +
+      translations?.value?.Messages?.["launcher.specific-time-played"] +
       " " +
       (
         instanceMinutes > 0
-          ? instanceMinutes + translate("launcher.minutes-short", locale?.value) + " "
+          ? instanceMinutes + (translations?.value?.Messages?.["launcher.minutes-short"] ?? "") + " "
           : ""
       ) +
       instanceSecondsRemaining +
       " " +
-      translate("launcher.seconds-short", locale?.value),
+      translations?.value?.Messages?.["launcher.seconds-short"],
     "overall":
-      translate("launcher.time-played", locale?.value) +
+      translations?.value?.Messages?.["launcher.time-played"] +
       ": " +
       (
         overallMinutes > 0
-          ? overallMinutes + translate("launcher.minutes-short", locale?.value) + " "
+          ? overallMinutes + (translations?.value?.Messages?.["launcher.minutes-short"] ?? "") + " "
           : ""
       ) +
       overallSecondsRemaining +
       " " +
-      translate("launcher.seconds-short", locale?.value),
+      translations?.value?.Messages?.["launcher.seconds-short"],
   };
 });
 

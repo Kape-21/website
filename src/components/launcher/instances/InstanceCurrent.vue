@@ -9,11 +9,10 @@ import Image from "@/components/base/Image.vue";
 import { computed, inject } from "vue";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const { barStates } = defineProps<{
   "barStates": {
@@ -142,7 +141,7 @@ const disableStates = computed((): Record<
         ]"
       />
       <span class="text-[10px] sm:text-[13px]">
-        {{ translate(item.Name, locale) }}
+        {{ translations?.Messages?.[item.Name] }}
       </span>
     </button>
   </div>

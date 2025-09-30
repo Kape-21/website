@@ -3,14 +3,13 @@ import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
 import { computed, inject, provide, ref } from "vue";
 import { Deleted, UnknownInstance } from "@/constants/launcher.ts";
 import type { LauncherInstanceType } from "@/types/launcher-instance.type.ts";
-import { LauncherModalContextKey, LocaleContextKey } from "@/constants/application.ts";
+import { LauncherModalContextKey, TranslationsContextKey } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import LauncherModal from "@/components/launcher/modals/LauncherModal.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const allInstances = useAllInstances();
 const currentInstanceStore = useCurrentInstance();
@@ -50,7 +49,7 @@ const actions = [
 
 provide<ContextLauncherType>(LauncherModalContextKey, {
   close,
-  "title"    : computed(() => translate("launcher.confirm-deletion.title", locale?.value)),
+  "title"    : computed(() => (translations?.value?.Messages?.["launcher.confirm-deletion.title"] ?? "")),
   "maximized": ref<boolean>(false),
   "maximize" : () => {},
   "minimize" : () => {},
@@ -66,8 +65,8 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
     <div class="flex flex-col gap-4 rounded-b-md px-[6px] pb-[6px] pt-[2px] text-xs text-[#cdd6f4] sm:px-2 sm:pb-2 sm:text-sm">
       <div class="whitespace-pre-wrap">
         {{
-          translate("launcher.confirm-deletion.description", locale)
-            .replace("%s", deletingInstance?.Name ?? "")
+          translations?.Messages?.["launcher.confirm-deletion.description"]
+            ?.replace?.("%s", deletingInstance?.Name ?? "")
         }}
       </div>
       <div class="flex items-center justify-end gap-2">
@@ -77,7 +76,7 @@ provide<ContextLauncherType>(LauncherModalContextKey, {
           @click="button.action"
           class="grid h-7 w-14 place-items-center rounded-md bg-[#1e1c2a] transition-[background-color] hover:bg-[#2e283e]"
         >
-          {{ translate(button.name, locale) }}
+          {{ translations?.Messages?.[button.name] }}
         </button>
       </div>
     </div>

@@ -4,13 +4,12 @@ import { computed, inject, shallowRef, useTemplateRef } from "vue";
 import { onClickOutside, useEventListener } from "@vueuse/core";
 import { Deleted, LauncherInstanceContextMenuItems, UnknownInstance } from "@/constants/launcher.ts";
 import Image from "@/components/base/Image.vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
 import { useCurrentInstance } from "@/lib/stores/launcher/current-instance.ts";
 import { useAllInstances } from "@/lib/stores/launcher/all-instances.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const { instance, selectInstance } = defineProps<{
   "instance"      : LauncherInstanceType;
@@ -178,7 +177,7 @@ const disableStates = computed((): Record<
         :alt="`${instance.Name}'s icon`"
       />
       <span class="block text-nowrap text-[10px] sm:text-[13px]">
-        {{ translate(item.Name, locale) }}
+        {{ translations?.Messages?.[item.Name] }}
       </span>
     </button>
   </div>
