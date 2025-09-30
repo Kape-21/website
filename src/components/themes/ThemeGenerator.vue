@@ -10,6 +10,8 @@ import LauncherThemed from "@/components/themes/windows/LauncherThemed.vue";
 import SettingsThemed from "@/components/themes/windows/SettingsThemed.vue";
 import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 import { TranslationsContextKey } from "@/constants/application.ts";
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
 
 const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
@@ -27,6 +29,31 @@ function selectColor({
 }
 function resetColors() {
   colors.value = { ...DefaultColors };
+}
+
+function downloadTheme() {
+  const zip = new JSZip;
+  const randomKey = Math.floor(Math.random() * 10_000);
+  const folder = zip.folder(`customTheme${randomKey}`);
+
+  if (!folder) {
+    return;
+  }
+
+  folder.file("themeStyle.css", "/* WIP */");
+  folder.file("theme.json", JSON.stringify({
+    "colors": {
+      ...colors.value,
+      "fadeAmount": 0.5,
+      "fadeColor" : "#000000",
+    },
+    "name"   : `A Custom Theme <${randomKey}>`,
+    "widgets": "Fusion",
+  }, null, 2));
+
+  zip.generateAsync({ "type": "blob" }).then(content => {
+    saveAs(content, `customTheme${randomKey}.zip`);
+  });
 }
 </script>
 
@@ -62,6 +89,9 @@ function resetColors() {
         </button>
       </div>
       <div class="w-full flex flex-col gap-4 py-4 pr-4">
+        <button @click="downloadTheme" class="w-fit rounded-md p-3 leading-none transition-[background-color] hover:bg-catppuccin-800">
+          Download
+        </button>
         <ColorGenerator
           v-if="selected === 'colors'"
           :colors="colors"
