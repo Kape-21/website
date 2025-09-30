@@ -4,7 +4,6 @@ import { useVibrate } from "@vueuse/core";
 import type { TranslationsType } from "@/types/translations.type.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
 import { ref } from "vue";
-import English from "@/locales/en.json";
 import { fetchTranslations } from "@/lib/helpers/fetch-translations.ts";
 
 const { apply, current } = defineProps<{
@@ -15,12 +14,6 @@ const { vibrate } = useVibrate({ "pattern": [15] });
 const loading = ref<boolean>(false);
 
 async function applyLocale(selected: LocaleType): Promise<void> {
-  if (selected === "en") {
-    apply?.(English as TranslationsType);
-
-    return;
-  }
-
   loading.value = true;
 
   try {

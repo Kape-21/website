@@ -10,6 +10,13 @@ export async function fetchTranslations({
   "locale"         : LocaleType;
   "setTranslations": TranslationsSelectorType | undefined;
 }): Promise<"success" | Error> {
+  if (locale === "en") {
+    // 'shallowValidateTranslations' returns english translations if something ain't good
+    setTranslations?.(shallowValidateTranslations({}));
+
+    return "success";
+  }
+
   const response = await fetch(`/translations/${locale}.json`);
   const data: unknown = await response.json();
   const validated: TranslationsType = shallowValidateTranslations(data);
