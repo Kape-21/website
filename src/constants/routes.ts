@@ -201,10 +201,10 @@ export const TeamSocials: {
 
 export const ExternalLinks = [
   {
-    "Key" : "Github",
+    "Key" : "Discord",
     // Somehow this icon is not loaded by UnoCSS...
-    "Icon": "i-mdi-github",
-    "Link": Socials.Github.Home,
+    "Icon": "i-simple-icons-discord",
+    "Link": Socials.Discord.Group,
   },
   {
     "Key" : "Telegram",

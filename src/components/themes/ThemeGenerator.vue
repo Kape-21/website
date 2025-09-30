@@ -70,14 +70,18 @@ function resetColors() {
         <OthersStyler v-else />
         <LauncherThemed
           :highlight="colors.Highlight"
-          :highlightedText="colors.HighlightedText"
-          :buttonText="colors.ButtonText"
+          :highlighted-text="colors.HighlightedText"
+          :button-text="colors.ButtonText"
           :background="colors.Window"
-          :backgroundText="colors.WindowText"
+          :background-text="colors.WindowText"
           :text="colors.Text"
           :base="colors.Base"
         />
         <SettingsThemed
+          :highlight="colors.Highlight"
+          :highlight-text="colors.HighlightedText"
+          :background="colors.Window"
+          :button-color="colors.Button"
           :base="colors.Base"
         />
       </div>
