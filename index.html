@@ -143,10 +143,14 @@
           return;
         }
 
+        console.log("mmm huh);
+
         // A shallow check that translations are valid
         if (parsed?.Messages?.["routes.home.name"] === undefined) {
           return;
         }
+
+        console.log("mmm not yeah", document.getElementById("__initial-header-nav__home-text"));
 
         // In case if something wrong
         if (!document.getElementById("__initial-header-nav__home-text")) {
