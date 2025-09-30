@@ -4,14 +4,13 @@ import { ExternalLinks, RoutesArray } from "@/constants/routes.ts";
 import Image from "@/components/base/Image.vue";
 import LocaleDropdownSelector from "@/components/general/LocaleDropdownSelector.vue";
 import { inject } from "vue";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const currentRoute = useRoute();
-const locale = inject<ContextLocaleType>(LocaleContextKey);
-
 const accentAnimationStore = useAccentAnimation();
 </script>
 
@@ -37,7 +36,7 @@ const accentAnimationStore = useAccentAnimation();
                 && 'before:!w-[calc(100%-8px)] md:before:!w-[calc(100%-16px)]',
             ]"
           >
-            {{ translate(route.Name, locale) }}
+            {{ translations?.Messages?.[route.Name] }}
           </RouterLink>
         </nav>
         <div className="w-[2px] h-8 animated-accent-background transition-[background-color] duration-2000 ease-linear" />

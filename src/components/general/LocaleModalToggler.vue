@@ -2,17 +2,16 @@
 import Modal from "@/components/base/Modal.vue";
 import World from "@/components/icons/World.vue";
 import { inject } from "vue";
-import { LocaleContextKey, LocaleSelectorContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
 import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
 import LocaleSelectors from "@/components/general/LocaleSelectors.vue";
 import { useAccentAnimation } from "@/lib/stores/misc/accent-animations.ts";
 import { useMobileSwipes } from "@/lib/stores/misc/mobile-swipes.ts";
 import { useVibrate } from "@vueuse/core";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey, TranslationsSelectorContextKey } from "@/constants/application.ts";
 
-const currentLocale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
+const selectTranslations = inject<TranslationsSelectorType>(TranslationsSelectorContextKey);
 
 const { shown, toggle } = defineProps<{
   "shown" : boolean;
@@ -57,7 +56,7 @@ function toggleSwipes() {
       <World :active="shown" />
     </span>
     <span class="block pb-1 text-center text-sm leading-none transition-[color] duration-200">
-      {{ translate("general.other", currentLocale) }}
+      {{ translations?.Messages?.["general.other"] }}
     </span>
   </button>
   <Modal
@@ -68,7 +67,7 @@ function toggleSwipes() {
     <div class="h-fit w-64 flex flex-col select-none gap-4 p-4">
       <div class="flex flex-nowrap items-center justify-between">
         <p class="text-xl leading-none">
-          {{ translate("general.other", currentLocale) }}
+          {{ translations?.Messages?.["general.other"] }}
         </p>
         <button
           @click="toggle"
@@ -79,7 +78,7 @@ function toggleSwipes() {
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="max-h-52 flex flex-col gap-2 overflow-y-auto">
-        <LocaleSelectors :apply="selectLocale" :current="currentLocale" />
+        <LocaleSelectors :apply="selectTranslations" :current="translations" />
       </div>
       <div class="h-[1px] w-full bg-catppuccin-700" />
       <div class="flex flex-col gap-2">

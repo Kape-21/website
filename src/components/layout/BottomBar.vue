@@ -3,12 +3,12 @@ import { inject, ref } from "vue";
 import { RouterLink, useRoute } from "@kitbag/router";
 import { RoutesArray } from "@/constants/routes.ts";
 import LocaleModalToggler from "@/components/general/LocaleModalToggler.vue";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const currentRoute = useRoute();
-const locale = inject<ContextLocaleType>(LocaleContextKey);
 const shown = ref<boolean>(false);
 
 function toggleModal(properties?: { "show"?: boolean }) {
@@ -50,7 +50,7 @@ function onNavigate() {
         />
       </div>
       <p class="pb-1 text-center text-sm leading-none transition-[color] duration-200">
-        {{ translate(route.Name, locale) }}
+        {{ translations?.Messages?.[route.Name] }}
       </p>
     </RouterLink>
     <LocaleModalToggler

@@ -2,11 +2,10 @@
 import Image from "@/components/base/Image.vue";
 import { FooterLinks } from "@/constants/routes.ts";
 import { inject } from "vue";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { LocaleContextKey } from "@/constants/application.ts";
-import { translate } from "@/lib/translations/translate.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 </script>
 
 <template>
@@ -21,7 +20,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           />
         </RouterLink>
         <p class="select-text text-gray-400 max-sm:text-sm">
-          {{ translate("footer.short-description", locale) }}
+          {{ translations?.Messages?.["footer.short-description"] }}
         </p>
         <Image
           class-names="max-h-7 rounded-md"
@@ -36,7 +35,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
           class="flex flex-1 flex-col items-center gap-2 px-4 sm:items-start"
         >
           <p class="text-white font-semibold max-sm:text-sm">
-            {{ translate(section.title, locale) }}
+            {{ translations?.Messages?.[section.title] }}
           </p>
           <div class="flex flex-row items-center gap-2 sm:flex-col sm:items-start">
             <a
@@ -46,7 +45,7 @@ const locale = inject<ContextLocaleType>(LocaleContextKey);
               target="_blank"
               class="text-center text-wrap text-gray-400 leading-5 underline-offset-[5px] sm:text-start max-sm:text-sm hover:underline"
             >
-              {{ translate(link.name, locale) }}
+              {{ translations?.Messages?.[link.name] }}
             </a>
           </div>
         </div>

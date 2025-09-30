@@ -18,6 +18,8 @@ useQuery({
 
     setTranslations?.(validated);
     localStorage.setItem(TranslationsKey, JSON.stringify(validated));
+
+    return 1;
   },
 });
 </script>
