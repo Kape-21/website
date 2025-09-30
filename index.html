@@ -148,10 +148,14 @@
           return;
         }
 
+        console.log("not hello???", document.getElementById("__initial-header-nav__home-text"));
+
         // In case if something wrong
         if (!document.getElementById("__initial-header-nav__home-text")) {
           return;
         }
+
+        console.log("hello???");
 
         const homeTitle = parsed?.Messages?.["routes.home.name"];
         const downloadsTitle = parsed?.Messages?.["routes.downloads.name"];
@@ -169,6 +173,8 @@
         document.getElementById("__initial-bottom-bar__faq-text").textContent = faqTitle;
         document.getElementById("__initial-bottom-bar__themes-text").textContent = themesTitle;
         document.getElementById("__initial-bottom-bar__other-text").textContent = otherTitle;
+
+        removeEventListener("DOMContentLoaded", translateInitialText);
       };
 
       addEventListener("DOMContentLoaded", translateInitialText);
