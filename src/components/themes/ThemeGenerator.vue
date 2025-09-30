@@ -1,36 +1,36 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { CustomizationTabs } from "@/constants/customization.ts";
-import Image from "@/components/base/Image.vue";
 import ColorGenerator from "@/components/themes/ColorGenerator.vue";
 import GeneralStyler from "@/components/themes/GeneralStyler.vue";
 import ButtonsStyler from "@/components/themes/ButtonsStyler.vue";
 import InputsStyler from "@/components/themes/InputsStyler.vue";
 import OthersStyler from "@/components/themes/OthersStyler.vue";
-
-const buttons = {
-  "instance": [
-    { "name": "Launch", "icon": "i-lucide-play" },
-    { "name": "Kill", "icon": "i-lucide-x" },
-    { "name": "Edit", "icon": "i-lucide-edit" },
-    { "name": "Change Group", "icon": "i-lucide-bookmark" },
-    { "name": "Folder", "icon": "i-lucide-folder" },
-  ],
-  "menu": [
-    { "name": "Add Instance", "icon": "i-lucide-plus" },
-    { "name": "Folders", "icon": "i-lucide-folder" },
-    { "name": "Settings", "icon": "i-lucide-settings" },
-    { "name": "Help", "icon": "i-lucide-circle-question-mark" },
-    { "name": "Update", "icon": "i-lucide-cloud" },
-  ],
-};
+import LauncherThemed from "@/components/themes/LauncherThemed.vue";
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
+const colors = ref({
+  "AlternateBase"  : "#9e7372",
+  "Base"           : "#222222", // #222222
+  "BrightText"     : "#e0e031",
+  "Button"         : "#0000ff",
+  "ButtonText"     : "#ffffff", // #ffffff
+  "Highlight"      : "#96db59", // #96db59
+  "HighlightedText": "#000000", // #000000
+  "Link"           : "#9e98f5",
+  "Text"           : "#a7a7a7", // #a7a7a7
+  "ToolTipBase"    : "#521087",
+  "ToolTipText"    : "#cbace3",
+  "Window"         : "#313131", // #313131
+  "WindowText"     : "#ffffff", // #ffffff
+  "fadeAmount"     : 0.5, // not sure what this does
+  "fadeColor"      : "#000000", // not sure what this does
+});
 </script>
 
 <template>
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
-    <div class="w-full flex flex-nowrap gap-0 rounded-md bg-catppuccin-900">
+    <div class="relative w-full flex flex-nowrap gap-0 overflow-x-auto rounded-md bg-catppuccin-900">
       <div class="flex shrink-0 flex-col gap-0">
         <button
           @click="selected = tab.Key"
@@ -59,95 +59,15 @@ const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
         <ButtonsStyler v-else-if="selected === 'buttons'" />
         <InputsStyler v-else-if="selected === 'inputs'" />
         <OthersStyler v-else />
-        <div class="h-full w-full flex flex-col border-x border-[#7a7a7a]">
-          <div class="flex flex-nowrap items-center justify-between border-t border-[#7a7a7a] bg-[#313131] p-1">
-            <div class="flex flex-nowrap items-center gap-2">
-              <div
-                v-for="button in buttons.menu"
-                :key="button.name"
-                class="flex flex-nowrap items-center"
-              >
-                <div :class="['size-6', button.icon]" />
-                <div class="text-xs">
-                  {{ button.name }}
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-nowrap items-center">
-              <Image class-names="size-6" src="/skins/monochrome_steve.png" alt="" />
-              <div class="text-xs">
-                Accounts
-              </div>
-            </div>
-          </div>
-          <div class="flex flex-nowrap border-t border-[#7a7a7a] bg-[#222222]">
-            <div class="w-full flex flex-col gap-2 p-1">
-              <div class="flex flex-nowrap items-center gap-1">
-                <div class="i-lucide-chevron-down size-6 shrink-0 text-[#a7a7a7]" />
-                <div class="shrink-0 text-[13px] text-[#a7a7a7] font-bold">
-                  Ungrouped
-                </div>
-                <div class="ml-1 h-[2px] w-full bg-[#2d2d2d]" />
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <div
-                  v-for="version in ['1.16.5', '1.21.8']"
-                  :key="version"
-                  class="group w-fit flex flex-col items-center gap-2"
-                >
-                  <Image
-                    class-names="size-12"
-                    src="/assets/grass.svg"
-                    alt="Grass SVG icon"
-                  />
-                  <div class="grid w-24 place-items-center bg-[#2c2c2c] py-[5px] text-xs text-white leading-none group-first:bg-[#96db59] group-first:text-black">
-                    {{ version }}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="h-full w-39 flex flex-col items-center border-l border-[#7a7a7a] bg-[#323232]">
-              <Image class-names="size-20 mt-2" src="/assets/grass.svg" alt="Grass SVG icon" />
-              <div class="py-2 text-xs leading-none">
-                1.16.5
-              </div>
-              <div
-                v-for="button in buttons.instance"
-                :key="button.name"
-                class="w-full flex flex-nowrap items-center justify-between p-1"
-              >
-                <div class="flex flex-nowrap items-center gap-1">
-                  <div :class="['size-4', button.icon]" />
-                  <div class="text-xs">
-                    {{ button.name }}
-                  </div>
-                </div>
-                <div v-if="button.name === 'Launch'" class="i-fluent-caret-down-16-filled size-3 bg-[#7a7a7a]"></div>
-              </div>
-              <div class="h-8 w-full" />
-            </div>
-          </div>
-          <div class="flex flex-nowrap justify-between border-t border-[#7a7a7a] bg-[#313131] p-1">
-            <div class="flex flex-nowrap items-center gap-1">
-              <div class="i-fluent-news-16-regular" />
-              <p class="select-text text-sm">
-                Freesm Launcher Release Sequoia 1.3.0, now available
-              </p>
-            </div>
-            <div class="flex flex-nowrap items-center gap-1">
-              <div class="i-fluent-news-16-regular" />
-              <p class="select-text pr-4 text-sm">
-                More news
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-nowrap justify-between border-y border-[#7a7a7a] bg-[#313131] pt-1">
-            <p class="select-text px-1 text-sm">
-              No instance selected
-            </p>
-            <textarea disabled class="max-h-6 min-h-6 w-33 bg-transparent text-sm">Total playtime: 0s</textarea>
-          </div>
-        </div>
+        <LauncherThemed
+          :highlight="colors.Highlight"
+          :highlightedText="colors.HighlightedText"
+          :buttonText="colors.ButtonText"
+          :background="colors.Window"
+          :backgroundText="colors.WindowText"
+          :text="colors.Text"
+          :base="colors.Base"
+        />
       </div>
     </div>
   </div>
