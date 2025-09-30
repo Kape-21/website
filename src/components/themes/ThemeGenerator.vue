@@ -28,7 +28,13 @@ function resetColors() {
 
 <template>
   <div class="mx-auto my-12 max-w-240 flex flex-col gap-4 px-4">
-    <div class="relative w-full flex flex-nowrap gap-0 overflow-x-auto rounded-md bg-catppuccin-900">
+    <!-- @touch*.stop prevents mobile swipes -->
+    <div
+      @touchstart.stop
+      @touchmove.stop
+      @touchend.stop
+      class="relative w-full flex flex-nowrap gap-0 overflow-x-auto rounded-md bg-catppuccin-900"
+    >
       <div class="flex shrink-0 flex-col gap-0">
         <button
           @click="selected = tab.Key"
