@@ -154,6 +154,8 @@ function downloadTheme() {
           :highlight-text="colors.HighlightedText"
           :background="colors.Window"
           :button-color="colors.Button"
+          :background-text="colors.WindowText"
+          :text="colors.Text"
           :base="colors.Base"
         />
       </div>

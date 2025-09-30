@@ -7,13 +7,17 @@ const {
   highlightText,
   background,
   buttonColor,
+  text,
+  backgroundText,
   base,
 } = defineProps<{
-  "highlight"    : string;
-  "highlightText": string;
-  "background"   : string;
-  "buttonColor"  : string;
-  "base"         : string;
+  "highlight"     : string;
+  "highlightText" : string;
+  "background"    : string;
+  "buttonColor"   : string;
+  "text"          : string;
+  "backgroundText": string;
+  "base"          : string;
 }>();
 
 const catPackStore = useCatPackState();
@@ -49,7 +53,7 @@ const itemsThemesSettings = [
         class="flex flex-nowrap items-center gap-2 p-1"
         :style="{
           background: button.icon === 'special' ? highlight : 'transparent',
-          color     : button.icon === 'special' ? highlightText : '#ffffff',
+          color     : button.icon === 'special' ? highlightText : text,
         }"
       >
         <Image
@@ -69,7 +73,10 @@ const itemsThemesSettings = [
       :style="{ background: background }"
     >
       <div class="flex flex-nowrap items-center justify-between">
-        <p class="pl-2 font-bold leading-none">
+        <p
+          class="pl-2 font-bold leading-none"
+          :style="{ color: backgroundText }"
+        >
           Launcher
         </p>
         <Image class-names="size-6" src="/favicon.webp" alt="Freesm Launcher logo" />
@@ -88,6 +95,7 @@ const itemsThemesSettings = [
             :style="{
               background : buttonColor,
               borderColor: background,
+              color      : backgroundText,
             }"
           >
             {{ name }}
@@ -100,7 +108,10 @@ const itemsThemesSettings = [
             borderColor: base,
           }"
         >
-          <p class="text-xs">
+          <p
+            class="text-xs"
+            :style="{ color: backgroundText }"
+          >
             Instance view sorting mode
           </p>
           <div
@@ -110,6 +121,7 @@ const itemsThemesSettings = [
               v-for="item in ['By last launched', 'By name']"
               :key="item"
               class="flex flex-nowrap items-center gap-1"
+              :style="{ color: backgroundText }"
             >
               <div v-if="item === 'By last launched'" class="size-4 rounded-full bg-black" />
               <div v-else class="grid size-4 place-items-center rounded-full bg-black">
@@ -120,7 +132,10 @@ const itemsThemesSettings = [
               </p>
             </div>
           </div>
-          <p class="pt-2 text-xs">
+          <p
+            class="pt-2 text-xs"
+            :style="{ color: backgroundText }"
+          >
             Theme
           </p>
           <div
@@ -131,7 +146,10 @@ const itemsThemesSettings = [
               :key="item.name"
               class="flex flex-nowrap items-center gap-2"
             >
-              <p class="w-11 shrink-0 text-xs">
+              <p
+                class="w-11 shrink-0 text-xs"
+                :style="{ color: backgroundText }"
+              >
                 {{ item.name }}
               </p>
               <div
@@ -139,21 +157,31 @@ const itemsThemesSettings = [
                 :style="{
                   background : buttonColor,
                   borderColor: background,
+                  color      : backgroundText,
                 }"
               >
                 {{ item.input }}
               </div>
-              <div class="i-lucide-folder size-4 shrink-0" />
+              <div
+                class="i-lucide-folder size-4 shrink-0"
+                :style="{ color: backgroundText }"
+              />
             </div>
           </div>
-          <p class="pt-2 text-xs">
+          <p
+            class="pt-2 text-xs"
+            :style="{ color: backgroundText }"
+          >
             Cat
           </p>
           <div
             class="border border-black rounded-md px-2 py-2 sm:cols-2"
           >
             <div class="flex flex-nowrap items-center justify-between">
-              <p class="text-xs">
+              <p
+                class="text-xs"
+                :style="{ color: backgroundText }"
+              >
                 Opacity
               </p>
               <div
@@ -162,13 +190,17 @@ const itemsThemesSettings = [
                   background: base,
                 }"
               >
-                <p class="p-1 text-xs leading-none">
+                <p
+                  class="p-1 text-xs leading-none"
+                  :style="{ color: backgroundText }"
+                >
                   100%
                 </p>
                 <div
                   class="h-full w-4 flex flex-col items-center justify-center rounded-md"
                   :style="{
                     background: background,
+                    color     : backgroundText,
                   }"
                 >
                   <div class="i-fluent-caret-up-16-filled size-2" />
@@ -177,7 +209,10 @@ const itemsThemesSettings = [
               </div>
             </div>
           </div>
-          <p class="pt-2 text-xs">
+          <p
+            class="pt-2 text-xs"
+            :style="{ color: backgroundText }"
+          >
             Tools
           </p>
           <div
@@ -185,7 +220,10 @@ const itemsThemesSettings = [
           >
             <div class="flex flex-nowrap items-center gap-1">
               <div class="size-4 bg-black" />
-              <p class="text-xs">
+              <p
+                class="text-xs"
+                :style="{ color: backgroundText }"
+              >
                 Replace toolbar with menubar
               </p>
             </div>
