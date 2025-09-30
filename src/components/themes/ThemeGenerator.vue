@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import { CustomizationTabs, DefaultColors } from "@/constants/customization.ts";
 import ColorGenerator from "@/components/themes/ColorGenerator.vue";
 import GeneralStyler from "@/components/themes/GeneralStyler.vue";
@@ -8,6 +8,10 @@ import InputsStyler from "@/components/themes/InputsStyler.vue";
 import OthersStyler from "@/components/themes/OthersStyler.vue";
 import LauncherThemed from "@/components/themes/windows/LauncherThemed.vue";
 import SettingsThemed from "@/components/themes/windows/SettingsThemed.vue";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
+import { TranslationsContextKey } from "@/constants/application.ts";
+
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
 const colors = ref<typeof DefaultColors>({ ...DefaultColors });
@@ -68,6 +72,42 @@ function resetColors() {
         <ButtonsStyler v-else-if="selected === 'buttons'" />
         <InputsStyler v-else-if="selected === 'inputs'" />
         <OthersStyler v-else />
+        <div class="grid cols-1 select-text gap-4 sm:cols-2">
+          <div
+            class="flex flex-col gap-2 border border-[#7a7a7a] p-2"
+            :style="{ background: colors.Window, }"
+          >
+            <p
+              class="text-sm leading-none"
+              :style="{ color: colors.Link }"
+            >
+              I'm a link!
+            </p>
+            <p
+              class="text-sm leading-none"
+              :style="{ color: colors.Text }"
+            >
+              I'm a text!
+            </p>
+          </div>
+          <div class="flex flex-col border border-[#7a7a7a]">
+            <div class="w-full p-2 text-sm leading-none" :style="{ background: colors.Base }">
+              日本語
+            </div>
+            <div class="w-full p-2 text-sm leading-none" :style="{ background: colors.AlternateBase }">
+              Cute Engwish
+            </div>
+            <div
+              class="w-full p-2 text-sm leading-none"
+              :style="{
+                background: colors.Highlight,
+                color     : colors.HighlightedText,
+              }"
+            >
+              {{ translations?.Info?.Name }}
+            </div>
+          </div>
+        </div>
         <LauncherThemed
           :highlight="colors.Highlight"
           :highlighted-text="colors.HighlightedText"

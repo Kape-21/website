@@ -62,7 +62,7 @@ const buttons = {
           </div>
           <div
             v-if="button.name === 'Settings'"
-            class="absolute left-0 top-7 p-1 text-nowrap text-xs leading-none"
+            class="absolute left-0 top-7 select-text p-1 text-nowrap text-xs leading-none"
             :style="{
               background: tooltipBase,
               color     : tooltipText,

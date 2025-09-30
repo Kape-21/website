@@ -26,19 +26,20 @@ export const CustomizationTabs = [
   },
 ] as const;
 export const DefaultColors = {
-  "AlternateBase"  : "#9e7372",
-  "Base"           : "#222222", //
-  "BrightText"     : "#e0e031",
-  "Button"         : "#303030", //
-  "ButtonText"     : "#ffffff", //
-  "Highlight"      : "#96db59", //
-  "HighlightedText": "#000000", //
-  "Link"           : "#9e98f5",
-  "Text"           : "#a7a7a7", //
-  "ToolTipBase"    : "#ffffdc", //
-  "ToolTipText"    : "#000000", //
-  "Window"         : "#313131", //
-  "WindowText"     : "#ffffff", //
+  "AlternateBase"  : "#2b2b2b",
+  "Base"           : "#242424",
+  "BrightText"     : "#e0e031", // not sure what this does. maybe accessibility thing?
+  "Button"         : "#303030",
+  "ButtonText"     : "#ffffff",
+  "Highlight"      : "#96db59",
+  "HighlightedText": "#000000",
+  "Link"           : "#3291cc",
+  "Text"           : "#f0f0f0",
+  "ToolTipBase"    : "#ffffdc",
+  "ToolTipText"    : "#000000",
+  "Window"         : "#313131",
+  "WindowText"     : "#ffffff",
+
   /*
    * "fadeAmount"     : 0.5, // not sure what this does
    * "fadeColor"      : "#000000", // not sure what this does
