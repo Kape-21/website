@@ -40,7 +40,7 @@
         #__initial-header-nav {
           gap: 8px !important;
         }
-        #__initial-header-nav__themes-text {
+        #__initial-header-nav__last-element {
           padding-right: 4px !important;
         }
       }
@@ -127,57 +127,6 @@
           break;
         }
       }
-
-      const translateInitialText = () => {
-        const storedTranslations = localStorage?.getItem?.("translations");
-
-        if (storedTranslations === null) {
-          return;
-        }
-
-        let parsed;
-
-        try {
-          parsed = JSON.parse(storedTranslations);
-        } catch {
-          return;
-        }
-
-        // A shallow check that translations are valid
-        if (parsed?.Messages?.["routes.home.name"] === undefined) {
-          return;
-        }
-
-        console.log("not hello???", document.getElementById("__initial-header-nav__home-text"));
-
-        // In case if something wrong
-        if (!document.getElementById("__initial-header-nav__home-text")) {
-          return;
-        }
-
-        console.log("hello???");
-
-        const homeTitle = parsed?.Messages?.["routes.home.name"];
-        const downloadsTitle = parsed?.Messages?.["routes.downloads.name"];
-        const faqTitle = parsed?.Messages?.["routes.faq.name"];
-        const themesTitle = parsed?.Messages?.["routes.themes.name"];
-        const otherTitle = parsed?.Messages?.["general.other"];
-
-        document.getElementById("__initial-header-nav__home-text").textContent = homeTitle;
-        document.getElementById("__initial-header-nav__downloads-text").textContent = downloadsTitle;
-        document.getElementById("__initial-header-nav__faq-text").textContent = faqTitle;
-        document.getElementById("__initial-header-nav__themes-text").textContent = themesTitle;
-
-        document.getElementById("__initial-bottom-bar__home-text").textContent = homeTitle;
-        document.getElementById("__initial-bottom-bar__downloads-text").textContent = downloadsTitle;
-        document.getElementById("__initial-bottom-bar__faq-text").textContent = faqTitle;
-        document.getElementById("__initial-bottom-bar__themes-text").textContent = themesTitle;
-        document.getElementById("__initial-bottom-bar__other-text").textContent = otherTitle;
-
-        removeEventListener("DOMContentLoaded", translateInitialText);
-      };
-
-      addEventListener("DOMContentLoaded", translateInitialText);
     </script>
   </head>
   <body style="margin:0;background:#09090e;color:white">
@@ -190,10 +139,10 @@
             <div></div>
             <div id="__initial-header-row" style="display:flex;gap:16px;align-items:center">
               <div id="__initial-header-nav" style="display:flex;gap:16px">
-                <p id="__initial-header-nav__home-text" style="font-weight:600">Home</p>
-                <p id="__initial-header-nav__downloads-text" style="font-weight:600">Downloads</p>
-                <p id="__initial-header-nav__faq-text" style="font-weight:600">FAQ</p>
-                <p id="__initial-header-nav__themes-text" style="font-weight:600;padding-right:8px">Themes</p>
+                <p style="font-weight:600">Home</p>
+                <p style="font-weight:600">Downloads</p>
+                <p style="font-weight:600">FAQ</p>
+                <p id="__initial-header-nav__last-element" style="font-weight:600;padding-right:8px">Themes</p>
               </div>
               <div style="width:2px;height:32px;background:#cba6f7"></div>
               <div class="__initial-header-nav__link" style="width:32px;height:32px;background:#11111b;border-radius:100%"></div>
@@ -206,23 +155,23 @@
         <div id="__initial-bottom-bar" style="position:absolute;bottom:0;width:100%;height:80px;background:#0c0c14;display:none;flex-wrap:nowrap;overflow-x:auto">
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p id="__initial-bottom-bar__home-text" style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Home</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Home</p>
           </div>
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p id="__initial-bottom-bar__downloads-text" style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Downloads</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Downloads</p>
           </div>
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p id="__initial-bottom-bar__faq-text" style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">FAQ</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">FAQ</p>
           </div>
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p id="__initial-bottom-bar__themes-text" style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Themes</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Themes</p>
           </div>
           <div style="min-width:80px;display:flex;flex-direction:column;gap:8px;justify-content:center;align-items:center;flex:1 0 0">
             <div style="width:32px;height:32px"></div>
-            <p id="__initial-bottom-bar__other-text" style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Other</p>
+            <p style="padding-bottom:4px;text-align:center;font-size:14px;line-height:1;color:#ffffffb3">Other</p>
           </div>
         </div>
       </div>
