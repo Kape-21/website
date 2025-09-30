@@ -1,31 +1,26 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { CustomizationTabs } from "@/constants/customization.ts";
+import { CustomizationTabs, DefaultColors } from "@/constants/customization.ts";
 import ColorGenerator from "@/components/themes/ColorGenerator.vue";
 import GeneralStyler from "@/components/themes/GeneralStyler.vue";
 import ButtonsStyler from "@/components/themes/ButtonsStyler.vue";
 import InputsStyler from "@/components/themes/InputsStyler.vue";
 import OthersStyler from "@/components/themes/OthersStyler.vue";
-import LauncherThemed from "@/components/themes/LauncherThemed.vue";
+import LauncherThemed from "@/components/themes/windows/LauncherThemed.vue";
+import SettingsThemed from "@/components/themes/windows/SettingsThemed.vue";
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
-const colors = ref({
-  "AlternateBase"  : "#9e7372",
-  "Base"           : "#222222", // #222222
-  "BrightText"     : "#e0e031",
-  "Button"         : "#0000ff",
-  "ButtonText"     : "#ffffff", // #ffffff
-  "Highlight"      : "#96db59", // #96db59
-  "HighlightedText": "#000000", // #000000
-  "Link"           : "#9e98f5",
-  "Text"           : "#a7a7a7", // #a7a7a7
-  "ToolTipBase"    : "#521087",
-  "ToolTipText"    : "#cbace3",
-  "Window"         : "#313131", // #313131
-  "WindowText"     : "#ffffff", // #ffffff
-  "fadeAmount"     : 0.5, // not sure what this does
-  "fadeColor"      : "#000000", // not sure what this does
-});
+const colors = ref<typeof DefaultColors>(DefaultColors);
+
+function selectColor({
+  key,
+  color,
+}: {
+  "key"  : keyof typeof DefaultColors;
+  "color": typeof DefaultColors[keyof typeof DefaultColors];
+}) {
+  colors.value[key] = color;
+}
 </script>
 
 <template>
@@ -54,7 +49,11 @@ const colors = ref({
         </button>
       </div>
       <div class="w-full flex flex-col gap-4 py-4 pr-4">
-        <ColorGenerator v-if="selected === 'colors'" />
+        <ColorGenerator
+          v-if="selected === 'colors'"
+          :colors="colors"
+          :set-color="selectColor"
+        />
         <GeneralStyler v-else-if="selected === 'general'" />
         <ButtonsStyler v-else-if="selected === 'buttons'" />
         <InputsStyler v-else-if="selected === 'inputs'" />
@@ -66,6 +65,9 @@ const colors = ref({
           :background="colors.Window"
           :backgroundText="colors.WindowText"
           :text="colors.Text"
+          :base="colors.Base"
+        />
+        <SettingsThemed
           :base="colors.Base"
         />
       </div>
