@@ -159,25 +159,16 @@
         const themesTitle = parsed?.Messages?.["routes.themes.name"];
         const otherTitle = parsed?.Messages?.["general.other"];
 
-        document.getElementById("__initial-header-nav__home-text")
-          .textContent = homeTitle;
-        document.getElementById("__initial-header-nav__downloads-text")
-          .textContent = downloadsTitle;
-        document.getElementById("__initial-header-nav__faq-text")
-          .textContent = faqTitle;
-        document.getElementById("__initial-header-nav__themes-text")
-          .textContent = themesTitle;
+        document.getElementById("__initial-header-nav__home-text").textContent = homeTitle;
+        document.getElementById("__initial-header-nav__downloads-text").textContent = downloadsTitle;
+        document.getElementById("__initial-header-nav__faq-text").textContent = faqTitle;
+        document.getElementById("__initial-header-nav__themes-text").textContent = themesTitle;
 
-        document.getElementById("__initial-bottom-bar__home-text")
-          .textContent = homeTitle;
-        document.getElementById("__initial-bottom-bar__downloads-text")
-          .textContent = downloadsTitle;
-        document.getElementById("__initial-bottom-bar__faq-text")
-          .textContent = faqTitle;
-        document.getElementById("__initial-bottom-bar__themes-text")
-          .textContent = themesTitle;
-        document.getElementById("__initial-bottom-bar__other-text")
-          .textContent = otherTitle;
+        document.getElementById("__initial-bottom-bar__home-text").textContent = homeTitle;
+        document.getElementById("__initial-bottom-bar__downloads-text").textContent = downloadsTitle;
+        document.getElementById("__initial-bottom-bar__faq-text").textContent = faqTitle;
+        document.getElementById("__initial-bottom-bar__themes-text").textContent = themesTitle;
+        document.getElementById("__initial-bottom-bar__other-text").textContent = otherTitle;
       };
 
       translateInitialText();
