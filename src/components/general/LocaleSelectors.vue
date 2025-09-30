@@ -3,9 +3,9 @@ import { ExtraInfo, Locales } from "@/constants/locales.ts";
 import { useVibrate } from "@vueuse/core";
 import type { TranslationsType } from "@/types/translations.type.ts";
 import type { LocaleType } from "@/types/locale.type.ts";
-import { shallowValidateTranslations } from "@/lib/translations/shallow-validate-translations.ts";
 import { ref } from "vue";
 import English from "@/locales/en.json";
+import { fetchTranslations } from "@/lib/helpers/fetch-translations.ts";
 
 const { apply, current } = defineProps<{
   "apply"  : ((translations: TranslationsType) => void) | undefined;
@@ -24,11 +24,11 @@ async function applyLocale(selected: LocaleType): Promise<void> {
   loading.value = true;
 
   try {
-    const response = await fetch(`/translations/${selected}.json`);
-    const data: unknown = await response.json();
-    const validated: TranslationsType = shallowValidateTranslations(data);
+    await fetchTranslations({
+      "locale"         : selected,
+      "setTranslations": apply,
+    });
 
-    apply?.(validated);
     vibrate();
   } catch (error) {
     console.error(`Couldn't retrieve translations for '${selected}':`, error);

@@ -1,3 +1,3 @@
-import Translations from "@/locales/en.json";
+import type { TranslationsType } from "@/types/translations.type.ts";
 
-export type TranslationsKeyType = keyof typeof Translations["Messages"];
+export type TranslationsKeyType = keyof TranslationsType["Messages"];

@@ -6,24 +6,23 @@ import { WebTerm } from "web-term-ui";
 import LinuxHeader from "@/components/launcher/headers/LinuxHeader.vue";
 import {
   DesktopTerminalContextKey,
-  LocaleContextKey,
-  LocaleSelectorContextKey,
+  TranslationsContextKey,
+  TranslationsSelectorContextKey,
 } from "@/constants/application.ts";
 import type { ContextLauncherType } from "@/types/context-launcher.type.ts";
 import DesktopMenu from "@/components/launcher/desktop/DesktopMenu.vue";
 import { UAParser } from "ua-parser-js";
 import { getPlatformName } from "@/lib/helpers/get-platform-name.ts";
 import { executeTerminalCommand } from "@/lib/helpers/execute-terminal-command.ts";
-import type { ContextLocaleType } from "@/types/context-locale.type.ts";
-import { DefaultLocale } from "@/constants/locales.ts";
 import type { TranslationsSelectorType } from "@/types/translations-selector.type.ts";
+import type { TranslationsReferenceType } from "@/types/translations-reference.type.ts";
 
 const { open } = defineProps<{
   "open": () => void;
 }>();
 
-const locale = inject<ContextLocaleType>(LocaleContextKey);
-const selectLocale = inject<TranslationsSelectorType>(LocaleSelectorContextKey);
+const translations = inject<TranslationsReferenceType>(TranslationsContextKey);
+const selectTranslations = inject<TranslationsSelectorType>(TranslationsSelectorContextKey);
 
 const { os, browser, engine } = UAParser(navigator.userAgent);
 const platform = getPlatformName(os?.name);
@@ -108,8 +107,8 @@ onMounted(() => {
     }) => {
       editor.value = state;
     },
-    "locale"   : locale?.value ?? DefaultLocale,
-    "setLocale": selectLocale ?? (() => {}),
+    "locale"         : translations?.value?.Info?.Code ?? "en",
+    "setTranslations": selectTranslations ?? (() => {}),
   }));
   // for mobile phones
   term.on("input", command => {
@@ -132,8 +131,8 @@ onMounted(() => {
       }) => {
         editor.value = state;
       },
-      "locale"   : locale?.value ?? DefaultLocale,
-      "setLocale": selectLocale ?? (() => {}),
+      "locale"         : translations?.value?.Info?.Code ?? "en",
+      "setTranslations": selectTranslations ?? (() => {}),
     });
   });
 });

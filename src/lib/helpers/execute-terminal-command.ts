@@ -4,6 +4,8 @@ import { getWeather } from "@/lib/helpers/get-weather.ts";
 import { fetchUrl } from "@/lib/helpers/fetch-url.ts";
 import { pfetch } from "@/lib/helpers/pfetch.ts";
 import { Locales } from "@/constants/locales.ts";
+import type { TranslationsType } from "@/types/translations.type.ts";
+import { fetchTranslations } from "@/lib/helpers/fetch-translations.ts";
 
 export function executeTerminalCommand({
   command,
@@ -14,7 +16,7 @@ export function executeTerminalCommand({
   close,
   onEditor,
   locale,
-  setLocale,
+  setTranslations,
 }: {
   "command" : string;
   "term"    : WebTerm;
@@ -27,8 +29,8 @@ export function executeTerminalCommand({
     "quit"  : () => void;
     "save"  : () => void;
   }) => void;
-  "locale"   : LocaleType;
-  "setLocale": (locale: LocaleType) => void;
+  "locale"         : LocaleType;
+  "setTranslations": (translations: TranslationsType) => void;
 }): void {
   if (command.startsWith("fetch ")) {
     fetchUrl({ command, term });
@@ -104,9 +106,8 @@ export function executeTerminalCommand({
         const locale: string = pairs?.[1];
 
         let selectedValidLocale: LocaleType | null = null;
-        const validLocales: Array<LocaleType> = Locales.map(({ Code }) => Code);
 
-        for (const validLocale of validLocales) {
+        for (const validLocale of Locales) {
           if (validLocale === locale) {
             selectedValidLocale = validLocale;
           }
@@ -119,7 +120,10 @@ export function executeTerminalCommand({
             term.clearBelow();
           }, 2000);
         } else {
-          setLocale?.(selectedValidLocale);
+          fetchTranslations({ "locale": selectedValidLocale, setTranslations })
+            .catch((error: unknown) => {
+              console.error("Couldn't retrieve translations (terminal command):", error);
+            });
         }
       };
 
