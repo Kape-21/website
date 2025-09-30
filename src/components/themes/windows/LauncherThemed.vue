@@ -9,6 +9,8 @@ const {
   backgroundText,
   text,
   base,
+  tooltipBase,
+  tooltipText,
 } = defineProps<{
   "highlight"      : string;
   "highlightedText": string;
@@ -17,6 +19,8 @@ const {
   "backgroundText" : string;
   "text"           : string;
   "base"           : string;
+  "tooltipBase"    : string;
+  "tooltipText"    : string;
 }>();
 
 const buttons = {
@@ -47,7 +51,7 @@ const buttons = {
         <div
           v-for="button in buttons.menu"
           :key="button.name"
-          class="flex flex-nowrap items-center"
+          class="relative flex flex-nowrap items-center"
         >
           <div :class="['size-6', button.icon]" />
           <div
@@ -55,6 +59,16 @@ const buttons = {
             :style="{ color: buttonText }"
           >
             {{ button.name }}
+          </div>
+          <div
+            v-if="button.name === 'Settings'"
+            class="absolute left-0 top-7 p-1 text-nowrap text-xs leading-none"
+            :style="{
+              background: tooltipBase,
+              color     : tooltipText,
+            }"
+          >
+            Change settings.
           </div>
         </div>
       </div>

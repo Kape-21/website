@@ -80,7 +80,7 @@ const itemsThemesSettings = [
             v-for="name in ['Features', 'User Interface', 'Console']"
             :key="name"
             :class="[
-              'mix-blend-lighten text-sm p-2 leading-none rounded-t-sm text-xs',
+              'text-sm p-2 leading-none rounded-t-sm text-xs',
               name === 'User Interface'
                 ? 'h-[32px] border-x-2 border-t-2'
                 : 'h-[30px] border-b-2 opacity-80',
@@ -94,7 +94,7 @@ const itemsThemesSettings = [
           </div>
         </div>
         <div
-          class="h-full w-full flex flex-col border-x-2 border-b-2 rounded-sm p-2 mix-blend-lighten"
+          class="h-full w-full flex flex-col border-x-2 border-b-2 rounded-sm p-2"
           :style="{
             background : buttonColor,
             borderColor: base,
@@ -150,7 +150,7 @@ const itemsThemesSettings = [
             Cat
           </p>
           <div
-            class="border border-black rounded-md px-2 py-3 sm:cols-2"
+            class="border border-black rounded-md px-2 py-2 sm:cols-2"
           >
             <div class="flex flex-nowrap items-center justify-between">
               <p class="text-xs">

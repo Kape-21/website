@@ -76,6 +76,8 @@ function resetColors() {
           :background-text="colors.WindowText"
           :text="colors.Text"
           :base="colors.Base"
+          :tooltip-base="colors.ToolTipBase"
+          :tooltip-text="colors.ToolTipText"
         />
         <SettingsThemed
           :highlight="colors.Highlight"
