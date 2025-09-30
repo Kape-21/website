@@ -3,7 +3,7 @@ import { DefaultColors } from "@/constants/customization.ts";
 import { computed } from "vue";
 import { useDebounceFn } from "@vueuse/core";
 
-const { colors, setColor } = defineProps<{
+const { colors, setColor, resetColors } = defineProps<{
   "colors"  : typeof DefaultColors;
   "setColor": ({
     key,
@@ -12,6 +12,7 @@ const { colors, setColor } = defineProps<{
     "key"  : keyof typeof DefaultColors;
     "color": typeof DefaultColors[keyof typeof DefaultColors];
   }) => void;
+  "resetColors": () => void;
 }>();
 const colorEntries = computed(() => Object.entries(colors));
 
@@ -27,6 +28,12 @@ const handleColorInput = useDebounceFn(({ target }: { "target": unknown }) => {
 
 <template>
   <div class="grid cols-1 w-full gap-0 gap-2 lg:cols-3 sm:cols-2">
+    <button @click="resetColors" class="w-fit flex flex-nowrap items-center gap-4 rounded-md p-2 transition-[background-color] hover:bg-catppuccin-800">
+      <span class="i-lucide-rotate-ccw block size-6" />
+      <span class="block text-gray-400 font-medium">
+        Reset
+      </span>
+    </button>
     <div
       v-for="[name, color] in colorEntries"
       :key="name"

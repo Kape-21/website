@@ -10,7 +10,7 @@ import LauncherThemed from "@/components/themes/windows/LauncherThemed.vue";
 import SettingsThemed from "@/components/themes/windows/SettingsThemed.vue";
 
 const selected = ref<typeof CustomizationTabs[number]["Key"]>("colors");
-const colors = ref<typeof DefaultColors>(DefaultColors);
+const colors = ref<typeof DefaultColors>({ ...DefaultColors });
 
 function selectColor({
   key,
@@ -20,6 +20,9 @@ function selectColor({
   "color": typeof DefaultColors[keyof typeof DefaultColors];
 }) {
   colors.value[key] = color;
+}
+function resetColors() {
+  colors.value = { ...DefaultColors };
 }
 </script>
 
@@ -53,6 +56,7 @@ function selectColor({
           v-if="selected === 'colors'"
           :colors="colors"
           :set-color="selectColor"
+          :reset-colors="resetColors"
         />
         <GeneralStyler v-else-if="selected === 'general'" />
         <ButtonsStyler v-else-if="selected === 'buttons'" />
